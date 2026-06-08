@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Buddies – HydraSpecma India</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{--gold:#FFCC00;--gold-dark:#b8940a;--dark:#0d0d0d;--dark2:#141414;--dark3:#1c1c1c;--dark4:#242424;--text:#f0f0f0;--muted:#999;--red:#e74c3c;--blue:#58a6ff;}
@@ -309,7 +307,7 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
 <body>
 
 <!-- Password -->
-<div id="pwd-overlay">
+<div id="pwd-overlay" class="">
   <div class="pwd-box">
     <div class="lock-big">🔐</div>
     <h3>Admin Access</h3>
@@ -322,10 +320,10 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
 </div>
 
 <!-- Edit Record -->
-<div id="edit-overlay">
+<div id="edit-overlay" class="">
   <div class="edit-box">
     <h3>✏️ Edit Birthday Record</h3>
-    <input type="hidden" id="edit-id">
+    <input type="hidden" id="edit-id" value="4">
     <div class="form-row">
       <div class="form-group"><label>Full Name</label><input type="text" id="edit-name"></div>
       <div class="form-group"><label>Designation</label><input type="text" id="edit-designation"></div>
@@ -357,29 +355,29 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
     <div class="ph-progress" id="ph-progress"><div class="ph-progress-bar"></div></div>
     <div class="ph-upload-status" id="ph-upload-status"></div>
     <div class="photo-box-actions">
-      <button class="btn-upload-ph" id="btn-upload-ph" onclick="uploadPhotoToGitHub()" disabled>⬆ Upload to GitHub</button>
+      <button class="btn-upload-ph" id="btn-upload-ph" onclick="uploadPhotoToGitHub()" disabled="">⬆ Upload to GitHub</button>
       <button class="btn-cancel-ph" onclick="closePhotoOverlay()">Cancel</button>
     </div>
   </div>
 </div>
 
 <!-- Admin Modal -->
-<div id="admin-overlay">
+<div id="admin-overlay" class="">
   <div id="admin-modal">
     <div class="admin-header">
       <h2>⚙️ Birthday Buddies — Admin Panel</h2>
       <button class="close-admin" onclick="closeAdmin()">✕</button>
     </div>
     <div class="admin-tabs">
-      <button class="tab-btn active" onclick="switchTab(event,'tab-add')">➕ Add</button>
+      <button class="tab-btn" onclick="switchTab(event,'tab-add')">➕ Add</button>
       <button class="tab-btn" onclick="switchTab(event,'tab-records')">📋 Records</button>
       <button class="tab-btn" onclick="switchTab(event,'tab-history')">📅 History</button>
-      <button class="tab-btn" onclick="switchTab(event,'tab-github')">⬆ GitHub</button>
+      <button class="tab-btn active" onclick="switchTab(event,'tab-github')">⬆ GitHub</button>
     </div>
     <div class="admin-body">
 
       <!-- ADD TAB -->
-      <div id="tab-add" class="tab-content active">
+      <div id="tab-add" class="tab-content">
         <div class="form-row">
           <div class="form-group"><label>Full Name</label><input type="text" id="f-name" placeholder="e.g. P Manigandan"></div>
           <div class="form-group"><label>Designation</label><input type="text" id="f-designation" placeholder="e.g. Dynamics Application Specialist"></div>
@@ -409,16 +407,205 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
         <div class="records-header">
           <span>Photo</span><span>Date</span><span>Name</span><span>Designation</span><span>Dept</span><span>Actions</span>
         </div>
-        <div id="records-list"></div>
+        <div id="records-list"><div class="record-row">
+      <div class="r-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/a-venkatesan.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="r-thumb-init" style="display: inline-flex;">AV</span></div>
+      <div class="date-cell">2 May</div>
+      <div class="name-cell">A Venkatesan</div>
+      <div class="role-cell">Engineer</div>
+      <div class="dept-cell">Quality</div>
+      <div class="actions">
+        <button class="btn-photo" onclick="openPhotoOverlay(1)" title="Upload Photo">📷</button>
+        <button class="btn-edit" onclick="openEdit(1)" title="Edit">✏️</button>
+        <button class="btn-del" onclick="deleteBirthday(1)" title="Delete">✕</button>
+      </div></div><div class="record-row">
+      <div class="r-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/j-sathiya-balaji.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="r-thumb-init" style="display: inline-flex;">JB</span></div>
+      <div class="date-cell">3 May</div>
+      <div class="name-cell">J.Sathiya Balaji</div>
+      <div class="role-cell">Finance Controller</div>
+      <div class="dept-cell">Finance</div>
+      <div class="actions">
+        <button class="btn-photo" onclick="openPhotoOverlay(2)" title="Upload Photo">📷</button>
+        <button class="btn-edit" onclick="openEdit(2)" title="Edit">✏️</button>
+        <button class="btn-del" onclick="deleteBirthday(2)" title="Delete">✕</button>
+      </div></div><div class="record-row">
+      <div class="r-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/m-prasanth.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="r-thumb-init" style="display: inline-flex;">MP</span></div>
+      <div class="date-cell">8 May</div>
+      <div class="name-cell">M. Prasanth</div>
+      <div class="role-cell">Jr. Technician</div>
+      <div class="dept-cell">Production</div>
+      <div class="actions">
+        <button class="btn-photo" onclick="openPhotoOverlay(3)" title="Upload Photo">📷</button>
+        <button class="btn-edit" onclick="openEdit(3)" title="Edit">✏️</button>
+        <button class="btn-del" onclick="deleteBirthday(3)" title="Delete">✕</button>
+      </div></div><div class="record-row">
+      <div class="r-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/p-elangovan.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="r-thumb-init" style="display: inline-flex;">PE</span></div>
+      <div class="date-cell">20 May</div>
+      <div class="name-cell">P Elangovan</div>
+      <div class="role-cell">Senior Technician</div>
+      <div class="dept-cell">Production</div>
+      <div class="actions">
+        <button class="btn-photo" onclick="openPhotoOverlay(5)" title="Upload Photo">📷</button>
+        <button class="btn-edit" onclick="openEdit(5)" title="Edit">✏️</button>
+        <button class="btn-del" onclick="deleteBirthday(5)" title="Delete">✕</button>
+      </div></div><div class="record-row">
+      <div class="r-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/r-shiva-shankar.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="r-thumb-init" style="display: inline-flex;">RS</span></div>
+      <div class="date-cell">21 May</div>
+      <div class="name-cell">R.Shiva Shankar</div>
+      <div class="role-cell">Production &amp; Maintenance In charge</div>
+      <div class="dept-cell">Production</div>
+      <div class="actions">
+        <button class="btn-photo" onclick="openPhotoOverlay(6)" title="Upload Photo">📷</button>
+        <button class="btn-edit" onclick="openEdit(6)" title="Edit">✏️</button>
+        <button class="btn-del" onclick="deleteBirthday(6)" title="Delete">✕</button>
+      </div></div><div class="record-row">
+      <div class="r-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/a-vignesh.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="r-thumb-init" style="display: inline-flex;">A</span></div>
+      <div class="date-cell">25 May</div>
+      <div class="name-cell">A.Vignesh</div>
+      <div class="role-cell">Technician</div>
+      <div class="dept-cell">Production</div>
+      <div class="actions">
+        <button class="btn-photo" onclick="openPhotoOverlay(7)" title="Upload Photo">📷</button>
+        <button class="btn-edit" onclick="openEdit(7)" title="Edit">✏️</button>
+        <button class="btn-del" onclick="deleteBirthday(7)" title="Delete">✕</button>
+      </div></div><div class="record-row">
+      <div class="r-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/s-mohan.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="r-thumb-init" style="display: inline-flex;">S</span></div>
+      <div class="date-cell">27 May</div>
+      <div class="name-cell">S.Mohan</div>
+      <div class="role-cell">Production Manager</div>
+      <div class="dept-cell">Production</div>
+      <div class="actions">
+        <button class="btn-photo" onclick="openPhotoOverlay(8)" title="Upload Photo">📷</button>
+        <button class="btn-edit" onclick="openEdit(8)" title="Edit">✏️</button>
+        <button class="btn-del" onclick="deleteBirthday(8)" title="Delete">✕</button>
+      </div></div><div class="record-row">
+      <div class="r-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/r-sathishkumar.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="r-thumb-init" style="display: inline-flex;">R</span></div>
+      <div class="date-cell">29 May</div>
+      <div class="name-cell">R.SathishKumar</div>
+      <div class="role-cell">Diploma Trainee</div>
+      <div class="dept-cell">Production</div>
+      <div class="actions">
+        <button class="btn-photo" onclick="openPhotoOverlay(9)" title="Upload Photo">📷</button>
+        <button class="btn-edit" onclick="openEdit(9)" title="Edit">✏️</button>
+        <button class="btn-del" onclick="deleteBirthday(9)" title="Delete">✕</button>
+      </div></div><div class="record-row">
+      <div class="r-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/p-manigandan.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="r-thumb-init" style="display: inline-flex;">PM</span></div>
+      <div class="date-cell">15 Jun</div>
+      <div class="name-cell">P Manigandan</div>
+      <div class="role-cell">Dynamics Application Specialist</div>
+      <div class="dept-cell">IT</div>
+      <div class="actions">
+        <button class="btn-photo" onclick="openPhotoOverlay(4)" title="Upload Photo">📷</button>
+        <button class="btn-edit" onclick="openEdit(4)" title="Edit">✏️</button>
+        <button class="btn-del" onclick="deleteBirthday(4)" title="Delete">✕</button>
+      </div></div></div>
       </div>
 
       <!-- HISTORY TAB -->
       <div id="tab-history" class="tab-content">
-        <div id="history-list"></div>
+        <div id="history-list"><div class="history-month"><div class="history-month-title">🗓 May</div><div class="history-entry">
+        <div class="history-left">
+          <div class="h-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/a-venkatesan.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="h-thumb-init" style="display: inline-flex;">AV</span></div>
+          <div class="history-date">2</div>
+          <div><div class="h-name">A Venkatesan</div><div class="h-role">Engineer — Quality</div></div>
+        </div>
+        <div class="history-actions">
+          <button class="btn-photo" onclick="openPhotoOverlay(1)" title="Upload Photo">📷</button>
+          <button class="btn-edit" onclick="openEdit(1)" title="Edit">✏️</button>
+          <button class="btn-del" onclick="deleteBirthday(1);renderHistory();" title="Delete">✕</button>
+        </div>
+      </div><div class="history-entry">
+        <div class="history-left">
+          <div class="h-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/j-sathiya-balaji.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="h-thumb-init" style="display: inline-flex;">JB</span></div>
+          <div class="history-date">3</div>
+          <div><div class="h-name">J.Sathiya Balaji</div><div class="h-role">Finance Controller — Finance</div></div>
+        </div>
+        <div class="history-actions">
+          <button class="btn-photo" onclick="openPhotoOverlay(2)" title="Upload Photo">📷</button>
+          <button class="btn-edit" onclick="openEdit(2)" title="Edit">✏️</button>
+          <button class="btn-del" onclick="deleteBirthday(2);renderHistory();" title="Delete">✕</button>
+        </div>
+      </div><div class="history-entry">
+        <div class="history-left">
+          <div class="h-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/m-prasanth.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="h-thumb-init" style="display: inline-flex;">MP</span></div>
+          <div class="history-date">8</div>
+          <div><div class="h-name">M. Prasanth</div><div class="h-role">Jr. Technician — Production</div></div>
+        </div>
+        <div class="history-actions">
+          <button class="btn-photo" onclick="openPhotoOverlay(3)" title="Upload Photo">📷</button>
+          <button class="btn-edit" onclick="openEdit(3)" title="Edit">✏️</button>
+          <button class="btn-del" onclick="deleteBirthday(3);renderHistory();" title="Delete">✕</button>
+        </div>
+      </div><div class="history-entry">
+        <div class="history-left">
+          <div class="h-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/p-elangovan.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="h-thumb-init" style="display: inline-flex;">PE</span></div>
+          <div class="history-date">20</div>
+          <div><div class="h-name">P Elangovan</div><div class="h-role">Senior Technician — Production</div></div>
+        </div>
+        <div class="history-actions">
+          <button class="btn-photo" onclick="openPhotoOverlay(5)" title="Upload Photo">📷</button>
+          <button class="btn-edit" onclick="openEdit(5)" title="Edit">✏️</button>
+          <button class="btn-del" onclick="deleteBirthday(5);renderHistory();" title="Delete">✕</button>
+        </div>
+      </div><div class="history-entry">
+        <div class="history-left">
+          <div class="h-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/r-shiva-shankar.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="h-thumb-init" style="display: inline-flex;">RS</span></div>
+          <div class="history-date">21</div>
+          <div><div class="h-name">R.Shiva Shankar</div><div class="h-role">Production &amp; Maintenance In charge — Production</div></div>
+        </div>
+        <div class="history-actions">
+          <button class="btn-photo" onclick="openPhotoOverlay(6)" title="Upload Photo">📷</button>
+          <button class="btn-edit" onclick="openEdit(6)" title="Edit">✏️</button>
+          <button class="btn-del" onclick="deleteBirthday(6);renderHistory();" title="Delete">✕</button>
+        </div>
+      </div><div class="history-entry">
+        <div class="history-left">
+          <div class="h-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/a-vignesh.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="h-thumb-init" style="display: inline-flex;">A</span></div>
+          <div class="history-date">25</div>
+          <div><div class="h-name">A.Vignesh</div><div class="h-role">Technician — Production</div></div>
+        </div>
+        <div class="history-actions">
+          <button class="btn-photo" onclick="openPhotoOverlay(7)" title="Upload Photo">📷</button>
+          <button class="btn-edit" onclick="openEdit(7)" title="Edit">✏️</button>
+          <button class="btn-del" onclick="deleteBirthday(7);renderHistory();" title="Delete">✕</button>
+        </div>
+      </div><div class="history-entry">
+        <div class="history-left">
+          <div class="h-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/s-mohan.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="h-thumb-init" style="display: inline-flex;">S</span></div>
+          <div class="history-date">27</div>
+          <div><div class="h-name">S.Mohan</div><div class="h-role">Production Manager — Production</div></div>
+        </div>
+        <div class="history-actions">
+          <button class="btn-photo" onclick="openPhotoOverlay(8)" title="Upload Photo">📷</button>
+          <button class="btn-edit" onclick="openEdit(8)" title="Edit">✏️</button>
+          <button class="btn-del" onclick="deleteBirthday(8);renderHistory();" title="Delete">✕</button>
+        </div>
+      </div><div class="history-entry">
+        <div class="history-left">
+          <div class="h-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/r-sathishkumar.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="h-thumb-init" style="display: inline-flex;">R</span></div>
+          <div class="history-date">29</div>
+          <div><div class="h-name">R.SathishKumar</div><div class="h-role">Diploma Trainee — Production</div></div>
+        </div>
+        <div class="history-actions">
+          <button class="btn-photo" onclick="openPhotoOverlay(9)" title="Upload Photo">📷</button>
+          <button class="btn-edit" onclick="openEdit(9)" title="Edit">✏️</button>
+          <button class="btn-del" onclick="deleteBirthday(9);renderHistory();" title="Delete">✕</button>
+        </div>
+      </div></div><div class="history-month"><div class="history-month-title">🗓 June</div><div class="history-entry">
+        <div class="history-left">
+          <div class="h-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/p-manigandan.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="h-thumb-init" style="display: inline-flex;">PM</span></div>
+          <div class="history-date">15</div>
+          <div><div class="h-name">P Manigandan</div><div class="h-role">Dynamics Application Specialist — IT</div></div>
+        </div>
+        <div class="history-actions">
+          <button class="btn-photo" onclick="openPhotoOverlay(4)" title="Upload Photo">📷</button>
+          <button class="btn-edit" onclick="openEdit(4)" title="Edit">✏️</button>
+          <button class="btn-del" onclick="deleteBirthday(4);renderHistory();" title="Delete">✕</button>
+        </div>
+      </div></div></div>
       </div>
 
       <!-- GITHUB TAB -->
-      <div id="tab-github" class="tab-content">
+      <div id="tab-github" class="tab-content active">
         <div class="gh-section">
           <h3>🔧 GitHub Configuration</h3>
           <div class="gh-note">Photos are stored in <strong>images/</strong> folder of your repo. When you push, the HTML file is updated with all current birthday data baked in. Anyone visiting your GitHub Pages link will see the latest records and photos.</div>
@@ -444,17 +631,17 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
             </div>
           </div>
           <div class="gh-form-group">
-            <label>Personal Access Token (PAT) — <a href="https://github.com/settings/tokens/new?scopes=repo&description=BirthdayBuddies" target="_blank">Generate here ↗</a></label>
+            <label>Personal Access Token (PAT) — <a href="https://github.com/settings/tokens/new?scopes=repo&amp;description=BirthdayBuddies" target="_blank">Generate here ↗</a></label>
             <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
             <div class="gh-hint">Needs <strong>repo</strong> scope. Stored in your browser only. Never sent anywhere except GitHub API.</div>
           </div>
 
           <div class="gh-actions">
-            <button class="btn-push" id="btn-push-html" onclick="pushHTMLToGitHub()">⬆ Push HTML to GitHub</button>
+            <button class="btn-push" id="btn-push-html" onclick="pushHTMLToGitHub()">Push HTML to GitHub</button>
             <button class="btn-save-cfg" onclick="saveGhConfig()">💾 Save Config</button>
           </div>
-          <div class="gh-progress" id="gh-progress"><div class="gh-progress-bar"></div></div>
-          <div class="gh-status" id="gh-status"></div>
+          <div class="gh-progress" id="gh-progress" style="display: none;"><div class="gh-progress-bar"></div></div>
+          <div class="gh-status" id="gh-status" style="display: none;"></div>
         </div>
 
         <div class="gh-setup">
@@ -483,28 +670,51 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
       <span class="company-sub">India Pvt. Ltd.</span>
     </div>
     <div class="top-center">
-      <div class="month-label" id="current-month-label"></div>
-      <div class="clock" id="clock"></div>
+      <div class="month-label" id="current-month-label">June 2026</div>
+      <div class="clock" id="clock">11:48:27 am</div>
     </div>
     <button class="admin-btn" onclick="openPwdOverlay()">🔒 Admin</button>
   </div>
 
-  <div class="today-strip" id="today-strip"></div>
+  <div class="today-strip" id="today-strip" style="display: none;"></div>
 
   <div id="slide-area">
-    <div class="particles" id="particles"></div>
-    <div id="no-birthday">
+    <div class="particles" id="particles"><div class="particle" style="width: 5.72868px; height: 5.72868px; left: 5.83155%; background: rgba(255, 204, 0, 0.12); animation-duration: 13.5798s; animation-delay: 7.74767s;"></div><div class="particle" style="width: 6.12906px; height: 6.12906px; left: 52.2975%; background: rgba(255, 204, 0, 0.067); animation-duration: 15.6042s; animation-delay: 2.53543s;"></div><div class="particle" style="width: 3.26841px; height: 3.26841px; left: 31.0825%; background: rgba(255, 204, 0, 0.22); animation-duration: 13.0626s; animation-delay: 1.95734s;"></div><div class="particle" style="width: 6.27804px; height: 6.27804px; left: 22.626%; background: rgba(255, 204, 0, 0.184); animation-duration: 16.3139s; animation-delay: 6.14194s;"></div><div class="particle" style="width: 3.74243px; height: 3.74243px; left: 72.7771%; background: rgba(255, 204, 0, 0.208); animation-duration: 18.7733s; animation-delay: 6.25561s;"></div><div class="particle" style="width: 4.77045px; height: 4.77045px; left: 82.7273%; background: rgba(255, 204, 0, 0.22); animation-duration: 18.5745s; animation-delay: 4.20965s;"></div><div class="particle" style="width: 8.46915px; height: 8.46915px; left: 56.0889%; background: rgba(255, 204, 0, 0.19); animation-duration: 12.8547s; animation-delay: 3.90507s;"></div><div class="particle" style="width: 6.80237px; height: 6.80237px; left: 66.1642%; background: rgba(255, 204, 0, 0.137); animation-duration: 14.7061s; animation-delay: 7.73144s;"></div><div class="particle" style="width: 8.24975px; height: 8.24975px; left: 77.366%; background: rgba(255, 204, 0, 0.14); animation-duration: 9.06943s; animation-delay: 6.50595s;"></div><div class="particle" style="width: 5.9946px; height: 5.9946px; left: 32.444%; background: rgba(255, 204, 0, 0.07); animation-duration: 18.8119s; animation-delay: 4.64914s;"></div><div class="particle" style="width: 5.77776px; height: 5.77776px; left: 1.74996%; background: rgba(255, 204, 0, 0.184); animation-duration: 16.2418s; animation-delay: 2.67182s;"></div><div class="particle" style="width: 5.7888px; height: 5.7888px; left: 30.8699%; background: rgba(255, 204, 0, 0.08); animation-duration: 12.6758s; animation-delay: 1.18163s;"></div><div class="particle" style="width: 4.61251px; height: 4.61251px; left: 31.5344%; background: rgba(255, 204, 0, 0.18); animation-duration: 10.4768s; animation-delay: 5.4916s;"></div><div class="particle" style="width: 7.55809px; height: 7.55809px; left: 7.40987%; background: rgba(255, 204, 0, 0.13); animation-duration: 14.1177s; animation-delay: 5.64696s;"></div><div class="particle" style="width: 6.90101px; height: 6.90101px; left: 20.1585%; background: rgba(255, 204, 0, 0.176); animation-duration: 15.9232s; animation-delay: 1.08936s;"></div><div class="particle" style="width: 3.35895px; height: 3.35895px; left: 95.742%; background: rgba(255, 204, 0, 0.137); animation-duration: 8.3675s; animation-delay: 9.00806s;"></div><div class="particle" style="width: 4.79125px; height: 4.79125px; left: 38.9365%; background: rgba(255, 204, 0, 0.227); animation-duration: 12.5323s; animation-delay: 1.60625s;"></div><div class="particle" style="width: 4.60061px; height: 4.60061px; left: 69.7575%; background: rgba(255, 204, 0, 0.05); animation-duration: 9.39828s; animation-delay: 0.540618s;"></div></div>
+    <div id="no-birthday" style="display: none;">
       <div class="big-emoji">🎂</div>
       <h2>No Birthdays This Month</h2>
       <p>Add records from the Admin panel.</p>
     </div>
-    <div id="slides-wrapper"></div>
-    <div id="month-slide">
-      <div class="month-title" id="month-slide-title"></div>
-      <div class="month-grid" id="month-grid"></div>
+    <div id="slides-wrapper"><div class="bday-slide active">
+        <div style="position:relative;width:100%;">
+          <div class="bday-card" id="card-15">
+            <div class="shimmer-bar"></div>
+            <div class="balloons"><span class="balloon">🎈</span><span class="balloon">🎉</span><span class="balloon">🎊</span><span class="balloon">🎉</span><span class="balloon">🎈</span></div>
+            
+            <div class="person-section">
+              <div class="avatar-wrap" id="av-wrap-15">
+                <div class="avatar-ring" id="av-ring-4"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/p-manigandan.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="avatar-initials" style="display: inline-flex;">PM</span></div>
+              </div>
+              <div class="bday-name">P Manigandan</div>
+              <div class="bday-designation">Dynamics Application Specialist</div>
+              <div class="bday-dept">IT</div>
+              <div class="bday-date-badge">🗓 15th June</div>
+              <div class="wish-text">🎂 Happy Birthday!</div><div class="wish-sub">Wishing you a wonderful day! 🌟</div>
+            </div>
+          </div>
+        </div></div></div>
+    <div id="month-slide" class="">
+      <div class="month-title" id="month-slide-title">June 2026 — Birthday Buddies</div>
+      <div class="month-grid" id="month-grid"><div class="month-card">
+      <div class="mc-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/p-manigandan.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="mc-thumb-init" style="display: inline-flex;">PM</span></div>
+      <div class="mc-date"><div class="mc-day">15</div><div class="mc-mon">Jun</div></div>
+      <div class="mc-info">
+        <div class="mc-names">P Manigandan</div>
+        <div class="mc-roles">Dynamics Application Specialist</div>
+      </div></div></div>
     </div>
   </div>
-  <div id="slide-dots"></div>
+  <div id="slide-dots"><div class="dot active"></div><div class="dot"></div></div>
 </div>
 
 <div class="emoji-rain" id="emoji-rain"></div>
@@ -552,15 +762,16 @@ function getPhotoUrl(b){
 }
 
 // Photo img element with fallback to initials
-function makeAvatarHTML(b,size='large'){
+function makeAvatarHTML(b,size='large',isToday=false){
   const url=getPhotoUrl(b);
   const init=gInit(b?b.name:'?');
+  const todayClass = isToday ? ' today-avatar' : '';
   if(size==='large'){
     // Always attempt photo; onerror falls back to initials
-    return `<div class="avatar-ring" id="av-ring-${b?b.id:'x'}"><img src="${url||''}" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width:100%;height:100%;object-fit:cover;border-radius:50%;${url?'':'display:none;'}"><span class="avatar-initials" style="${url?'display:none;':''}">${init}</span></div>`;
+    return `<div class="avatar-ring${todayClass}" id="av-ring-${b?b.id:'x'}"><img src="${url||''}" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width:100%;height:100%;object-fit:cover;border-radius:50%;${url?'':'display:none;'}"><span class="avatar-initials" style="${url?'display:none;':''}">${init}</span></div>`;
   }
   if(size==='mini'){
-    return `<div class="mini-avatar"><img src="${url||''}" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width:100%;height:100%;object-fit:cover;border-radius:50%;${url?'':'display:none;'}"><span class="mini-initials" style="${url?'display:none;':''}">${init}</span></div>`;
+    return `<div class="mini-avatar${todayClass}"><img src="${url||''}" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width:100%;height:100%;object-fit:cover;border-radius:50%;${url?'':'display:none;'}"><span class="mini-initials" style="${url?'display:none;':''}">${init}</span></div>`;
   }
   if(size==='thumb'){
     return `<div class="r-thumb"><img src="${url||''}" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width:100%;height:100%;object-fit:cover;border-radius:50%;${url?'':'display:none;'}"><span class="r-thumb-init" style="${url?'display:none;':''}">${init}</span></div>`;
@@ -703,7 +914,7 @@ function buildSlides(){
             ${isToday?'<div class="crown-wrap">👑</div>':''}
             <div class="person-section">
               <div class="avatar-wrap" id="av-wrap-${day}">
-                ${makeAvatarHTML(p,'large')}
+                ${makeAvatarHTML(p,'large',isToday)}
               </div>
               <div class="bday-name${isToday?' today-name':''}">${p.name}</div>
               <div class="bday-designation">${p.designation}</div>
@@ -718,7 +929,7 @@ function buildSlides(){
     }else{
       const multiHtml=persons.map(p=>`
         <div class="mini-person">
-          ${makeAvatarHTML(p,'mini')}
+          ${makeAvatarHTML(p,'mini',isToday)}
           <div class="mini-name">${p.name}</div>
           <div class="mini-role">${p.designation} · ${p.dept}</div>
         </div>`).join('');
@@ -749,9 +960,6 @@ function buildSlides(){
         if(card){addFireworks(card);addStars(card);}
         const av=document.getElementById(`av-wrap-${day}`);
         if(av)addSparkles(av);
-        // Add today glow to avatar ring
-        const ring=document.getElementById(`av-ring-${day}`);
-        if(ring)ring.classList.add('today-avatar');
         const tw=slideEl.querySelector('.typing-wish');
         if(tw)typeWish(tw,WISHES);
       });
@@ -1061,8 +1269,74 @@ function setGhStatus(type,msg){
   el.className='gh-status '+type;el.textContent=msg;
 }
 function generateBakedHTML(){
-  const dataJson=JSON.stringify(birthdays);
-  return document.documentElement.outerHTML.replace(
+  // Clean up any overlays that are currently open in the admin panel so the site loads in presentation mode by default on GitHub Pages
+  const overlays = ['pwd-overlay', 'admin-overlay', 'edit-overlay', 'photo-overlay'];
+  const activeOverlays = [];
+  overlays.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.classList.contains('show')) {
+      activeOverlays.push(id);
+      el.classList.remove('show');
+    }
+  });
+
+  // Clean up any temporary push statuses and active/disabled button states in the DOM
+  const ghStatus = document.getElementById('gh-status');
+  let oldGhStatusClass = '', oldGhStatusText = '', oldGhStatusDisplay = '';
+  if (ghStatus) {
+    oldGhStatusClass = ghStatus.className;
+    oldGhStatusText = ghStatus.innerHTML;
+    oldGhStatusDisplay = ghStatus.style.display;
+    ghStatus.className = 'gh-status';
+    ghStatus.innerHTML = '';
+    ghStatus.style.display = 'none';
+  }
+
+  const ghProgress = document.getElementById('gh-progress');
+  let oldGhProgressDisplay = '';
+  if (ghProgress) {
+    oldGhProgressDisplay = ghProgress.style.display;
+    ghProgress.style.display = 'none';
+  }
+
+  const pushBtn = document.getElementById('btn-push-html');
+  let oldPushBtnText = '', oldPushBtnDisabled = false;
+  if (pushBtn) {
+    oldPushBtnText = pushBtn.textContent;
+    oldPushBtnDisabled = pushBtn.disabled;
+    pushBtn.textContent = 'Push HTML to GitHub';
+    pushBtn.disabled = false;
+  }
+
+  // Get the birthdays array
+  const dataJson = JSON.stringify(birthdays);
+
+  // Serialize the HTML of the current clean DOM state
+  const outerHTML = document.documentElement.outerHTML;
+
+  // Restore the overlays and button/status states so the user's active session is not disrupted
+  activeOverlays.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('show');
+  });
+
+  if (ghStatus) {
+    ghStatus.className = oldGhStatusClass;
+    ghStatus.innerHTML = oldGhStatusText;
+    ghStatus.style.display = oldGhStatusDisplay;
+  }
+
+  if (ghProgress) {
+    ghProgress.style.display = oldGhProgressDisplay;
+  }
+
+  if (pushBtn) {
+    pushBtn.textContent = oldPushBtnText;
+    pushBtn.disabled = oldPushBtnDisabled;
+  }
+
+  // Replace the default birthdays array in the JS source code
+  return outerHTML.replace(
     /let birthdays=JSON\.parse\(localStorage\.getItem\('hsin_bd'\)\|'null'\)\|\|(\[[\s\S]*?\]);/,
     `let birthdays=JSON.parse(localStorage.getItem('hsin_bd')||'null')||${dataJson};`
   );
@@ -1117,5 +1391,5 @@ buildSlides();
   }
 })();
 </script>
-</body>
-</html>
+
+</body></html>
