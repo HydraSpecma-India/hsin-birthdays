@@ -3,10 +3,10 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="version" content="20260608073354">
+<meta name="version" content="20260608073630">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Buddies – HydraSpecma India</title>
-<!-- v20260608073354 -->
+<!-- v20260608073630 -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -521,7 +521,7 @@ const MONTHS=['January','February','March','April','May','June','July','August',
 const MS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const WISHES=["May all your dreams come true! ✨","Wishing you joy, laughter & cake! 🎂","Many happy returns of the day! 🌟","May this year bring great success! 🚀","HydraSpecma family wishes you well! 💛","Have an amazing birthday! 🎊","You make our team brighter! ⭐"];
 
-let birthdays=JSON.parse(localStorage.getItem('hsin_bd')||'null')||[{"id":3,"name":"M. Prasanth","designation":"Jr. Technician","dept":"Production","month":5,"day":8,"photo":null},{"id":5,"name":"P Elangovan","designation":"Senior Technician","dept":"Production","month":6,"day":8,"photo":null},{"id":6,"name":"R.Shiva Shankar","designation":"Production & Maintenance In charge","dept":"Production","month":6,"day":8,"photo":null},{"id":7,"name":"A.Vignesh","designation":"Technician","dept":"Production","month":5,"day":25,"photo":null},{"id":8,"name":"S.Mohan","designation":"Production Manager","dept":"Production","month":5,"day":27,"photo":null},{"id":9,"name":"R.SathishKumar","designation":"Diploma Trainee","dept":"Production","month":5,"day":29,"photo":null},{"id":10,"name":"Manigandan","designation":"Dynamics application Specialsist","dept":"IT","month":6,"day":8,"photo":null}];
+let birthdays=JSON.parse(localStorage.getItem('hsin_bd')||'null')||[{"id":3,"name":"M. Prasanth","designation":"Jr. Technician","dept":"Production","month":5,"day":8,"photo":null},{"id":6,"name":"R.Shiva Shankar","designation":"Production & Maintenance In charge","dept":"Production","month":6,"day":8,"photo":null},{"id":7,"name":"A.Vignesh","designation":"Technician","dept":"Production","month":5,"day":25,"photo":null},{"id":8,"name":"S.Mohan","designation":"Production Manager","dept":"Production","month":5,"day":27,"photo":null},{"id":9,"name":"R.SathishKumar","designation":"Diploma Trainee","dept":"Production","month":5,"day":29,"photo":null},{"id":10,"name":"Manigandan","designation":"Dynamics application Specialsist","dept":"IT","month":6,"day":8,"photo":null}];
 let nextId=Math.max(0,...birthdays.map(b=>b.id))+1;
 function save(){localStorage.setItem('hsin_bd',JSON.stringify(birthdays));}
 function gInit(n){return n.trim().split(/\s+/).map(w=>w[0]&&w[0].toUpperCase()).filter(Boolean).slice(0,2).join('');}
@@ -1082,9 +1082,7 @@ async function pushHTMLToGitHub(){
       const pageUrl=`https://${cfg.user}.github.io/${cfg.repo}/`;
       const el=document.getElementById('gh-status');
       el.className='gh-status success';
-      el.innerHTML=`✅ Pushed successfully!<br><span style="font-size:11px;opacity:.8;">Opening GitHub Pages in 3 seconds…</span><br><a href="${pageUrl}" target="_blank" style="color:#3fb950;font-size:12px;word-break:break-all;">${pageUrl}</a>`;
-      // Open plain URL — shows slide/display view directly, no admin trigger
-      setTimeout(()=>{ window.open(pageUrl,'_blank'); }, 3000);
+      el.innerHTML=`✅ Pushed successfully!<br><a href="${pageUrl}" target="_blank" style="color:#3fb950;font-size:12px;word-break:break-all;">🔗 ${pageUrl}</a>`;
     }else setGhStatus('error','❌ '+(data.message||res.status));
   }catch(e){setGhStatus('error','❌ '+e.message);}
   finally{btn.disabled=false;btn.textContent='⬆ Push HTML to GitHub';document.getElementById('gh-progress').style.display='none';}
@@ -1095,6 +1093,9 @@ document.getElementById('admin-overlay').addEventListener('click',function(e){if
 document.getElementById('pwd-overlay').addEventListener('click',function(e){if(e.target===this)closePwdOverlay();});
 document.getElementById('edit-overlay').addEventListener('click',function(e){if(e.target===this)closeEdit();});
 document.getElementById('photo-overlay').addEventListener('click',function(e){if(e.target===this)closePhotoOverlay();});
+
+// Auto-refresh every 10 minutes — picks up latest data from GitHub
+setInterval(()=>{ location.reload(); }, 10 * 60 * 1000);
 
 buildSlides();
 
