@@ -3,10 +3,10 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="version" content="20260608124209">
+<meta name="version" content="20260608160403">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Buddies – HydraSpecma India</title>
-<!-- v20260608124209 -->
+<!-- v20260608160403 -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -988,6 +988,296 @@ input:checked + .slider:before {
   90% { opacity: 0.6; }
   100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
 }
+
+/* ═══════════════════════════════════════════════════════
+   CINEMATIC CELEBRATION UPGRADES
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Velvet Curtain Reveal ── */
+.cel-curtain {
+  position: absolute; inset: 0; z-index: 1015;
+  pointer-events: none; overflow: hidden;
+}
+.cel-curtain-left, .cel-curtain-right {
+  position: absolute; top: 0; bottom: 0; width: 52%;
+  transition: transform 1.6s cubic-bezier(.77,0,.18,1);
+}
+.cel-curtain-left {
+  left: 0;
+  background: linear-gradient(160deg, #1a0a00 0%, #2d1400 40%, #0e0600 100%);
+  border-right: 2px solid rgba(255,204,0,0.25);
+  box-shadow: 6px 0 40px rgba(255,100,0,0.12), inset -20px 0 60px rgba(0,0,0,0.5);
+}
+.cel-curtain-right {
+  right: 0;
+  background: linear-gradient(200deg, #1a0a00 0%, #2d1400 40%, #0e0600 100%);
+  border-left: 2px solid rgba(255,204,0,0.25);
+  box-shadow: -6px 0 40px rgba(255,100,0,0.12), inset 20px 0 60px rgba(0,0,0,0.5);
+}
+.cel-curtain-left::before, .cel-curtain-right::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0px, transparent 18px,
+    rgba(0,0,0,0.12) 18px, rgba(0,0,0,0.12) 20px
+  );
+}
+.cel-curtain.open .cel-curtain-left  { transform: translateX(-100%); }
+.cel-curtain.open .cel-curtain-right { transform: translateX(100%); }
+
+/* ── Film Grain Overlay ── */
+.cel-grain {
+  position: absolute; inset: 0;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1007;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+  animation: grain-anim 0.08s steps(1) infinite;
+}
+@keyframes grain-anim {
+  0%  { background-position: 0   0;    }
+  20% { background-position: -25px -50px; }
+  40% { background-position:  50px -25px; }
+  60% { background-position: -75px  0;    }
+  80% { background-position:  25px  75px; }
+}
+
+/* ── Pulsing Spotlight ── */
+.cel-spotlight {
+  position: absolute;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(255,248,200,0.055) 0%, rgba(255,204,0,0.018) 45%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none; z-index: 1003;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  animation: spot-breathe 4.5s ease-in-out infinite;
+}
+@keyframes spot-breathe {
+  0%,100%{ transform: translate(-50%,-50%) scale(1);   opacity: 0.7; }
+  50%    { transform: translate(-50%,-50%) scale(1.18); opacity: 1;   }
+}
+
+/* ── Bottom Rainbow Ribbon ── */
+.cel-ribbon {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg,
+    transparent,#FFCC00,#ff5722,#e91e63,#9c27b0,#1e88e5,#00bcd4,#4caf50,#FFCC00,transparent
+  );
+  background-size: 300% 100%;
+  z-index: 1008;
+  animation: ribbon-run 3s linear infinite;
+}
+@keyframes ribbon-run {
+  0%  { background-position: 0%   center; }
+  100%{ background-position: 300% center; }
+}
+.cel-ribbon-top {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg,
+    transparent,#FFCC00,#ff5722,#e91e63,#9c27b0,#1e88e5,#00bcd4,#4caf50,#FFCC00,transparent
+  );
+  background-size: 300% 100%;
+  z-index: 1008;
+  animation: ribbon-run 3s linear infinite reverse;
+}
+
+/* ── Cinematic Phase Text ── */
+.cel-phase-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,204,0,0.9);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: 2px 0 10px;
+  min-height: 20px;
+  text-shadow: 0 0 18px rgba(255,204,0,0.6);
+  transition: opacity 0.6s ease, transform 0.4s ease;
+}
+
+/* ── Emoji Row ── */
+.cel-emoji-row {
+  font-size: 34px;
+  display: block;
+  margin-bottom: 4px;
+  animation: emoji-bounce 1.2s ease-in-out infinite alternate;
+}
+@keyframes emoji-bounce {
+  from { transform: translateY(0)  scale(1);    }
+  to   { transform: translateY(-9px) scale(1.1); }
+}
+
+/* ── 3-Tier Cake ── */
+.cake-3tier {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 210px;
+  height: 140px;
+}
+.cake-t3 {
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 210px; height: 58px;
+  background: linear-gradient(135deg, #3e1900 0%, #5e2800 50%, #3e1900 100%);
+  border-radius: 12px 12px 18px 18px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.55), inset 0 2px 8px rgba(255,255,255,0.07);
+}
+.cake-t2 {
+  position: absolute; bottom: 52px; left: 50%; transform: translateX(-50%);
+  width: 168px; height: 46px;
+  background: linear-gradient(135deg, #b71c5e 0%, #e91e63 50%, #b71c5e 100%);
+  border-radius: 10px 10px 12px 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.45), inset 0 2px 6px rgba(255,255,255,0.08);
+}
+.cake-t1 {
+  position: absolute; bottom: 92px; left: 50%; transform: translateX(-50%);
+  width: 124px; height: 38px;
+  background: linear-gradient(135deg, #e65100 0%, #ff9800 50%, #e65100 100%);
+  border-radius: 8px 8px 10px 10px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.4), inset 0 2px 5px rgba(255,255,255,0.08);
+  transition: transform 0.6s cubic-bezier(.25,.8,.25,1);
+}
+.cake-frosting {
+  position: absolute; top: -5px; left: 0; right: 0; height: 9px;
+  background: #fff9e6;
+  border-radius: 50% / 100% 100% 0 0;
+}
+.cake-drips-row {
+  position: absolute; top: 0; left: 0; right: 0;
+  display: flex; justify-content: space-around; padding: 0 10px;
+}
+.cake-drip-b {
+  width: 9px; height: 14px;
+  background: #fff9e6;
+  border-radius: 0 0 8px 8px;
+  margin-top: -3px;
+}
+.cake-drip-b:nth-child(odd) { height: 18px; }
+/* Cut animation on tiers */
+.cake-3tier.cut .cake-t1 { transform: translateX(-50%) rotate(-5deg) translate(-10px, -3px); }
+.cake-3tier.cutting .cake-cut-line { animation: cut-flash 0.45s ease forwards; }
+
+/* ── 3 Candles ── */
+.candles-row {
+  position: absolute;
+  bottom: 146px;  /* above top tier */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 24px;
+  z-index: 12;
+}
+.candle-stick {
+  position: relative;
+  width: 12px; height: 40px;
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.35);
+}
+.candle-stick:nth-child(1){ background: repeating-linear-gradient(45deg,#e53935,#e53935 3px,#fff 3px,#fff 7px); }
+.candle-stick:nth-child(2){ background: repeating-linear-gradient(45deg,#1e88e5,#1e88e5 3px,#fff 3px,#fff 7px); }
+.candle-stick:nth-child(3){ background: repeating-linear-gradient(45deg,#7b1fa2,#7b1fa2 3px,#fff 3px,#fff 7px); }
+.c-wick {
+  position: absolute; top: -5px; left: 50%; transform: translateX(-50%);
+  width: 2px; height: 5px; background: #333;
+}
+.c-flame {
+  position: absolute;
+  top: -26px; left: 50%; transform: translateX(-50%);
+  width: 14px; height: 24px;
+  background: radial-gradient(ellipse at bottom, #fff176 0%, #ffee58 20%, #f57c00 55%, #d84315 85%, transparent 100%);
+  border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+  z-index: 13;
+  box-shadow: 0 0 20px rgba(245,124,0,0.95), 0 0 40px rgba(255,160,0,0.5);
+  opacity: 0;            /* hidden until lit */
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.c-flame.lit {
+  opacity: 1;
+  animation: flame-ignite 0.55s cubic-bezier(.23,1,.32,1) both,
+             flicker 0.13s 0.55s ease-in-out infinite alternate;
+}
+.c-flame.blown {
+  opacity: 0 !important;
+  animation: none !important;
+}
+@keyframes flame-ignite {
+  0%  { opacity:0; transform:translateX(-50%) scale(0.2) rotate(-20deg); }
+  45% { opacity:1; transform:translateX(-50%) scale(1.5) rotate(6deg); filter:brightness(2); }
+  75% { transform:translateX(-50%) scale(0.88) rotate(-3deg); }
+  100%{ opacity:1; transform:translateX(-50%) scale(1) rotate(0deg); }
+}
+.c-smoke {
+  position: absolute;
+  top: -14px; left: 50%; transform: translateX(-50%);
+  width: 3px; height: 0;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  pointer-events: none; z-index: 14;
+}
+.c-smoke.active { animation: rise-smoke 1.4s ease-out forwards; }
+
+/* ── Knife element ── */
+.cake-knife {
+  position: absolute;
+  left: 50%; top: 40px;
+  transform: translateX(-50%) rotate(-20deg) translateY(-80px);
+  font-size: 38px;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 12px rgba(255,204,0,0.5));
+}
+.cake-knife.cutting {
+  animation: knife-slash 0.9s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes knife-slash {
+  0%  { opacity:0; transform:translateX(-50%) rotate(-40deg) translateY(-80px); }
+  25% { opacity:1; transform:translateX(-50%) rotate(-20deg) translateY(-20px); }
+  55% { opacity:1; transform:translateX(-50%) rotate(5deg)  translateY(30px); }
+  80% { opacity:1; transform:translateX(-50%) rotate(15deg) translateY(20px); }
+  100%{ opacity:0; transform:translateX(-50%) rotate(30deg) translateY(-100px); }
+}
+
+/* ── Cake radial glow ── */
+.cel-cake-glow {
+  position: absolute;
+  width: 340px; height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,204,0,0.14) 0%, rgba(255,100,0,0.06) 50%, transparent 70%);
+  left: 50%; top: 50%; transform: translate(-50%,-50%);
+  pointer-events: none;
+  animation: cake-glow-pulse 2.5s ease-in-out infinite;
+}
+@keyframes cake-glow-pulse {
+  0%,100%{ opacity:0.5; transform:translate(-50%,-50%) scale(1);   }
+  50%    { opacity:1;   transform:translate(-50%,-50%) scale(1.08); }
+}
+
+/* ── Streamers ── */
+.cel-streamer {
+  position: absolute;
+  top: -40px;
+  width: 5px;
+  border-radius: 3px;
+  pointer-events: none; z-index: 1005;
+  animation: streamer-drop linear forwards;
+}
+@keyframes streamer-drop {
+  0%  { transform: translateY(0) rotate(0deg)   scaleX(1); opacity: 1; }
+  50% { scaleX(-1); }
+  100%{ transform: translateY(115vh) rotate(900deg) scaleX(-1); opacity: 0; }
+}
+
+/* ── Wind-puff keyframe ── */
+@keyframes wind-puff {
+  0%  { transform: translate(0,0) scale(1); opacity: 0.8; }
+  100%{ transform: translate(var(--dx), var(--dy)) scale(0.3); opacity: 0; }
+}
 </style>
 </head>
 <body>
@@ -1263,52 +1553,95 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
   <!-- CELEBRATION MODE SCREEN OVERLAY -->
   <div id="celebration-screen">
     <canvas id="celebration-canvas"></canvas>
-    
+
+    <!-- Cinematic layered overlays -->
+    <div class="cel-curtain" id="cel-curtain">
+      <div class="cel-curtain-left"></div>
+      <div class="cel-curtain-right"></div>
+    </div>
+    <div class="cel-grain"></div>
+    <div class="cel-spotlight"></div>
+    <div class="cel-ribbon"></div>
+    <div class="cel-ribbon-top"></div>
+
     <div class="cel-content">
-      <h1 class="cel-title">HAPPY BIRTHDAY!</h1>
-      <div class="cel-subtitle">HydraSpecma Celebration</div>
-      
-      <div class="cel-controls">
-        <button id="cel-unmute-btn" class="cel-btn" onclick="toggleCelebrationSound()">
-          🔊 Enable Sound
-        </button>
-        <button class="cel-btn" onclick="openAdmin()" style="border-color: rgba(255,204,0,0.5);">
-          ⚙️ Admin Panel
-        </button>
+      <!-- Title block -->
+      <div style="text-align:center;margin-bottom:2px;">
+        <span class="cel-emoji-row" id="cel-emoji">🎂 ✨ 🎉</span>
+        <h1 class="cel-title">HAPPY BIRTHDAY!</h1>
+        <div class="cel-subtitle">HydraSpecma India Celebration</div>
       </div>
-      
-      <!-- Interactive CSS Cake -->
-      <div class="cake-container" id="cake-container" onclick="cutCake()">
-        <!-- Cut line (flashes during cutting) -->
-        <div class="cake-cut-line" id="cake-cut-line"></div>
-        
-        <div class="cake" id="interactive-cake">
-          <!-- Candle & Flame -->
-          <div class="candle">
-            <div class="wick"></div>
-            <div class="flame" id="candle-flame" onclick="blowOutCandle(event)"></div>
-            <div class="smoke" id="candle-smoke"></div>
+
+      <!-- Cinematic phase status -->
+      <div class="cel-phase-text" id="cel-phase-text">🎬 Celebration Mode Active</div>
+
+      <!-- Controls -->
+      <div class="cel-controls">
+        <button id="cel-unmute-btn" class="cel-btn" onclick="toggleCelebrationSound()">🔇 Sound Off</button>
+        <button class="cel-btn" onclick="openAdmin()" style="border-color:rgba(255,204,0,0.5);">⚙️ Admin</button>
+      </div>
+
+      <!-- 3-Tier Cinematic Cake -->
+      <div style="position:relative;width:260px;height:280px;margin:0 auto;">
+        <div class="cel-cake-glow"></div>
+
+        <!-- Animated knife (auto-appears during cut) -->
+        <div class="cake-knife" id="cake-knife">🔪</div>
+
+        <!-- Cut flash line -->
+        <div class="cake-cut-line" id="cake-cut-line" style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:2.5px;height:280px;background:#ff1744;box-shadow:0 0 8px #ff1744;opacity:0;z-index:15;pointer-events:none;"></div>
+
+        <!-- 3 Candles -->
+        <div class="candles-row" id="candles-row">
+          <div class="candle-stick">
+            <div class="c-wick"></div>
+            <div class="c-flame" id="c-flame-1"></div>
+            <div class="c-smoke" id="c-smoke-1"></div>
           </div>
-          
-          <!-- Cake Layers -->
-          <!-- Top Layer -->
-          <div class="cake-layer cake-layer-top">
-            <div class="frosting-top"></div>
-            <div class="frosting-drips">
-              <div class="frosting-drip"></div>
-              <div class="frosting-drip"></div>
-              <div class="frosting-drip"></div>
-              <div class="frosting-drip"></div>
-              <div class="frosting-drip"></div>
+          <div class="candle-stick">
+            <div class="c-wick"></div>
+            <div class="c-flame" id="c-flame-2"></div>
+            <div class="c-smoke" id="c-smoke-2"></div>
+          </div>
+          <div class="candle-stick">
+            <div class="c-wick"></div>
+            <div class="c-flame" id="c-flame-3"></div>
+            <div class="c-smoke" id="c-smoke-3"></div>
+          </div>
+        </div>
+
+        <!-- 3-Tier Cake Visual -->
+        <div class="cake-3tier" id="interactive-cake">
+          <!-- Tier 1 (top - orange) -->
+          <div class="cake-t1">
+            <div class="cake-frosting"></div>
+            <div class="cake-drips-row">
+              <div class="cake-drip-b"></div><div class="cake-drip-b"></div>
+              <div class="cake-drip-b"></div><div class="cake-drip-b"></div>
             </div>
           </div>
-          
-          <!-- Bottom Layer -->
-          <div class="cake-layer cake-layer-bottom"></div>
+          <!-- Tier 2 (middle - pink) -->
+          <div class="cake-t2">
+            <div class="cake-frosting"></div>
+            <div class="cake-drips-row">
+              <div class="cake-drip-b"></div><div class="cake-drip-b"></div>
+              <div class="cake-drip-b"></div><div class="cake-drip-b"></div>
+              <div class="cake-drip-b"></div>
+            </div>
+          </div>
+          <!-- Tier 3 (bottom - chocolate) -->
+          <div class="cake-t3">
+            <div class="cake-frosting"></div>
+            <div class="cake-drips-row">
+              <div class="cake-drip-b"></div><div class="cake-drip-b"></div>
+              <div class="cake-drip-b"></div><div class="cake-drip-b"></div>
+              <div class="cake-drip-b"></div><div class="cake-drip-b"></div>
+            </div>
+          </div>
         </div>
       </div>
-      
-      <div class="cel-instructions highlight" id="cel-instructions">👉 Click the candle flame to blow it out! 🕯️</div>
+
+      <div class="cel-instructions" id="cel-instructions" style="margin-top:6px;">🎬 Cinematic auto-celebration in progress…</div>
     </div>
   </div>
 
@@ -2384,8 +2717,25 @@ let soundUnmuted = false;
 let synth = null;
 let candleBlown = false;
 let cakeCut = false;
+let autoSequenceTimers = [];
+let audioContextUnlocked = false;
 
-const DEFAULT_CELEBRATION = {"enabled":false,"startHour":17,"endHour":18,"soundEnabled":true};
+// ── Global audio context unlock on ANY first interaction ──
+// (allows time-triggered celebration to have audio ready)
+function _unlockAudioCtx() {
+  if (audioContextUnlocked) return;
+  audioContextUnlocked = true;
+  if (!synth) synth = new BirthdaySynth();
+  synth.init(); // creates + resumes AudioContext with user gesture
+  ['click','touchstart','keydown'].forEach(ev =>
+    document.removeEventListener(ev, _unlockAudioCtx, true)
+  );
+}
+['click','touchstart','keydown'].forEach(ev =>
+  document.addEventListener(ev, _unlockAudioCtx, { capture: true, once: true })
+);
+
+const DEFAULT_CELEBRATION = {"enabled":false,"startHour":21,"endHour":18,"soundEnabled":true};
 
 function getCelebrationData() {
   return JSON.parse(localStorage.getItem('hsin_celebration') || 'null') || DEFAULT_CELEBRATION;
@@ -2480,20 +2830,29 @@ function startCelebration() {
   // Stop normal rotation timer
   if (slideTimer) clearTimeout(slideTimer);
   
-  // Reset cake states
+  // Reset ALL candle / cake states
   candleBlown = false;
   cakeCut = false;
-  const flame = document.getElementById('candle-flame');
-  if (flame) flame.classList.remove('out');
+  [1,2,3].forEach(n => {
+    const fl = document.getElementById(`c-flame-${n}`);
+    const sm = document.getElementById(`c-smoke-${n}`);
+    if (fl) { fl.className = 'c-flame'; }
+    if (sm) { sm.className = 'c-smoke'; }
+  });
   const cake = document.getElementById('interactive-cake');
-  if (cake) {
-    cake.classList.remove('cut');
-    cake.classList.remove('cutting');
-  }
+  if (cake) { cake.classList.remove('cut','cutting'); }
+  const knife = document.getElementById('cake-knife');
+  if (knife) knife.classList.remove('cutting');
+
+  // Reset curtain (closed)
+  const curtain = document.getElementById('cel-curtain');
+  if (curtain) curtain.classList.remove('open');
+
+  // Status text
   const inst = document.getElementById('cel-instructions');
   if (inst) {
-    inst.textContent = '👉 Click the candle flame to blow it out! 🕯️';
-    inst.classList.add('highlight');
+    inst.textContent = '🎬 Cinematic auto-celebration in progress…';
+    inst.classList.remove('highlight');
   }
   
   // Show screen overlay
@@ -2501,25 +2860,16 @@ function startCelebration() {
   if (screen) screen.style.display = 'flex';
   
   // Audio synthesizer setup
-  if (!synth) {
-    synth = new BirthdaySynth();
-  }
+  if (!synth) synth = new BirthdaySynth();
   
+  // Show/hide sound button
   const d = getCelebrationData();
   const unmuteBtn = document.getElementById('cel-unmute-btn');
   if (unmuteBtn) {
-    if (d.soundEnabled) {
-      unmuteBtn.style.display = 'inline-flex';
-      if (soundUnmuted) {
-        unmuteBtn.textContent = '🔊 Mute Sound';
-        synth.play();
-      } else {
-        unmuteBtn.textContent = '🔇 Sound Off (Click to Enable)';
-      }
-    } else {
-      unmuteBtn.style.display = 'none';
-    }
+    unmuteBtn.style.display = d.soundEnabled ? 'inline-flex' : 'none';
+    unmuteBtn.textContent = '🔇 Sound Off';
   }
+  soundUnmuted = false; // will be set true by auto-sequence at right moment
   
   // Canvas initialization
   canvas = document.getElementById('celebration-canvas');
@@ -2529,23 +2879,232 @@ function startCelebration() {
     window.addEventListener('resize', resizeCanvas);
   }
   
-  // Launch loops
+  // Launch fireworks loop
   fireworks = [];
   particles = [];
   animationFrameId = requestAnimationFrame(animateCelebration);
   
   // Bubble and Star spawners
   if (bubbleTimer) clearInterval(bubbleTimer);
-  bubbleTimer = setInterval(spawnBubble, 400);
-  
+  bubbleTimer = setInterval(spawnBubble, 450);
   if (starTimer) clearInterval(starTimer);
-  starTimer = setInterval(spawnStar, 600);
+  starTimer = setInterval(spawnStar, 650);
+
+  // 🎬 Start cinematic auto-sequence
+  runCinematicSequence(d);
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// 🎬 CINEMATIC AUTO-SEQUENCE ENGINE
+// Runs fully automatically after celebration mode activates.
+// No remote / manual interaction required.
+// ══════════════════════════════════════════════════════════════════════════════
+
+function setPhase(text, delay) {
+  autoSequenceTimers.push(setTimeout(() => {
+    const el = document.getElementById('cel-phase-text');
+    if (el) {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(8px)';
+      setTimeout(() => {
+        el.textContent = text;
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, 300);
+    }
+  }, delay));
+}
+
+function runCinematicSequence(celebData) {
+  // Clear any stale timers
+  autoSequenceTimers.forEach(t => clearTimeout(t));
+  autoSequenceTimers = [];
+
+  // ─── T+0.5s: Curtains open ───
+  autoSequenceTimers.push(setTimeout(() => {
+    const curtain = document.getElementById('cel-curtain');
+    if (curtain) curtain.classList.add('open');
+  }, 500));
+
+  setPhase('✨ HydraSpecma Birthday Celebration!', 700);
+
+  // ─── T+1.8s – 2.8s: Light candles one by one ───
+  setPhase('🕯️ Lighting the candles…', 1600);
+  [1, 2, 3].forEach((n, i) => {
+    autoSequenceTimers.push(setTimeout(() => {
+      const fl = document.getElementById(`c-flame-${n}`);
+      if (fl) fl.classList.add('lit');
+      // tiny firework spark per candle
+      if (canvas) {
+        const cx = canvas.width / 2 + (i - 1) * 60;
+        const cy = canvas.height * 0.42;
+        launchFireworkAt(cx, cy);
+      }
+    }, 1800 + i * 500));
+  });
+
+  // ─── T+2.0s: Auto-enable sound ───
+  if (celebData && celebData.soundEnabled) {
+    autoSequenceTimers.push(setTimeout(() => {
+      soundUnmuted = true;
+      const btn = document.getElementById('cel-unmute-btn');
+      if (btn) btn.textContent = '🔊 Mute Sound';
+      if (synth) {
+        synth.init();
+        // Small delay so AudioContext is fully ready
+        setTimeout(() => {
+          if (celebrationActive && soundUnmuted) synth.play();
+        }, 300);
+      }
+    }, 2000));
+  }
+
+  setPhase('🌟 Making a Birthday Wish…', 4200);
+
+  // ─── T+6.5s: Auto blow candles ───
+  autoSequenceTimers.push(setTimeout(() => {
+    setPhase('💨 Blowing out the candles…', 0);
+    _spawnWindPuff();
+    [1, 2, 3].forEach((n, i) => {
+      autoSequenceTimers.push(setTimeout(() => {
+        const fl = document.getElementById(`c-flame-${n}`);
+        const sm = document.getElementById(`c-smoke-${n}`);
+        if (fl) fl.classList.add('blown');
+        if (sm) {
+          sm.classList.add('active');
+          setTimeout(() => sm.classList.remove('active'), 1500);
+        }
+        if (i === 1 && synth) synth.playBlowOutSound();
+      }, i * 220));
+    });
+    candleBlown = true;
+    // Small fireworks salvo on blow-out
+    autoSequenceTimers.push(setTimeout(() => {
+      if (canvas) {
+        for (let k = 0; k < 4; k++) {
+          setTimeout(() => launchFireworkAt(
+            canvas.width * (0.3 + Math.random() * 0.4),
+            canvas.height * (0.2 + Math.random() * 0.3)
+          ), k * 150);
+        }
+      }
+    }, 700));
+  }, 6500));
+
+  setPhase('🎂 Time to Cut the Cake!', 8500);
+
+  // ─── T+10s: Auto cake cut ───
+  autoSequenceTimers.push(setTimeout(() => {
+    _autoCutCake();
+  }, 10000));
+
+  // ─── T+10.5s: Mega fireworks burst ───
+  autoSequenceTimers.push(setTimeout(() => {
+    _spawnMegaFireworks();
+    _spawnStreamers();
+    if (synth) synth.playCheerSound();
+  }, 10500));
+
+  setPhase('🎉 Happy Birthday! Enjoy the Celebration! 🎊', 11200);
+
+  // ─── T+12s: Update instructions ───
+  autoSequenceTimers.push(setTimeout(() => {
+    const inst = document.getElementById('cel-instructions');
+    if (inst) inst.textContent = '✨ Click anywhere on screen to launch fireworks!';
+    // Make canvas clickable for manual fireworks
+    const cv = document.getElementById('celebration-canvas');
+    if (cv) cv.style.pointerEvents = 'auto';
+  }, 12000));
+
+  // ─── Repeat mega-burst every 25s ───
+  autoSequenceTimers.push(setTimeout(function repeat() {
+    if (!celebrationActive) return;
+    _spawnMegaFireworks();
+    _spawnStreamers();
+    autoSequenceTimers.push(setTimeout(repeat, 25000));
+  }, 35000));
+}
+
+function _spawnWindPuff() {
+  const screen = document.getElementById('celebration-screen');
+  if (!screen) return;
+  for (let i = 0; i < 16; i++) {
+    const w = document.createElement('div');
+    const sz = 3 + Math.random() * 4;
+    const left = 38 + Math.random() * 24;
+    const top  = 36 + Math.random() * 16;
+    const dx = (30 + Math.random() * 60) * (Math.random() < 0.5 ? 1 : -1);
+    const dy = -(10 + Math.random() * 30);
+    w.style.cssText = `
+      position:absolute;left:${left}%;top:${top}%;
+      width:${sz}px;height:${sz}px;
+      background:rgba(210,245,255,0.75);border-radius:50%;
+      pointer-events:none;z-index:1012;
+      --dx:${dx}px;--dy:${dy}px;
+      animation:wind-puff ${0.35 + Math.random() * 0.35}s ease-out forwards;`;
+    screen.appendChild(w);
+    setTimeout(() => w.remove(), 900);
+  }
+}
+
+function _autoCutCake() {
+  if (cakeCut) return;
+  // Show knife
+  const knife = document.getElementById('cake-knife');
+  if (knife) {
+    knife.classList.add('cutting');
+    setTimeout(() => knife.classList.remove('cutting'), 1200);
+  }
+  // Delay actual cut so knife animation leads
+  setTimeout(() => {
+    cakeCut = false; // allow re-trigger from JS
+    cutCake();
+  }, 350);
+}
+
+function _spawnMegaFireworks() {
+  if (!canvas) return;
+  const pts = [0.15, 0.3, 0.5, 0.7, 0.85];
+  pts.forEach((xFrac, i) => {
+    for (let j = 0; j < 4; j++) {
+      setTimeout(() => {
+        launchFireworkAt(
+          canvas.width  * xFrac + (Math.random() * 40 - 20),
+          canvas.height * (0.15 + Math.random() * 0.45)
+        );
+      }, i * 160 + j * 70);
+    }
+  });
+}
+
+function _spawnStreamers() {
+  const screen = document.getElementById('celebration-screen');
+  if (!screen) return;
+  const colors = ['#FFCC00','#ff5722','#e91e63','#00bcd4','#4caf50','#9c27b0','#ffeb3b','#03a9f4'];
+  for (let i = 0; i < 35; i++) {
+    setTimeout(() => {
+      if (!celebrationActive) return;
+      const s = document.createElement('div');
+      s.className = 'cel-streamer';
+      const left = Math.random() * 100;
+      const dur  = 2.2 + Math.random() * 2;
+      const h    = 18 + Math.random() * 45;
+      s.style.cssText = `left:${left}%;height:${h}px;background:${colors[i % colors.length]};animation-duration:${dur}s;`;
+      screen.appendChild(s);
+      setTimeout(() => s.remove(), dur * 1000 + 200);
+    }, i * 55);
+  }
 }
 
 function stopCelebration() {
   if (!celebrationActive) return;
   celebrationActive = false;
   
+  // Clear cinematic sequence timers
+  autoSequenceTimers.forEach(t => clearTimeout(t));
+  autoSequenceTimers = [];
+  soundUnmuted = false;
+
   if (previewTimeout) {
     clearTimeout(previewTimeout);
     previewTimeout = null;
@@ -2764,12 +3323,12 @@ function toggleCelebrationSound() {
     if (unmuteBtn) unmuteBtn.textContent = '🔊 Mute Sound';
     if (synth) {
       synth.init();
-      if (candleBlown) {
+      if (candleBlown || cakeCut) {
         synth.play();
       }
     }
   } else {
-    if (unmuteBtn) unmuteBtn.textContent = '🔇 Sound Off (Click to Enable)';
+    if (unmuteBtn) unmuteBtn.textContent = '🔇 Sound Off';
     if (synth) {
       synth.stop();
     }
@@ -2816,7 +3375,16 @@ function cutCake() {
     setTimeout(() => {
       cake.classList.remove('cutting');
       cake.classList.add('cut');
-    }, 400);
+    }, 450);
+  }
+
+  // Flash the cut line
+  const cutLine = document.getElementById('cake-cut-line');
+  if (cutLine) {
+    cutLine.style.animation = 'none';
+    cutLine.offsetHeight; // reflow
+    cutLine.style.animation = 'cut-flash 0.45s ease forwards';
+    setTimeout(() => { cutLine.style.animation = ''; }, 600);
   }
   
   if (synth) {
@@ -2824,24 +3392,24 @@ function cutCake() {
   }
   
   // Launch big fireworks burst
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 8; i++) {
     setTimeout(() => {
       if (!canvas) return;
-      const x = canvas.width / 2 + (Math.random() * 200 - 100);
-      const y = canvas.height / 2 + (Math.random() * 100 - 50);
+      const x = canvas.width / 2 + (Math.random() * 260 - 130);
+      const y = canvas.height / 2 + (Math.random() * 120 - 60);
       launchFireworkAt(x, y);
-    }, i * 250);
+    }, i * 200);
   }
   
   // Spawn cut bubbles & stars
-  for (let i = 0; i < 20; i++) {
-    setTimeout(spawnBubble, i * 50);
-    setTimeout(spawnStar, i * 60);
+  for (let i = 0; i < 24; i++) {
+    setTimeout(spawnBubble, i * 45);
+    setTimeout(spawnStar,   i * 55);
   }
   
   const inst = document.getElementById('cel-instructions');
   if (inst) {
-    inst.textContent = '✨ Happy Celebration! Enjoy the cake! 🎉';
+    inst.textContent = '✨ Click anywhere to launch more fireworks! 🎉';
     inst.classList.remove('highlight');
   }
 }
@@ -3021,9 +3589,9 @@ function previewCelebration() {
   }, 30000);
 }
 
-// Click launch firework listener on celebration screen
+// Click to launch firework on celebration screen (enabled after auto-sequence completes)
 document.getElementById('celebration-screen').addEventListener('mousedown', (e) => {
-  if (e.target.id === 'celebration-canvas' && celebrationActive) {
+  if (celebrationActive && (e.target.id === 'celebration-canvas' || e.target.id === 'celebration-screen')) {
     launchFireworkAt(e.clientX, e.clientY);
   }
 });
