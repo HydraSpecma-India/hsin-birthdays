@@ -323,7 +323,7 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
 <div id="edit-overlay" class="">
   <div class="edit-box">
     <h3>✏️ Edit Birthday Record</h3>
-    <input type="hidden" id="edit-id" value="5">
+    <input type="hidden" id="edit-id" value="6">
     <div class="form-row">
       <div class="form-group"><label>Full Name</label><input type="text" id="edit-name"></div>
       <div class="form-group"><label>Designation</label><input type="text" id="edit-designation"></div>
@@ -362,7 +362,7 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
 </div>
 
 <!-- Admin Modal -->
-<div id="admin-overlay" class="show">
+<div id="admin-overlay">
   <div id="admin-modal">
     <div class="admin-header">
       <h2>⚙️ Birthday Buddies — Admin Panel</h2>
@@ -418,16 +418,6 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
         <button class="btn-edit" onclick="openEdit(3)" title="Edit">✏️</button>
         <button class="btn-del" onclick="deleteBirthday(3)" title="Delete">✕</button>
       </div></div><div class="record-row">
-      <div class="r-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/r-shiva-shankar.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="r-thumb-init" style="display: inline-flex;">RS</span></div>
-      <div class="date-cell">21 May</div>
-      <div class="name-cell">R.Shiva Shankar</div>
-      <div class="role-cell">Production &amp; Maintenance In charge</div>
-      <div class="dept-cell">Production</div>
-      <div class="actions">
-        <button class="btn-photo" onclick="openPhotoOverlay(6)" title="Upload Photo">📷</button>
-        <button class="btn-edit" onclick="openEdit(6)" title="Edit">✏️</button>
-        <button class="btn-del" onclick="deleteBirthday(6)" title="Delete">✕</button>
-      </div></div><div class="record-row">
       <div class="r-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/a-vignesh.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="r-thumb-init" style="display: inline-flex;">A</span></div>
       <div class="date-cell">25 May</div>
       <div class="name-cell">A.Vignesh</div>
@@ -468,6 +458,16 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
         <button class="btn-edit" onclick="openEdit(5)" title="Edit">✏️</button>
         <button class="btn-del" onclick="deleteBirthday(5)" title="Delete">✕</button>
       </div></div><div class="record-row">
+      <div class="r-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/r-shiva-shankar.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="r-thumb-init" style="display: inline-flex;">RS</span></div>
+      <div class="date-cell">8 Jun</div>
+      <div class="name-cell">R.Shiva Shankar</div>
+      <div class="role-cell">Production &amp; Maintenance In charge</div>
+      <div class="dept-cell">Production</div>
+      <div class="actions">
+        <button class="btn-photo" onclick="openPhotoOverlay(6)" title="Upload Photo">📷</button>
+        <button class="btn-edit" onclick="openEdit(6)" title="Edit">✏️</button>
+        <button class="btn-del" onclick="deleteBirthday(6)" title="Delete">✕</button>
+      </div></div><div class="record-row">
       <div class="r-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/manigandan.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"><span class="r-thumb-init" style="display:none;">M</span></div>
       <div class="date-cell">8 Jun</div>
       <div class="name-cell">Manigandan</div>
@@ -492,17 +492,6 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
           <button class="btn-photo" onclick="openPhotoOverlay(3)" title="Upload Photo">📷</button>
           <button class="btn-edit" onclick="openEdit(3)" title="Edit">✏️</button>
           <button class="btn-del" onclick="deleteBirthday(3);renderHistory();" title="Delete">✕</button>
-        </div>
-      </div><div class="history-entry">
-        <div class="history-left">
-          <div class="h-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/r-shiva-shankar.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="h-thumb-init" style="display: inline-flex;">RS</span></div>
-          <div class="history-date">21</div>
-          <div><div class="h-name">R.Shiva Shankar</div><div class="h-role">Production &amp; Maintenance In charge — Production</div></div>
-        </div>
-        <div class="history-actions">
-          <button class="btn-photo" onclick="openPhotoOverlay(6)" title="Upload Photo">📷</button>
-          <button class="btn-edit" onclick="openEdit(6)" title="Edit">✏️</button>
-          <button class="btn-del" onclick="deleteBirthday(6);renderHistory();" title="Delete">✕</button>
         </div>
       </div><div class="history-entry">
         <div class="history-left">
@@ -547,6 +536,17 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
           <button class="btn-photo" onclick="openPhotoOverlay(5)" title="Upload Photo">📷</button>
           <button class="btn-edit" onclick="openEdit(5)" title="Edit">✏️</button>
           <button class="btn-del" onclick="deleteBirthday(5);renderHistory();" title="Delete">✕</button>
+        </div>
+      </div><div class="history-entry">
+        <div class="history-left">
+          <div class="h-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/r-shiva-shankar.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="h-thumb-init" style="display: inline-flex;">RS</span></div>
+          <div class="history-date">8</div>
+          <div><div class="h-name">R.Shiva Shankar</div><div class="h-role">Production &amp; Maintenance In charge — Production</div></div>
+        </div>
+        <div class="history-actions">
+          <button class="btn-photo" onclick="openPhotoOverlay(6)" title="Upload Photo">📷</button>
+          <button class="btn-edit" onclick="openEdit(6)" title="Edit">✏️</button>
+          <button class="btn-del" onclick="deleteBirthday(6);renderHistory();" title="Delete">✕</button>
         </div>
       </div><div class="history-entry">
         <div class="history-left">
@@ -629,15 +629,15 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
     </div>
     <div class="top-center">
       <div class="month-label" id="current-month-label">June 2026</div>
-      <div class="clock" id="clock">11:54:58 am</div>
+      <div class="clock" id="clock">11:57:56 am</div>
     </div>
     <button class="admin-btn" onclick="openPwdOverlay()">🔒 Admin</button>
   </div>
 
-  <div class="today-strip" id="today-strip" style="display: block;">🎂  TODAY'S BIRTHDAY: Manigandan — Wishing you a wonderful day! 🎉</div>
+  <div class="today-strip" id="today-strip" style="display: block;">🎂  TODAY'S BIRTHDAY: P Elangovan &amp; Manigandan — Wishing you a wonderful day! 🎉</div>
 
   <div id="slide-area">
-    <div class="particles" id="particles"><div class="particle" style="width: 5.68876px; height: 5.68876px; left: 54.8252%; background: rgba(255, 204, 0, 0.192); animation-duration: 10.222s; animation-delay: 6.80668s;"></div><div class="particle" style="width: 5.27617px; height: 5.27617px; left: 81.7287%; background: rgba(255, 204, 0, 0.204); animation-duration: 14.3518s; animation-delay: 2.22472s;"></div><div class="particle" style="width: 4.70173px; height: 4.70173px; left: 60.9869%; background: rgba(255, 204, 0, 0.067); animation-duration: 10.0009s; animation-delay: 9.95138s;"></div><div class="particle" style="width: 6.49929px; height: 6.49929px; left: 59.9192%; background: rgba(255, 204, 0, 0.15); animation-duration: 8.53554s; animation-delay: 1.68536s;"></div><div class="particle" style="width: 8.4238px; height: 8.4238px; left: 40.5299%; background: rgba(255, 204, 0, 0.2); animation-duration: 17.0979s; animation-delay: 1.69242s;"></div><div class="particle" style="width: 5.06146px; height: 5.06146px; left: 86.5355%; background: rgba(255, 204, 0, 0.208); animation-duration: 14.2197s; animation-delay: 5.46232s;"></div><div class="particle" style="width: 7.00909px; height: 7.00909px; left: 17.1549%; background: rgba(255, 204, 0, 0.098); animation-duration: 8.53088s; animation-delay: 1.1287s;"></div><div class="particle" style="width: 3.51525px; height: 3.51525px; left: 22.0584%; background: rgba(255, 204, 0, 0.17); animation-duration: 16.6448s; animation-delay: 4.38633s;"></div><div class="particle" style="width: 3.86183px; height: 3.86183px; left: 71.5277%; background: rgba(255, 204, 0, 0.14); animation-duration: 11.4412s; animation-delay: 9.00819s;"></div><div class="particle" style="width: 4.35462px; height: 4.35462px; left: 8.76844%; background: rgba(255, 204, 0, 0.14); animation-duration: 9.54751s; animation-delay: 4.31051s;"></div><div class="particle" style="width: 8.28657px; height: 8.28657px; left: 26.7397%; background: rgba(255, 204, 0, 0.15); animation-duration: 16.4282s; animation-delay: 3.34366s;"></div><div class="particle" style="width: 6.23786px; height: 6.23786px; left: 61.1708%; background: rgba(255, 204, 0, 0.204); animation-duration: 8.72682s; animation-delay: 9.78851s;"></div><div class="particle" style="width: 5.23519px; height: 5.23519px; left: 40.4868%; background: rgba(255, 204, 0, 0.106); animation-duration: 10.6522s; animation-delay: 1.2304s;"></div><div class="particle" style="width: 7.58623px; height: 7.58623px; left: 81.7223%; background: rgba(255, 204, 0, 0.173); animation-duration: 15.2139s; animation-delay: 5.37956s;"></div><div class="particle" style="width: 7.01855px; height: 7.01855px; left: 87.2095%; background: rgba(255, 204, 0, 0.22); animation-duration: 14.3962s; animation-delay: 1.51344s;"></div><div class="particle" style="width: 5.99108px; height: 5.99108px; left: 58.5752%; background: rgba(255, 204, 0, 0.06); animation-duration: 15.9871s; animation-delay: 3.78518s;"></div><div class="particle" style="width: 8.14973px; height: 8.14973px; left: 32.8924%; background: rgba(255, 204, 0, 0.11); animation-duration: 18.0049s; animation-delay: 0.579963s;"></div><div class="particle" style="width: 8.39609px; height: 8.39609px; left: 17.0243%; background: rgba(255, 204, 0, 0.118); animation-duration: 14.7049s; animation-delay: 3.63586s;"></div></div>
+    <div class="particles" id="particles"><div class="particle" style="width: 6.61456px; height: 6.61456px; left: 80.721%; background: rgba(255, 204, 0, 0.067); animation-duration: 11.2056s; animation-delay: 6.86027s;"></div><div class="particle" style="width: 5.05313px; height: 5.05313px; left: 56.8665%; background: rgba(255, 204, 0, 0.204); animation-duration: 10.1975s; animation-delay: 5.42575s;"></div><div class="particle" style="width: 8.6678px; height: 8.6678px; left: 52.5943%; background: rgba(255, 204, 0, 0.192); animation-duration: 15.7977s; animation-delay: 8.36711s;"></div><div class="particle" style="width: 5.12172px; height: 5.12172px; left: 14.8066%; background: rgba(255, 204, 0, 0.14); animation-duration: 10.8249s; animation-delay: 6.82609s;"></div><div class="particle" style="width: 5.37772px; height: 5.37772px; left: 29.7274%; background: rgba(255, 204, 0, 0.153); animation-duration: 13.3918s; animation-delay: 2.62115s;"></div><div class="particle" style="width: 4.11157px; height: 4.11157px; left: 34.6268%; background: rgba(255, 204, 0, 0.133); animation-duration: 7.22192s; animation-delay: 0.789322s;"></div><div class="particle" style="width: 6.70695px; height: 6.70695px; left: 15.3675%; background: rgba(255, 204, 0, 0.16); animation-duration: 15.4386s; animation-delay: 2.0051s;"></div><div class="particle" style="width: 3.16024px; height: 3.16024px; left: 68.708%; background: rgba(255, 204, 0, 0.125); animation-duration: 8.4126s; animation-delay: 7.909s;"></div><div class="particle" style="width: 7.42459px; height: 7.42459px; left: 46.0831%; background: rgba(255, 204, 0, 0.12); animation-duration: 8.38822s; animation-delay: 7.20625s;"></div><div class="particle" style="width: 4.43553px; height: 4.43553px; left: 8.66905%; background: rgba(255, 204, 0, 0.22); animation-duration: 11.4004s; animation-delay: 3.38857s;"></div><div class="particle" style="width: 7.41215px; height: 7.41215px; left: 8.17944%; background: rgba(255, 204, 0, 0.173); animation-duration: 16.9738s; animation-delay: 7.66943s;"></div><div class="particle" style="width: 3.93348px; height: 3.93348px; left: 32.8622%; background: rgba(255, 204, 0, 0.06); animation-duration: 7.16223s; animation-delay: 6.5955s;"></div><div class="particle" style="width: 6.12275px; height: 6.12275px; left: 68.083%; background: rgba(255, 204, 0, 0.07); animation-duration: 18.2761s; animation-delay: 5.61622s;"></div><div class="particle" style="width: 6.51975px; height: 6.51975px; left: 55.8007%; background: rgba(255, 204, 0, 0.137); animation-duration: 13.438s; animation-delay: 0.667954s;"></div><div class="particle" style="width: 4.04851px; height: 4.04851px; left: 12.9504%; background: rgba(255, 204, 0, 0.05); animation-duration: 10.1313s; animation-delay: 9.25383s;"></div><div class="particle" style="width: 8.49414px; height: 8.49414px; left: 90.8104%; background: rgba(255, 204, 0, 0.21); animation-duration: 18.5821s; animation-delay: 9.48752s;"></div><div class="particle" style="width: 4.4758px; height: 4.4758px; left: 10.1518%; background: rgba(255, 204, 0, 0.196); animation-duration: 14.4568s; animation-delay: 9.68973s;"></div><div class="particle" style="width: 6.55443px; height: 6.55443px; left: 75.1315%; background: rgba(255, 204, 0, 0.176); animation-duration: 10.4466s; animation-delay: 0.415445s;"></div></div>
     <div id="no-birthday" style="display: none;">
       <div class="big-emoji">🎂</div>
       <h2>No Birthdays This Month</h2>
@@ -645,30 +645,36 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
     </div>
     <div id="slides-wrapper"><div class="bday-slide">
         <div style="position:relative;width:100%;">
-          <div class="bday-card today-mode" id="card-8">
+          <div class="bday-card today-mode" id="card-8" style="padding:34px 40px;">
             <div class="shimmer-bar"></div>
             <div class="balloons"><span class="balloon">🎈</span><span class="balloon">🎉</span><span class="balloon">🎊</span><span class="balloon">🎉</span><span class="balloon">🎈</span></div>
             <div class="crown-wrap">👑</div>
-            <div class="person-section">
-              <div class="avatar-wrap" id="av-wrap-8">
-                <div class="avatar-ring" id="av-ring-10"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/manigandan.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"><span class="avatar-initials" style="display:none;">M</span></div>
-              <div class="sp-wrap"><div class="sp" style="animation-duration: 1.82086s; animation-delay: 0s;"></div><div class="sp" style="animation-duration: 1.81686s; animation-delay: 0.25s;"></div><div class="sp" style="animation-duration: 1.6982s; animation-delay: 0.5s;"></div><div class="sp" style="animation-duration: 3.05616s; animation-delay: 0.75s;"></div><div class="sp" style="animation-duration: 2.59016s; animation-delay: 1s;"></div><div class="sp" style="animation-duration: 2.4382s; animation-delay: 1.25s;"></div><div class="sp" style="animation-duration: 2.55934s; animation-delay: 1.5s;"></div><div class="sp" style="animation-duration: 2.69307s; animation-delay: 1.75s;"></div></div></div>
-              <div class="bday-name today-name">Manigandan</div>
-              <div class="bday-designation">Dynamics application Specialsist</div>
-              <div class="bday-dept">IT</div>
-              <div class="bday-date-badge">🗓 8th June</div>
-              <div class="typing-wish"><span class="tw-text">M</span><span class="cursor-blink"></span></div>
+            <div style="position:relative;z-index:2;margin-top:30px;">
+              <div class="wish-text">🎂 Happy Birthday!</div>
+              <div style="font-size:11px;color:var(--muted);margin:5px 0 18px;letter-spacing:1px;">8th JUNE</div>
+              <div class="multi-persons">
+        <div class="mini-person">
+          <div class="mini-avatar"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/p-elangovan.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none;"><span class="mini-initials" style="display: inline-flex;">PE</span></div>
+          <div class="mini-name">P Elangovan</div>
+          <div class="mini-role">Senior Technician · Production</div>
+        </div>
+        <div class="mini-person">
+          <div class="mini-avatar"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/manigandan.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"><span class="mini-initials" style="display:none;">M</span></div>
+          <div class="mini-name">Manigandan</div>
+          <div class="mini-role">Dynamics application Specialsist · IT</div>
+        </div></div>
+              <div class="typing-wish" style="margin-top:14px;"><span class="tw-text">Many happy returns</span><span class="cursor-blink"></span></div>
             </div>
-          <div class="firework-ring"><div class="fw-circle" style="width: 28px; height: 28px; top: 15%; left: 10%; animation-duration: 1.4s; animation-delay: 0s;"></div><div class="fw-circle" style="width: 44px; height: 44px; top: 30%; left: 28%; animation-duration: 1.8s; animation-delay: 0.28s;"></div><div class="fw-circle" style="width: 60px; height: 60px; top: 45%; left: 46%; animation-duration: 2.2s; animation-delay: 0.56s;"></div><div class="fw-circle" style="width: 76px; height: 76px; top: 60%; left: 64%; animation-duration: 2.6s; animation-delay: 0.84s;"></div><div class="fw-circle" style="width: 92px; height: 92px; top: 75%; left: 82%; animation-duration: 3s; animation-delay: 1.12s;"></div></div><div class="star-layer"><div class="tstar" style="left: 86.2905%; top: 75.2739%; font-size: 15.6612px; animation-duration: 3.55497s; animation-delay: 0.286353s;">✶</div><div class="tstar" style="left: 65.067%; top: 38.1973%; font-size: 22.1992px; animation-duration: 2.59801s; animation-delay: 3.36559s;">✧</div><div class="tstar" style="left: 74.0509%; top: 18.2464%; font-size: 22.1277px; animation-duration: 1.68365s; animation-delay: 2.71924s;">✶</div><div class="tstar" style="left: 8.71921%; top: 30.5348%; font-size: 14.9619px; animation-duration: 1.63529s; animation-delay: 2.95886s;">✦</div><div class="tstar" style="left: 14.7098%; top: 44.0321%; font-size: 19.3213px; animation-duration: 4.0399s; animation-delay: 0.698343s;">★</div><div class="tstar" style="left: 66.3516%; top: 58.8777%; font-size: 16.7332px; animation-duration: 4.49672s; animation-delay: 2.30807s;">✶</div><div class="tstar" style="left: 71.8591%; top: 43.2874%; font-size: 24.4754px; animation-duration: 2.97286s; animation-delay: 0.773337s;">✦</div><div class="tstar" style="left: 33.9525%; top: 48.8616%; font-size: 14.5807px; animation-duration: 2.5733s; animation-delay: 1.9852s;">✦</div><div class="tstar" style="left: 6.74944%; top: 72.2077%; font-size: 14.2494px; animation-duration: 2.16888s; animation-delay: 2.81879s;">★</div><div class="tstar" style="left: 58.8798%; top: 41.5877%; font-size: 23.0926px; animation-duration: 3.06653s; animation-delay: 1.86001s;">★</div></div></div>
+          <div class="firework-ring"><div class="fw-circle" style="width: 28px; height: 28px; top: 15%; left: 10%; animation-duration: 1.4s; animation-delay: 0s;"></div><div class="fw-circle" style="width: 44px; height: 44px; top: 30%; left: 28%; animation-duration: 1.8s; animation-delay: 0.28s;"></div><div class="fw-circle" style="width: 60px; height: 60px; top: 45%; left: 46%; animation-duration: 2.2s; animation-delay: 0.56s;"></div><div class="fw-circle" style="width: 76px; height: 76px; top: 60%; left: 64%; animation-duration: 2.6s; animation-delay: 0.84s;"></div><div class="fw-circle" style="width: 92px; height: 92px; top: 75%; left: 82%; animation-duration: 3s; animation-delay: 1.12s;"></div></div><div class="star-layer"><div class="tstar" style="left: 81.8845%; top: 69.955%; font-size: 16.826px; animation-duration: 4.39905s; animation-delay: 3.46519s;">★</div><div class="tstar" style="left: 87.7952%; top: 21.6514%; font-size: 11.0791px; animation-duration: 2.06919s; animation-delay: 0.45983s;">★</div><div class="tstar" style="left: 85.2165%; top: 20.0283%; font-size: 16.249px; animation-duration: 4.31s; animation-delay: 1.00824s;">✧</div><div class="tstar" style="left: 17.5584%; top: 72.8422%; font-size: 20.3677px; animation-duration: 3.27182s; animation-delay: 0.820746s;">★</div><div class="tstar" style="left: 80.8176%; top: 62.3572%; font-size: 14.0019px; animation-duration: 2.01935s; animation-delay: 3.76289s;">✶</div><div class="tstar" style="left: 70.4259%; top: 44.6204%; font-size: 18.8981px; animation-duration: 2.13766s; animation-delay: 0.931101s;">✶</div><div class="tstar" style="left: 59.3224%; top: 52.1927%; font-size: 20.3134px; animation-duration: 2.30517s; animation-delay: 2.6356s;">✶</div><div class="tstar" style="left: 59.0827%; top: 63.291%; font-size: 21.568px; animation-duration: 1.85988s; animation-delay: 2.01972s;">★</div><div class="tstar" style="left: 74.1528%; top: 70.1625%; font-size: 19.2911px; animation-duration: 3.26801s; animation-delay: 0.698372s;">✧</div><div class="tstar" style="left: 75.4509%; top: 37.6901%; font-size: 26.5601px; animation-duration: 4.43949s; animation-delay: 2.20521s;">★</div></div></div>
         </div></div></div>
     <div id="month-slide" class="active">
       <div class="month-title" id="month-slide-title">June 2026 — Birthday Buddies</div>
       <div class="month-grid" id="month-grid"><div class="month-card today-card">
-      <div class="mc-thumb"><img src="https://raw.githubusercontent.com/hydraspecma-india/hsin-birthdays/main/images/manigandan.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"><span class="mc-thumb-init" style="display:none;">M</span></div>
+      <div class="mc-thumb"><span class="mc-thumb-init">2🎂</span></div>
       <div class="mc-date"><div class="mc-day">8</div><div class="mc-mon">Jun</div></div>
       <div class="mc-info">
-        <div class="mc-names">Manigandan<span class="mc-today-badge">TODAY 🎂</span></div>
-        <div class="mc-roles">Dynamics application Specialsist</div>
+        <div class="mc-names">P Elangovan &amp; Manigandan<span class="mc-today-badge">TODAY 🎂</span></div>
+        <div class="mc-roles">Senior Technician · Dynamics application Specialsist</div>
       </div></div></div>
     </div>
   </div>
@@ -1228,9 +1234,27 @@ function setGhStatus(type,msg){
   const el=document.getElementById('gh-status');
   el.className='gh-status '+type;el.textContent=msg;
 }
-function generateBakedHTML(){
+async function generateBakedHTML(){
+  // Fetch the clean original source (not live DOM which has open modal .show classes)
   const dataJson=JSON.stringify(birthdays);
-  return document.documentElement.outerHTML.replace(
+  let source;
+  try{
+    const r=await fetch(window.location.href,{cache:'no-store'});
+    source=await r.text();
+  }catch(e){
+    // Fallback: use serialized DOM but forcibly strip .show from all overlays
+    source=document.documentElement.outerHTML
+      .replace(/id="admin-overlay" class="[^"]*show[^"]*"/g,'id="admin-overlay"')
+      .replace(/id="pwd-overlay" class="[^"]*show[^"]*"/g,'id="pwd-overlay"')
+      .replace(/id="edit-overlay" class="[^"]*show[^"]*"/g,'id="edit-overlay"')
+      .replace(/id="photo-overlay" class="[^"]*show[^"]*"/g,'id="photo-overlay"')
+      .replace(/id="gh-overlay" class="[^"]*show[^"]*"/g,'id="gh-overlay"')
+      // Also strip any inline display:flex added by JS to the overlays
+      .replace(/(id="admin-overlay"[^>]*?)style="[^"]*display:\s*flex[^"]*"/g,'$1')
+      .replace(/(id="pwd-overlay"[^>]*?)style="[^"]*display:\s*flex[^"]*"/g,'$1');
+  }
+  // Bake current birthday data into the source
+  return source.replace(
     /let birthdays=JSON\.parse\(localStorage\.getItem\('hsin_bd'\)\|'null'\)\|\|(\[[\s\S]*?\]);/,
     `let birthdays=JSON.parse(localStorage.getItem('hsin_bd')||'null')||${dataJson};`
   );
@@ -1243,7 +1267,7 @@ async function pushHTMLToGitHub(){
   document.getElementById('gh-progress').style.display='block';
   setGhStatus('loading','⏳ Generating HTML...');
   try{
-    const htmlContent=generateBakedHTML();
+    const htmlContent=await generateBakedHTML();
     const b64Content=btoa(unescape(encodeURIComponent(htmlContent)));
     const apiUrl=`https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/${cfg.file||'index.html'}`;
     const headers={'Authorization':'token '+cfg.token,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'};
