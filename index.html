@@ -1,7 +1,11 @@
 <html lang="en"><head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Buddies – HydraSpecma India</title>
+<!-- v20260608073014 -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -680,68 +684,43 @@ function buildSlides(){
   monthBdays.forEach(b=>{if(!byDay[b.day])byDay[b.day]=[];byDay[b.day].push(b);});
   const dayKeys=Object.keys(byDay).map(Number).sort((a,b)=>a-b);
 
-  dayKeys.forEach(day=>{
-    const persons=byDay[day],isToday=(day===cd);
+  // ONE SLIDE PER PERSON — iterate every person individually sorted by day
+  monthBdays.forEach(p=>{
+    const isToday=(p.day===cd);
+    const uid=`${p.id}`;  // unique per person
     const slideEl=document.createElement('div');slideEl.className='bday-slide';
 
-    if(persons.length===1){
-      const p=persons[0];
-      slideEl.innerHTML=`
-        <div style="position:relative;width:100%;">
-          <div class="bday-card${isToday?' today-mode':''}" id="card-${day}">
-            <div class="shimmer-bar"></div>
-            <div class="balloons"><span class="balloon">🎈</span><span class="balloon">🎉</span><span class="balloon">🎊</span><span class="balloon">🎉</span><span class="balloon">🎈</span></div>
-            ${isToday?'<div class="crown-wrap">👑</div>':''}
-            <div class="person-section">
-              <div class="avatar-wrap" id="av-wrap-${day}">
-                ${makeAvatarHTML(p,'large')}
-              </div>
-              <div class="bday-name${isToday?' today-name':''}">${p.name}</div>
-              <div class="bday-designation">${p.designation}</div>
-              <div class="bday-dept">${p.dept}</div>
-              <div class="bday-date-badge">🗓 ${ordinal(p.day)} ${MONTHS[p.month-1]}</div>
-              ${isToday
-                ?'<div class="typing-wish"><span class="tw-text"></span><span class="cursor-blink"></span></div>'
-                :'<div class="wish-text">🎂 Happy Birthday!</div><div class="wish-sub">Wishing you a wonderful day! 🌟</div>'}
+    slideEl.innerHTML=`
+      <div style="position:relative;width:100%;">
+        <div class="bday-card${isToday?' today-mode':''}" id="card-${uid}">
+          <div class="shimmer-bar"></div>
+          <div class="balloons"><span class="balloon">🎈</span><span class="balloon">🎉</span><span class="balloon">🎊</span><span class="balloon">🎉</span><span class="balloon">🎈</span></div>
+          ${isToday?'<div class="crown-wrap">👑</div>':''}
+          <div class="person-section">
+            <div class="avatar-wrap" id="av-wrap-${uid}">
+              ${makeAvatarHTML(p,'large')}
             </div>
+            <div class="bday-name${isToday?' today-name':''}">${p.name}</div>
+            <div class="bday-designation">${p.designation}</div>
+            <div class="bday-dept">${p.dept}</div>
+            <div class="bday-date-badge">🗓 ${ordinal(p.day)} ${MONTHS[p.month-1]}</div>
+            ${isToday
+              ?'<div class="typing-wish"><span class="tw-text"></span><span class="cursor-blink"></span></div>'
+              :'<div class="wish-text">🎂 Happy Birthday!</div><div class="wish-sub">Wishing you a wonderful day filled with joy! 🌟</div>'}
           </div>
-        </div>`;
-    }else{
-      const multiHtml=persons.map(p=>`
-        <div class="mini-person">
-          ${makeAvatarHTML(p,'mini')}
-          <div class="mini-name">${p.name}</div>
-          <div class="mini-role">${p.designation} · ${p.dept}</div>
-        </div>`).join('');
-      slideEl.innerHTML=`
-        <div style="position:relative;width:100%;">
-          <div class="bday-card${isToday?' today-mode':''}" id="card-${day}" style="padding:34px 40px;">
-            <div class="shimmer-bar"></div>
-            <div class="balloons"><span class="balloon">🎈</span><span class="balloon">🎉</span><span class="balloon">🎊</span><span class="balloon">🎉</span><span class="balloon">🎈</span></div>
-            ${isToday?'<div class="crown-wrap">👑</div>':''}
-            <div style="position:relative;z-index:2;margin-top:30px;">
-              <div class="wish-text">🎂 Happy Birthday!</div>
-              <div style="font-size:11px;color:var(--muted);margin:5px 0 18px;letter-spacing:1px;">${ordinal(persons[0].day)} ${MONTHS[persons[0].month-1].toUpperCase()}</div>
-              <div class="multi-persons">${multiHtml}</div>
-              ${isToday
-                ?'<div class="typing-wish" style="margin-top:14px;"><span class="tw-text"></span><span class="cursor-blink"></span></div>'
-                :'<div class="wish-sub" style="margin-top:12px;">Wishing everyone a day full of joy! 🎊</div>'}
-            </div>
-          </div>
-        </div>`;
-    }
+        </div>
+      </div>`;
 
     wrapper.appendChild(slideEl);
-    slides.push({el:slideEl,type:'bday',day,isToday});
+    slides.push({el:slideEl,type:'bday',day:p.day,isToday,pid:p.id});
 
     if(isToday){
       requestAnimationFrame(()=>{
-        const card=document.getElementById(`card-${day}`);
+        const card=document.getElementById(`card-${uid}`);
         if(card){addFireworks(card);addStars(card);}
-        const av=document.getElementById(`av-wrap-${day}`);
+        const av=document.getElementById(`av-wrap-${uid}`);
         if(av)addSparkles(av);
-        // Add today glow to avatar ring
-        const ring=document.getElementById(`av-ring-${day}`);
+        const ring=document.getElementById(`av-ring-${p.id}`);
         if(ring)ring.classList.add('today-avatar');
         const tw=slideEl.querySelector('.typing-wish');
         if(tw)typeWish(tw,WISHES);
@@ -752,17 +731,17 @@ function buildSlides(){
   // Month overview
   document.getElementById('month-slide-title').textContent=`${MONTHS[cm-1]} ${now.getFullYear()} — Birthday Buddies`;
   const grid=document.getElementById('month-grid');grid.innerHTML='';
-  dayKeys.forEach(day=>{
-    const persons=byDay[day],isToday=(day===cd);
+  // One card per person in month overview
+  monthBdays.forEach(p=>{
+    const isToday=(p.day===cd);
     const card=document.createElement('div');
     card.className='month-card'+(isToday?' today-card':'');
-    const thumbHtml=persons.length===1?makeAvatarHTML(persons[0],'mc'):'<div class="mc-thumb"><span class="mc-thumb-init">'+persons.length+'🎂</span></div>';
     card.innerHTML=`
-      ${thumbHtml}
-      <div class="mc-date"><div class="mc-day">${day}</div><div class="mc-mon">${MS[cm-1]}</div></div>
+      ${makeAvatarHTML(p,'mc')}
+      <div class="mc-date"><div class="mc-day">${p.day}</div><div class="mc-mon">${MS[cm-1]}</div></div>
       <div class="mc-info">
-        <div class="mc-names">${persons.map(p=>p.name).join(' & ')}${isToday?'<span class="mc-today-badge">TODAY 🎂</span>':''}</div>
-        <div class="mc-roles">${persons.map(p=>p.designation).join(' · ')}</div>
+        <div class="mc-names">${p.name}${isToday?'<span class="mc-today-badge">TODAY 🎂</span>':''}</div>
+        <div class="mc-roles">${p.designation} · ${p.dept}</div>
       </div>`;
     grid.appendChild(card);
   });
@@ -1054,12 +1033,16 @@ function setGhStatus(type,msg){
 function generateBakedHTML(){
   // Use the original clean HTML captured at page load (before any JS DOM changes)
   const dataJson=JSON.stringify(birthdays);
-  // Find the birthdays array declaration and replace with current data
-  // Anchored between the known prefix and the known suffix after the array
-  return _originalCleanHTML.replace(
-    /(let birthdays=JSON\.parse\(localStorage\.getItem\('hsin_bd'\)\|\|'null'\)\|\|)\[[\s\S]*?\];(\s*let nextId)/,
-    `$1${dataJson};$2`
-  );
+  const ts=new Date().toISOString().replace(/[^0-9]/g,'').slice(0,14);
+  let out=_originalCleanHTML
+    // Inject current birthday data
+    .replace(
+      /(let birthdays=JSON\.parse\(localStorage\.getItem\('hsin_bd'\)\|\|'null'\)\|\|)\[[\s\S]*?\];(\s*let nextId)/,
+      `$1${dataJson};$2`
+    )
+    // Update version timestamp comment so browsers always fetch fresh
+    .replace(/<!-- v\d+ -->/, `<!-- v${ts} -->`);
+  return out;
 }
 async function pushHTMLToGitHub(){
   const cfg=getGhCfg();
