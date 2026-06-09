@@ -3,10 +3,10 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="version" content="20260608160403">
+<meta name="version" content="20260609060107">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Buddies – HydraSpecma India</title>
-<!-- v20260608160403 -->
+<!-- v20260609060107 -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -1277,10 +1277,231 @@ input:checked + .slider:before {
 @keyframes wind-puff {
   0%  { transform: translate(0,0) scale(1); opacity: 0.8; }
   100%{ transform: translate(var(--dx), var(--dy)) scale(0.3); opacity: 0; }
+/* ════════════════════════════════════════════════════════════════
+   📺 43-INCH TV  ·  10-METRE VIEWING DISTANCE  ·  FULL OVERRIDE
+   All fonts, sizes, spacing and elements scaled for clear readability
+   from across the room. Minimum body text ≥ 40px.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Top Bar ── */
+.top-bar                 { padding: 14px 52px; border-bottom-width: 4px; }
+.hs-logo                 { height: 86px; }
+.logo-area               { gap: 22px; }
+.company-sub             { font-size: 19px; letter-spacing: 4px; padding-left: 22px; border-left-width: 3px; }
+.top-center              { line-height: 1.2; }
+.month-label             { font-size: 20px; letter-spacing: 3px; margin-bottom: 4px; display: block; }
+.clock                   { font-size: 52px; line-height: 1; }
+.admin-btn               { padding: 10px 22px; font-size: 16px; border-radius: 10px; border-width: 2px; }
+
+/* ── Today Strip ── */
+.today-strip             { font-size: 28px; padding: 14px 16px; letter-spacing: 2px; }
+
+/* ── No Birthday Screen ── */
+#no-birthday .big-emoji  { font-size: 160px; margin-bottom: 28px; }
+#no-birthday h2          { font-size: 64px; }
+#no-birthday p           { font-size: 30px; margin-top: 12px; }
+
+/* ── Birthday Card ── */
+.bday-slide              { max-width: 1420px; padding: 0 24px; }
+.bday-card               { max-width: 1320px; padding: 70px 100px; border-radius: 36px; border-width: 3px; }
+.bday-card.today-mode    { border-width: 4px; }
+.person-section          { margin-top: 60px; }
+.avatar-wrap             { margin-bottom: 28px; }
+.avatar-ring             { width: 240px; height: 240px; border-width: 6px; border-radius: 50%; }
+.avatar-initials         { font-size: 100px; }
+.crown-wrap              { top: -44px; font-size: 90px; }
+.balloons                { padding: 0 42px; }
+.balloon                 { font-size: 80px; }
+.bday-name               { font-size: 110px; margin-bottom: 14px; }
+.bday-designation        { font-size: 30px; letter-spacing: 3px; margin-bottom: 6px; }
+.bday-dept               { font-size: 26px; letter-spacing: 2px; }
+.bday-date-badge         { font-size: 32px; padding: 14px 38px; border-radius: 70px; gap: 12px; margin-top: 28px; }
+.wish-text               { font-size: 60px; margin-top: 36px; }
+.wish-sub                { font-size: 28px; margin-top: 10px; }
+.typing-wish             { font-size: 44px; min-height: 56px; }
+.cursor-blink            { width: 3px; height: 44px; }
+
+/* ── Multi-Person ── */
+.multi-persons           { gap: 60px; margin-top: 44px; flex-wrap: wrap; }
+.mini-avatar             { width: 180px; height: 180px; border-width: 4px; margin-bottom: 18px; }
+.mini-initials           { font-size: 64px; }
+.mini-name               { font-size: 40px; }
+.mini-role               { font-size: 24px; margin-top: 5px; }
+
+/* ── Slide Dots ── */
+#slide-dots              { padding: 14px 0 20px; gap: 12px; }
+.dot                     { width: 14px; height: 14px; }
+.dot.active              { width: 40px; border-radius: 6px; }
+
+/* ── Month Slide ── */
+.month-title             { font-size: 30px; letter-spacing: 5px; margin-bottom: 28px; }
+#month-slide             { padding: 20px 40px 10px; }
+.month-grid              {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
+  width: 100%;
+  max-width: 100%;
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
+  padding-right: 6px;
 }
+/* Scrollbar hidden for TV */
+.month-grid::-webkit-scrollbar { display: none; }
+.month-card              {
+  padding: 36px 44px;
+  gap: 36px;
+  border-radius: 32px;
+  border-width: 2.5px;
+  min-height: 170px;
+  align-items: center;
+}
+.mc-thumb                { width: 148px; height: 148px; border-width: 4px; flex-shrink: 0; }
+.mc-thumb-init           { font-size: 52px; }
+.mc-date                 { min-width: 80px; text-align: center; }
+.mc-day                  { font-size: 84px; font-weight: 900; line-height: 1; }
+.mc-mon                  { font-size: 26px; letter-spacing: 2px; margin-top: 6px; }
+.mc-names                { font-size: 40px; font-weight: 700; margin-bottom: 10px; }
+.mc-roles                { font-size: 28px; line-height: 1.5; }
+.mc-dept                 { font-size: 25px; margin-top: 8px; }
+.mc-today-badge          { font-size: 20px; padding: 6px 18px; margin-left: 12px; border-radius: 70px; }
+
+/* ── Shift Timing Slide — TRUE FULL SCREEN ── */
+#shift-slide             { padding: 28px 60px 20px; justify-content: flex-start; }
+.shift-inner             { width: 100%; max-width: 100%; }
+.shift-header            { margin-bottom: 24px; }
+.shift-header-title      { font-size: 32px; letter-spacing: 5px; }
+.shift-header-sub        { font-size: 24px; letter-spacing: 2px; }
+.shift-table-wrap        { border-radius: 24px; }
+.shift-table             { table-layout: fixed; }
+.shift-table thead tr    { background: var(--gold); }
+.shift-table thead th    {
+  font-size: 26px;
+  letter-spacing: 2px;
+  padding: 26px 14px;
+  font-weight: 900;
+}
+.shift-table tbody tr:nth-child(1) { background: linear-gradient(135deg,#181800,#161600); }
+.shift-table tbody tr:nth-child(2) { background: linear-gradient(135deg,#141414,#121200); }
+.shift-table tbody td    {
+  font-size: 30px;
+  padding: 36px 14px;
+  vertical-align: middle;
+}
+.shift-name-cell         { padding-left: 30px !important; }
+.shift-name              { font-size: 40px; letter-spacing: 1px; }
+.shift-days              { font-size: 26px; margin-top: 8px; }
+.time-chip               {
+  font-size: 28px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border-width: 2px;
+  white-space: nowrap;
+}
+.time-chip.na            { font-size: 26px; }
+.time-chip.start         { font-size: 28px; }
+.time-chip.end           { font-size: 28px; }
+.shift-notes-section     {
+  margin-top: 20px;
+  padding: 22px 30px;
+  border-radius: 20px;
+  border-width: 2px;
+}
+.shift-notes-title       { font-size: 26px; letter-spacing: 3px; margin-bottom: 16px; }
+.shift-note-row          { font-size: 28px; line-height: 1.7; gap: 12px; margin-bottom: 8px; }
+
+/* ── Wash Hands Slide ── */
+.wash-card               { max-width: 1100px; border-radius: 30px; border-width: 3px; }
+.wash-banner             { padding: 36px 40px; }
+.wash-banner-title       { font-size: 100px; letter-spacing: 4px; }
+.wash-steps              { padding: 24px 32px; gap: 18px; }
+.wash-step               { padding: 22px 28px; border-radius: 22px; gap: 26px; }
+.wash-step-icon          { width: 110px; height: 110px; font-size: 64px; border-radius: 18px; }
+.wash-step-num           { width: 46px; height: 46px; font-size: 22px; border-radius: 50%; }
+.wash-step-main          { font-size: 32px; letter-spacing: 0.5px; }
+.wash-step-sub           { font-size: 22px; margin-top: 5px; }
+.wash-footer             { font-size: 22px; padding: 16px 32px; }
+
+/* ── Awareness Slides (Fire / PPE / etc.) ── */
+.aware-card              { max-width: 1100px; border-radius: 30px; }
+.fire-banner,
+.ppe-banner,
+.nosmo-banner,
+.food-banner,
+.energy-banner,
+.elec-banner,
+.lift-banner,
+.cyber-banner,
+.waste-banner            { padding: 34px 40px; }
+.fire-banner-title,
+.ppe-banner-title,
+.nosmo-banner-title,
+.food-banner-title,
+.energy-banner-title,
+.elec-banner-title,
+.lift-banner-title,
+.cyber-banner-title,
+.waste-banner-title      { font-size: 80px; letter-spacing: 3px; }
+.fire-steps,
+.energy-steps,
+.elec-steps,
+.lift-steps,
+.cyber-steps,
+.waste-steps             { padding: 20px 28px; gap: 14px; }
+.fire-step,
+.energy-step,
+.elec-step,
+.lift-step,
+.cyber-step,
+.waste-step              { padding: 18px 24px; border-radius: 18px; gap: 20px; }
+.fire-icon,.energy-icon,.elec-icon,.lift-icon,.cyber-icon,.waste-icon { font-size: 60px; min-width: 80px; }
+.fire-num,.energy-num,.elec-num { width: 42px; height: 42px; font-size: 20px; }
+.fire-text-main,.energy-text-main,.elec-text-main,
+.lift-text-main,.cyber-text-main,.waste-text-main { font-size: 30px; letter-spacing: 0.5px; }
+.fire-text-sub,.energy-text-sub,.elec-text-sub,
+.lift-text-sub,.cyber-text-sub,.waste-text-sub    { font-size: 22px; margin-top: 4px; }
+.fire-footer,.energy-footer,.elec-footer,
+.lift-footer,.cyber-footer,.waste-footer          { font-size: 22px; padding: 14px 28px; }
+/* PPE grid */
+.ppe-grid                { padding: 22px 28px; gap: 18px; }
+.ppe-item                { padding: 22px 14px; border-radius: 18px; }
+.ppe-icon                { font-size: 64px; margin-bottom: 12px; }
+.ppe-label               { font-size: 22px; letter-spacing: 0.5px; }
+.ppe-req                 { font-size: 18px; margin-top: 5px; }
+.ppe-footer              { font-size: 22px; padding: 14px 28px; }
+/* Food grid */
+.food-grid               { padding: 22px 28px; gap: 18px; }
+.food-item               { padding: 20px 22px; border-radius: 18px; gap: 18px; }
+.food-icon               { font-size: 56px; min-width: 70px; }
+.food-text-main          { font-size: 28px; }
+.food-text-sub           { font-size: 22px; margin-top: 4px; }
+.food-footer             { font-size: 22px; padding: 14px 28px; }
+/* No Smoking */
+.nosmo-big               { font-size: 160px; }
+.nosmo-rules             { padding: 8px 28px 22px; gap: 14px; }
+.nosmo-rule              { padding: 18px 22px; border-radius: 18px; gap: 20px; }
+.nosmo-rule-icon         { font-size: 52px; min-width: 64px; }
+.nosmo-rule-text         { font-size: 28px; line-height: 1.4; }
+.nosmo-footer            { font-size: 22px; padding: 14px 28px; }
+
+/* ── Celebration Screen ── */
+#celebration-screen .cel-content { max-width: 1520px; padding: 28px 40px; }
+.cel-emoji-row           { font-size: 74px; margin-bottom: 6px; }
+.cel-title               { font-size: 148px; }
+.cel-subtitle            { font-size: 38px; letter-spacing: 7px; margin-bottom: 28px; }
+.cel-phase-text          { font-size: 34px; letter-spacing: 4px; margin: 4px 0 14px; min-height: 46px; }
+.cel-controls            { gap: 18px; margin-bottom: 22px; }
+.cel-btn                 { padding: 12px 28px; font-size: 20px; border-width: 2px; border-radius: 60px; }
+.cel-instructions        { font-size: 32px; letter-spacing: 2px; margin-top: 10px; min-height: 48px; }
+
+/* Scale cake assembly up for TV */
+#cake-wrapper            { transform: scale(1.85); transform-origin: center bottom; margin-bottom: 100px; }
+
+/* ── Celebration header titles on Cinematic screen ── */
+.cel-title               { line-height: 1.0; }
+
 </style>
-</head>
-<body>
+</head><body>
 
 <!-- Password -->
 <div id="pwd-overlay">
@@ -1582,7 +1803,7 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
       </div>
 
       <!-- 3-Tier Cinematic Cake -->
-      <div style="position:relative;width:260px;height:280px;margin:0 auto;">
+      <div id="cake-wrapper" style="position:relative;width:260px;height:280px;margin:0 auto;">
         <div class="cel-cake-glow"></div>
 
         <!-- Animated knife (auto-appears during cut) -->
@@ -2161,12 +2382,8 @@ function buildSlides(){
     if(el)slides.push({el,type:'awareness'});
   });
 
-  // Per-slide timings: 8s birthday/month, 40s shift, 20s awareness
-  slideTimings=slides.map(s=>{
-    if(s.type==='shift')return 15000;
-    if(s.type==='awareness')return 20000;
-    return 8000;
-  });
+  // Per-slide timings: ALL slides = 10 seconds
+  slideTimings=slides.map(() => 10000);
 
   renderShiftSlide();
   renderDots();
@@ -2209,7 +2426,7 @@ function startAutoSlide(){
   slideTimer=setInterval(()=>{
     const next=(currentSlide+1)%slides.length;
     showSlide(next);
-  },8000);
+  },10000);
 }
 function renderDots(){
   const el=document.getElementById('slide-dots');el.innerHTML='';
@@ -2654,7 +2871,7 @@ function startAutoSlideVarible(){
   if(slideTimer)clearInterval(slideTimer);
   if(slides.length<=1)return;
   function scheduleNext(){
-    const dur=slideTimings[currentSlide]||8000;
+    const dur=slideTimings[currentSlide]||10000;
     slideTimer=setTimeout(()=>{
       const next=(currentSlide+1)%slides.length;
       showSlide(next);
@@ -2735,7 +2952,7 @@ function _unlockAudioCtx() {
   document.addEventListener(ev, _unlockAudioCtx, { capture: true, once: true })
 );
 
-const DEFAULT_CELEBRATION = {"enabled":false,"startHour":21,"endHour":18,"soundEnabled":true};
+const DEFAULT_CELEBRATION = {"enabled":false,"startHour":17,"endHour":18,"soundEnabled":true};
 
 function getCelebrationData() {
   return JSON.parse(localStorage.getItem('hsin_celebration') || 'null') || DEFAULT_CELEBRATION;
