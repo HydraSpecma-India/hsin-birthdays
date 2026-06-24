@@ -598,13 +598,13 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
 @keyframes bolt-pulse{0%,100%{text-shadow:0 0 10px #ffcc00,0 0 20px #ffcc00;}50%{text-shadow:0 0 30px #ffcc00,0 0 60px #ffcc00,0 0 80px rgba(255,200,0,.4);}}
 
 /* Aware-card background per slide */
-#fire-slide .aware-card { background: linear-gradient(160deg, #2a0b00 0%, #3a1000 60%, #1a0500 100%); border: 2px solid #c0390b; box-shadow: 0 0 60px rgba(192,57,11,0.2); }
-#ppe-slide .aware-card { background: linear-gradient(160deg, #051c0e 0%, #082b15 60%, #020d07 100%); border: 2px solid #155d27; box-shadow: 0 0 60px rgba(21,93,39,0.2); }
-#nosmo-slide .aware-card { background: linear-gradient(160deg, #110933 0%, #1a0d4a 60%, #08041a 100%); border: 2px solid #3d1fb5; box-shadow: 0 0 60px rgba(61,31,181,0.2); }
-#food-slide .aware-card { background: linear-gradient(160deg, #2a1b05 0%, #3d2708 60%, #1a1002 100%); border: 2px solid #c47a22; box-shadow: 0 0 60px rgba(196,122,34,0.2); }
-#energy-slide .aware-card { background: linear-gradient(160deg, #001f33 0%, #002e4d 60%, #00101a 100%); border: 2px solid #006699; box-shadow: 0 0 60px rgba(0,102,153,0.2); }
-#elec-slide .aware-card { background: linear-gradient(160deg, #2a2000 0%, #382c00 60%, #140e00 100%); border: 2px solid #f39c12; box-shadow: 0 0 60px rgba(243,156,18,0.2); }
-#lift-slide .aware-card { background: linear-gradient(160deg, #002620 0%, #00382f 60%, #00120f 100%); border: 2px solid #1abc9c; box-shadow: 0 0 60px rgba(26,188,156,0.2); }
+#fire-slide .aware-card { background: linear-gradient(165deg, #250a01 0%, #140400 100%); border: none; box-shadow: none; }
+#ppe-slide .aware-card { background: linear-gradient(165deg, #05180b 0%, #020b05 100%); border: none; box-shadow: none; }
+#nosmo-slide .aware-card { background: linear-gradient(165deg, #0c0730 0%, #060316 100%); border: none; box-shadow: none; }
+#food-slide .aware-card { background: linear-gradient(165deg, #231604 0%, #130c02 100%); border: none; box-shadow: none; }
+#energy-slide .aware-card { background: linear-gradient(165deg, #001a2c 0%, #000c16 100%); border: none; box-shadow: none; }
+#elec-slide .aware-card { background: linear-gradient(165deg, #201900 0%, #100c00 100%); border: none; box-shadow: none; }
+#lift-slide .aware-card { background: linear-gradient(165deg, #00201a 0%, #00100d 100%); border: none; box-shadow: none; }
 
 /* ──── 6. ELECTRICAL SAFETY ──── */
 .elec-banner{background:linear-gradient(135deg,#d4af37,#f39c12,#d4af37);padding:26px 30px;text-align:center;position:relative;overflow:hidden;}
@@ -632,8 +632,8 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
 .lift-footer{background:rgba(26,188,156,.2);border-top:1px solid rgba(26,188,156,.15);padding:10px 22px;text-align:center;font-size:11px;color:rgba(180,255,230,.7);letter-spacing:1px;}
 .lift-footer strong{color:#1abc9c;}
 
-#cyber-slide .aware-card { background: linear-gradient(160deg, #071520 0%, #0a2030 60%, #030a10 100%); border: 2px solid #00d2ff; box-shadow: 0 0 60px rgba(0,210,255,0.2); }
-#waste-slide .aware-card { background: linear-gradient(160deg, #052010 0%, #0a3018 60%, #021008 100%); border: 2px solid #2ecc71; box-shadow: 0 0 60px rgba(46,204,113,0.2); }
+#cyber-slide .aware-card { background: linear-gradient(165deg, #06121d 0%, #02080e 100%); border: none; box-shadow: none; }
+#waste-slide .aware-card { background: linear-gradient(165deg, #04190b 0%, #020d06 100%); border: none; box-shadow: none; }
 
 /* ──── 8. CYBER SECURITY ──── */
 .cyber-banner{background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);padding:26px 30px;text-align:center;position:relative;overflow:hidden;}
@@ -1277,6 +1277,7 @@ input:checked + .slider:before {
 @keyframes wind-puff {
   0%  { transform: translate(0,0) scale(1); opacity: 0.8; }
   100%{ transform: translate(var(--dx), var(--dy)) scale(0.3); opacity: 0; }
+}
 /* ════════════════════════════════════════════════════════════════
    📺 43-INCH TV  ·  10-METRE VIEWING DISTANCE  ·  FULL OVERRIDE
    All fonts, sizes, spacing and elements scaled for clear readability
@@ -1422,8 +1423,18 @@ input:checked + .slider:before {
 .wash-step-sub           { font-size: 22px; margin-top: 5px; }
 .wash-footer             { font-size: 22px; padding: 16px 32px; }
 
-/* ── Awareness Slides (Fire / PPE / etc.) ── */
-.aware-card              { max-width: 1100px; border-radius: 30px; }
+/* ── Awareness Slides (Fire / PPE / etc.) — FULL-SCREEN, MAX READABILITY ── */
+/* Card now covers the entire slide area, edge-to-edge (no centred letterbox) */
+.aware-slide             { padding: 0; }
+.aware-card              {
+  max-width: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+}
+/* Banners (titles) stay pinned to the top */
 .fire-banner,
 .ppe-banner,
 .nosmo-banner,
@@ -1432,7 +1443,7 @@ input:checked + .slider:before {
 .elec-banner,
 .lift-banner,
 .cyber-banner,
-.waste-banner            { padding: 34px 40px; }
+.waste-banner            { padding: 14px 40px; flex-shrink: 0; }
 .fire-banner-title,
 .ppe-banner-title,
 .nosmo-banner-title,
@@ -1441,48 +1452,69 @@ input:checked + .slider:before {
 .elec-banner-title,
 .lift-banner-title,
 .cyber-banner-title,
-.waste-banner-title      { font-size: 80px; letter-spacing: 3px; }
+.waste-banner-title      { font-size: 80px; letter-spacing: 3px; line-height: 1.08; }
+/* Step lists grow to fill the height and spread evenly down the screen */
 .fire-steps,
 .energy-steps,
 .elec-steps,
 .lift-steps,
 .cyber-steps,
-.waste-steps             { padding: 20px 28px; gap: 14px; }
+.waste-steps             { flex: 1; padding: 14px 60px; gap: 12px; justify-content: space-evenly; }
 .fire-step,
 .energy-step,
 .elec-step,
 .lift-step,
 .cyber-step,
-.waste-step              { padding: 18px 24px; border-radius: 18px; gap: 20px; }
-.fire-icon,.energy-icon,.elec-icon,.lift-icon,.cyber-icon,.waste-icon { font-size: 60px; min-width: 80px; }
-.fire-num,.energy-num,.elec-num { width: 42px; height: 42px; font-size: 20px; }
+.waste-step              { padding: 12px 32px; border-radius: 20px; gap: 30px; border-width: 2px; }
+.fire-icon,.energy-icon,.elec-icon,.lift-icon,.cyber-icon,.waste-icon { font-size: 60px; min-width: 90px; }
+.fire-num,.energy-num,.elec-num { width: 50px; height: 50px; font-size: 24px; }
 .fire-text-main,.energy-text-main,.elec-text-main,
-.lift-text-main,.cyber-text-main,.waste-text-main { font-size: 30px; letter-spacing: 0.5px; }
+.lift-text-main,.cyber-text-main,.waste-text-main { font-size: 40px; letter-spacing: 0.5px; font-weight: 800; line-height: 1.1; }
 .fire-text-sub,.energy-text-sub,.elec-text-sub,
-.lift-text-sub,.cyber-text-sub,.waste-text-sub    { font-size: 22px; margin-top: 4px; }
+.lift-text-sub,.cyber-text-sub,.waste-text-sub    { font-size: 23px; margin-top: 4px; line-height: 1.2; }
 .fire-footer,.energy-footer,.elec-footer,
-.lift-footer,.cyber-footer,.waste-footer          { font-size: 22px; padding: 14px 28px; }
+.lift-footer,.cyber-footer,.waste-footer          { font-size: 22px; padding: 10px 40px; flex-shrink: 0; }
 /* PPE grid */
-.ppe-grid                { padding: 22px 28px; gap: 18px; }
-.ppe-item                { padding: 22px 14px; border-radius: 18px; }
-.ppe-icon                { font-size: 64px; margin-bottom: 12px; }
-.ppe-label               { font-size: 22px; letter-spacing: 0.5px; }
-.ppe-req                 { font-size: 18px; margin-top: 5px; }
-.ppe-footer              { font-size: 22px; padding: 14px 28px; }
+.ppe-grid                { flex: 1; padding: 30px 60px; gap: 26px; align-content: center; }
+.ppe-item                { padding: 30px 16px; border-radius: 20px; border-width: 2px; }
+.ppe-icon                { font-size: 90px; margin-bottom: 14px; }
+.ppe-label               { font-size: 36px; letter-spacing: 0.5px; line-height: 1.15; }
+.ppe-req                 { font-size: 24px; margin-top: 8px; }
+.ppe-footer              { font-size: 24px; padding: 16px 40px; flex-shrink: 0; }
 /* Food grid */
-.food-grid               { padding: 22px 28px; gap: 18px; }
-.food-item               { padding: 20px 22px; border-radius: 18px; gap: 18px; }
-.food-icon               { font-size: 56px; min-width: 70px; }
-.food-text-main          { font-size: 28px; }
-.food-text-sub           { font-size: 22px; margin-top: 4px; }
-.food-footer             { font-size: 22px; padding: 14px 28px; }
+.food-grid               { flex: 1; padding: 26px 60px; gap: 24px; align-content: center; }
+.food-item               { padding: 26px 28px; border-radius: 20px; gap: 24px; border-width: 2px; }
+.food-icon               { font-size: 72px; min-width: 92px; }
+.food-text-main          { font-size: 40px; font-weight: 800; line-height: 1.1; }
+.food-text-sub           { font-size: 24px; margin-top: 5px; }
+.food-footer             { font-size: 24px; padding: 16px 40px; flex-shrink: 0; }
 /* No Smoking */
-.nosmo-big               { font-size: 160px; }
-.nosmo-rules             { padding: 8px 28px 22px; gap: 14px; }
-.nosmo-rule              { padding: 18px 22px; border-radius: 18px; gap: 20px; }
-.nosmo-rule-icon         { font-size: 52px; min-width: 64px; }
-.nosmo-rule-text         { font-size: 28px; line-height: 1.4; }
-.nosmo-footer            { font-size: 22px; padding: 14px 28px; }
+.nosmo-big               { font-size: 100px; line-height: 1; padding: 8px 0; flex-shrink: 0; }
+.nosmo-rules             { flex: 1; padding: 6px 60px 10px; gap: 16px; justify-content: center; }
+.nosmo-rule              { padding: 18px 32px; border-radius: 20px; gap: 30px; border-width: 2px; }
+.nosmo-rule-icon         { font-size: 58px; min-width: 80px; }
+.nosmo-rule-text         { font-size: 40px; line-height: 1.25; font-weight: 700; }
+.nosmo-footer            { font-size: 22px; padding: 10px 40px; flex-shrink: 0; }
+
+/* Higher-contrast step panels + brighter sub-text so every line is legible
+   from across the room (≈10 m). */
+.fire-step   { background: rgba(255,90,30,.16);  border-color: rgba(255,120,60,.45); }
+.energy-step { background: rgba(20,175,230,.16);  border-color: rgba(70,200,255,.45); }
+.elec-step   { background: rgba(243,156,18,.15);  border-color: rgba(255,185,70,.45); }
+.lift-step   { background: rgba(26,188,156,.16);  border-color: rgba(70,220,190,.45); }
+.cyber-step  { background: rgba(0,200,255,.15);   border-color: rgba(80,225,255,.45); }
+.waste-step  { background: rgba(46,204,113,.16);  border-color: rgba(95,225,150,.45); }
+.ppe-item    { background: rgba(46,204,113,.14);  border-color: rgba(95,225,150,.40); }
+.food-item   { background: rgba(255,160,40,.15);  border-color: rgba(255,190,90,.42); }
+.nosmo-rule  { background: rgba(125,95,240,.18);  border-color: rgba(155,125,255,.45); }
+.fire-text-sub   { color: rgba(255,200,175,.95); }
+.energy-text-sub { color: rgba(185,230,255,.95); }
+.elec-text-sub   { color: rgba(255,230,180,.95); }
+.lift-text-sub   { color: rgba(190,250,230,.95); }
+.cyber-text-sub  { color: rgba(195,232,255,.95); }
+.waste-text-sub  { color: rgba(195,250,210,.95); }
+.food-text-sub   { color: rgba(255,210,160,.95); }
+.nosmo-rule-text { color: #efe9ff; }
 
 /* ── Celebration Screen ── */
 #celebration-screen .cel-content { max-width: 1520px; padding: 28px 40px; }
