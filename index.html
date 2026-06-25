@@ -3,10 +3,10 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="version" content="20260625045633">
+<meta name="version" content="20260625051303">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Buddies – HydraSpecma India</title>
-<!-- v20260625045633 -->
+<!-- v20260625051303 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700;800;900&amp;family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -1826,7 +1826,8 @@ Clocking In/Out: Employees must accurately clock in at the beginning of their sh
 Break Time Adherence: All employees must adhere to the scheduled break times.
 Break Duration: Ensure you return to your workstation promptly at the end of your allocated break time.</textarea>
           <br>
-          <button class="btn-save-shift" onclick="saveShiftData()">💾 Save Shift Details</button>
+          <button class="btn-save-shift" id="btn-save-shift" onclick="saveShiftData()">💾 Save &amp; Auto-Translate</button>
+          <div id="shift-translate-status" style="margin-top:10px;font-size:11px;color:var(--muted);min-height:18px;"></div>
         </div>
       </div>
 
@@ -3136,7 +3137,41 @@ const DEFAULT_SHIFTS = {"s1":{"name":"FIRST SHIFT","days":"Monday ~ Saturday","s
 
 function getShiftData(){return JSON.parse(localStorage.getItem('hsin_shifts')||'null')||DEFAULT_SHIFTS;}
 
-function saveShiftData(){
+// ── AI auto-translate shift notes to Tamil ──────────────────────────
+async function translateNotesToTamil(englishNotes){
+  const statusEl=document.getElementById('shift-translate-status');
+  if(statusEl)statusEl.innerHTML='<span style="color:#FFCC00">⏳ தமிழில் மொழிபெயர்க்கிறது...</span>';
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-6',
+        max_tokens:600,
+        messages:[{
+          role:'user',
+          content:'Translate these workplace shift rules to Tamil. Keep the "Label: description" format on each line. Output ONLY the Tamil translation, nothing else:\n\n'+englishNotes
+        }]
+      })
+    });
+    const data=await res.json();
+    const result=data.content?.[0]?.text||null;
+    if(result){
+      if(statusEl)statusEl.innerHTML='<span style="color:#3df078">✅ தமிழ் மொழிபெயர்ப்பு தயார்!</span>';
+      setTimeout(()=>{if(statusEl)statusEl.textContent='';},4000);
+    }else{
+      if(statusEl)statusEl.innerHTML='<span style="color:#ff9090">⚠️ Translation failed – default Tamil used</span>';
+    }
+    return result;
+  }catch(e){
+    if(statusEl)statusEl.innerHTML='<span style="color:#ff9090">⚠️ Network error – default Tamil used</span>';
+    return null;
+  }
+}
+
+async function saveShiftData(){
+  const btn=document.getElementById('btn-save-shift');
+  if(btn){btn.disabled=true;btn.textContent='⏳ Saving...';}
   const d={
     s1:{
       name:document.getElementById('s1-name').value.trim(),
@@ -3160,9 +3195,18 @@ function saveShiftData(){
     },
     notes:document.getElementById('shift-notes-raw').value.trim()
   };
+  // Save immediately (English version updates right away)
   localStorage.setItem('hsin_shifts',JSON.stringify(d));
   renderShiftSlide();
-  alert('✅ Shift details saved!');
+  if(btn){btn.disabled=false;btn.textContent='💾 Save & Auto-Translate';}
+  alert('✅ Shift details saved! Translating to Tamil...');
+  // Auto-translate notes to Tamil in the background
+  const tamilNotes=await translateNotesToTamil(d.notes);
+  if(tamilNotes){
+    d.notes_ta=tamilNotes;
+    localStorage.setItem('hsin_shifts',JSON.stringify(d));
+    renderShiftTaSlide(); // re-render Tamil slide with new translation
+  }
 }
 
 function loadShiftAdminFields(){
@@ -3252,11 +3296,28 @@ function renderShiftTaSlide(){
   renderShiftCards('shift-cards-ta',d,TA_BREAK_LABELS,taDays);
   const taNotesEl=document.getElementById('shift-ta-notes-display');
   if(taNotesEl){
-    taNotesEl.innerHTML=`<div class="shift-notes-title ta">📋 குறிப்பு</div>
+    const d2=getShiftData();
+    if(d2.notes_ta){
+      // Use AI-translated notes (stored after last save)
+      const lines=d2.notes_ta.split('\n').filter(l=>l.trim());
+      taNotesEl.innerHTML='<div class="shift-notes-title ta">📋 குறிப்பு</div>'+
+        lines.map(line=>{
+          const ci=line.indexOf(':');
+          if(ci>0){
+            const lbl=line.slice(0,ci);
+            const rest=line.slice(ci+1).trim();
+            return `<div class="shift-note-row ta"><span class="shift-note-label ta">${lbl}:</span> ${rest}</div>`;
+          }
+          return `<div class="shift-note-row ta">${line}</div>`;
+        }).join('');
+    }else{
+      // Fallback hardcoded Tamil (for first load / no translation yet)
+      taNotesEl.innerHTML=`<div class="shift-notes-title ta">📋 குறிப்பு</div>
 <div class="shift-note-row ta"><span class="shift-note-label ta">கட்டாய வருகை:</span> அனைத்து ஊழியர்களும் தங்கள் ஷிஃப்ட் தொடக்க நேரத்தில் நியமிக்கப்பட்ட பணியிடங்களில் இருக்க வேண்டும்.</div>
 <div class="shift-note-row ta"><span class="shift-note-label ta">நேர பதிவு:</span> ஷிஃப்ட் தொடக்கத்தில் சரியாக நேர பதிவு செய்யவும், முடிவில் வெளியேற்ற பதிவு செய்யவும்.</div>
 <div class="shift-note-row ta"><span class="shift-note-label ta">இடைவேளை நேர கட்டுப்பாடு:</span> அனைத்து ஊழியர்களும் திட்டமிட்ட இடைவேளை நேரங்களை கடைப்பிடிக்க வேண்டும்.</div>
 <div class="shift-note-row ta"><span class="shift-note-label ta">இடைவேளை காலம்:</span> ஒதுக்கப்பட்ட இடைவேளை முடிந்தவுடன் உடனடியாக பணியிடத்திற்கு திரும்புங்கள்.</div>`;
+    }
   }
 }
 
