@@ -3,11 +3,11 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="version" content="20260609060600">
+<meta name="version" content="20260625045633">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Buddies – HydraSpecma India</title>
-<!-- v20260609060600 -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;display=swap" rel="stylesheet">
+<!-- v20260625045633 -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700;800;900&amp;family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{--gold:#FFCC00;--gold-dark:#b8940a;--dark:#0d0d0d;--dark2:#141414;--dark3:#1c1c1c;--dark4:#242424;--text:#f0f0f0;--muted:#999;--red:#e74c3c;--blue:#58a6ff;}
@@ -518,7 +518,9 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
 
 /* ═══════ AWARENESS SLIDES BASE ═══════ */
 .aware-slide{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:16px 20px;overflow-y:auto;}
+.dinam-slide{position:absolute;inset:0;display:none;flex-direction:column;align-items:stretch;justify-content:flex-start;padding:0;overflow:hidden;}
 .aware-slide.active{display:flex;opacity:1;}
+.dinam-slide.active{display:flex;}
 @keyframes aware-enter{0%{opacity:0;transform:scale(.92) translateY(24px);}100%{opacity:1;transform:scale(1) translateY(0);}}
 .aware-card{width:100%;max-width:900px;border-radius:24px;overflow:hidden;position:relative;}
 
@@ -598,13 +600,13 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
 @keyframes bolt-pulse{0%,100%{text-shadow:0 0 10px #ffcc00,0 0 20px #ffcc00;}50%{text-shadow:0 0 30px #ffcc00,0 0 60px #ffcc00,0 0 80px rgba(255,200,0,.4);}}
 
 /* Aware-card background per slide */
-#fire-slide .aware-card { background: linear-gradient(160deg, #2a0b00 0%, #3a1000 60%, #1a0500 100%); border: 2px solid #c0390b; box-shadow: 0 0 60px rgba(192,57,11,0.2); }
-#ppe-slide .aware-card { background: linear-gradient(160deg, #051c0e 0%, #082b15 60%, #020d07 100%); border: 2px solid #155d27; box-shadow: 0 0 60px rgba(21,93,39,0.2); }
-#nosmo-slide .aware-card { background: linear-gradient(160deg, #110933 0%, #1a0d4a 60%, #08041a 100%); border: 2px solid #3d1fb5; box-shadow: 0 0 60px rgba(61,31,181,0.2); }
-#food-slide .aware-card { background: linear-gradient(160deg, #2a1b05 0%, #3d2708 60%, #1a1002 100%); border: 2px solid #c47a22; box-shadow: 0 0 60px rgba(196,122,34,0.2); }
-#energy-slide .aware-card { background: linear-gradient(160deg, #001f33 0%, #002e4d 60%, #00101a 100%); border: 2px solid #006699; box-shadow: 0 0 60px rgba(0,102,153,0.2); }
-#elec-slide .aware-card { background: linear-gradient(160deg, #2a2000 0%, #382c00 60%, #140e00 100%); border: 2px solid #f39c12; box-shadow: 0 0 60px rgba(243,156,18,0.2); }
-#lift-slide .aware-card { background: linear-gradient(160deg, #002620 0%, #00382f 60%, #00120f 100%); border: 2px solid #1abc9c; box-shadow: 0 0 60px rgba(26,188,156,0.2); }
+#fire-slide .aware-card { background: linear-gradient(165deg, #250a01 0%, #140400 100%); border: none; box-shadow: none; }
+#ppe-slide .aware-card { background: linear-gradient(165deg, #05180b 0%, #020b05 100%); border: none; box-shadow: none; }
+#nosmo-slide .aware-card { background: linear-gradient(165deg, #0c0730 0%, #060316 100%); border: none; box-shadow: none; }
+#food-slide .aware-card { background: linear-gradient(165deg, #231604 0%, #130c02 100%); border: none; box-shadow: none; }
+#energy-slide .aware-card { background: linear-gradient(165deg, #001a2c 0%, #000c16 100%); border: none; box-shadow: none; }
+#elec-slide .aware-card { background: linear-gradient(165deg, #201900 0%, #100c00 100%); border: none; box-shadow: none; }
+#lift-slide .aware-card { background: linear-gradient(165deg, #00201a 0%, #00100d 100%); border: none; box-shadow: none; }
 
 /* ──── 6. ELECTRICAL SAFETY ──── */
 .elec-banner{background:linear-gradient(135deg,#d4af37,#f39c12,#d4af37);padding:26px 30px;text-align:center;position:relative;overflow:hidden;}
@@ -632,8 +634,8 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
 .lift-footer{background:rgba(26,188,156,.2);border-top:1px solid rgba(26,188,156,.15);padding:10px 22px;text-align:center;font-size:11px;color:rgba(180,255,230,.7);letter-spacing:1px;}
 .lift-footer strong{color:#1abc9c;}
 
-#cyber-slide .aware-card { background: linear-gradient(160deg, #071520 0%, #0a2030 60%, #030a10 100%); border: 2px solid #00d2ff; box-shadow: 0 0 60px rgba(0,210,255,0.2); }
-#waste-slide .aware-card { background: linear-gradient(160deg, #052010 0%, #0a3018 60%, #021008 100%); border: 2px solid #2ecc71; box-shadow: 0 0 60px rgba(46,204,113,0.2); }
+#cyber-slide .aware-card { background: linear-gradient(165deg, #06121d 0%, #02080e 100%); border: none; box-shadow: none; }
+#waste-slide .aware-card { background: linear-gradient(165deg, #04190b 0%, #020d06 100%); border: none; box-shadow: none; }
 
 /* ──── 8. CYBER SECURITY ──── */
 .cyber-banner{background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);padding:26px 30px;text-align:center;position:relative;overflow:hidden;}
@@ -1277,6 +1279,25 @@ input:checked + .slider:before {
 @keyframes wind-puff {
   0%  { transform: translate(0,0) scale(1); opacity: 0.8; }
   100%{ transform: translate(var(--dx), var(--dy)) scale(0.3); opacity: 0; }
+}
+
+/* ══ Shift Cards Layout (replaces table) ══ */
+#shift-ta-slide{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:16px 20px;overflow-y:auto;}
+#shift-ta-slide.active{display:flex;opacity:1;}
+.shift-cards{display:flex;flex-direction:column;gap:10px;width:100%;flex:1;min-height:0;}
+.shift-card{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,204,0,.2);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;flex:1;}
+.shift-card-header{background:linear-gradient(135deg,rgba(255,204,0,.15),rgba(255,204,0,.06));padding:10px 18px;display:flex;align-items:center;gap:14px;border-bottom:1px solid rgba(255,204,0,.12);}
+.shift-card-name{font-size:15px;font-weight:900;color:var(--gold);letter-spacing:1px;}
+.shift-card-days{font-size:12px;color:var(--muted);font-weight:500;}
+.shift-card-times{margin-left:auto;display:flex;align-items:center;gap:6px;}
+.shift-time-arrow{color:var(--muted);font-size:14px;}
+.shift-card-breaks{display:grid;grid-template-columns:repeat(4,1fr);flex:1;}
+.break-item{padding:10px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border-right:1px solid rgba(255,255,255,.06);text-align:center;}
+.break-item:last-child{border-right:none;}
+.break-icon{font-size:18px;}
+.break-label{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase;}
+.break-time{font-size:13px;font-weight:700;color:var(--text);line-height:1.3;}
+.break-time.na{color:var(--muted);font-style:italic;font-size:11px;}
 /* ════════════════════════════════════════════════════════════════
    📺 43-INCH TV  ·  10-METRE VIEWING DISTANCE  ·  FULL OVERRIDE
    All fonts, sizes, spacing and elements scaled for clear readability
@@ -1284,221 +1305,312 @@ input:checked + .slider:before {
    ════════════════════════════════════════════════════════════════ */
 
 /* ── Top Bar ── */
-.top-bar                 { padding: 14px 52px; border-bottom-width: 4px; }
-.hs-logo                 { height: 86px; }
-.logo-area               { gap: 22px; }
-.company-sub             { font-size: 19px; letter-spacing: 4px; padding-left: 22px; border-left-width: 3px; }
+.top-bar                 { padding: 9px 35px; border-bottom-width: 3px; }
+.hs-logo                 { height: 58px; }
+.logo-area               { gap: 15px; }
+.company-sub             { font-size: 13px; letter-spacing: 3px; padding-left: 15px; border-left-width: 2px; }
 .top-center              { line-height: 1.2; }
-.month-label             { font-size: 20px; letter-spacing: 3px; margin-bottom: 4px; display: block; }
-.clock                   { font-size: 52px; line-height: 1; }
-.admin-btn               { padding: 10px 22px; font-size: 16px; border-radius: 10px; border-width: 2px; }
+.month-label             { font-size: 13px; letter-spacing: 2px; margin-bottom: 3px; display: block; }
+.clock                   { font-size: 35px; line-height: 1; }
+.admin-btn               { padding: 7px 15px; font-size: 11px; border-radius: 7px; border-width: 2px; }
 
 /* ── Today Strip ── */
-.today-strip             { font-size: 28px; padding: 14px 16px; letter-spacing: 2px; }
+.today-strip             { font-size: 19px; padding: 9px 11px; letter-spacing: 1px; }
 
 /* ── No Birthday Screen ── */
-#no-birthday .big-emoji  { font-size: 160px; margin-bottom: 28px; }
-#no-birthday h2          { font-size: 64px; }
-#no-birthday p           { font-size: 30px; margin-top: 12px; }
+#no-birthday .big-emoji  { font-size: 107px; margin-bottom: 19px; }
+#no-birthday h2          { font-size: 43px; }
+#no-birthday p           { font-size: 20px; margin-top: 8px; }
 
 /* ── Birthday Card ── */
-.bday-slide              { max-width: 1420px; padding: 0 24px; }
-.bday-card               { max-width: 1320px; padding: 70px 100px; border-radius: 36px; border-width: 3px; }
-.bday-card.today-mode    { border-width: 4px; }
-.person-section          { margin-top: 60px; }
-.avatar-wrap             { margin-bottom: 28px; }
-.avatar-ring             { width: 240px; height: 240px; border-width: 6px; border-radius: 50%; }
-.avatar-initials         { font-size: 100px; }
-.crown-wrap              { top: -44px; font-size: 90px; }
-.balloons                { padding: 0 42px; }
-.balloon                 { font-size: 80px; }
-.bday-name               { font-size: 110px; margin-bottom: 14px; }
-.bday-designation        { font-size: 30px; letter-spacing: 3px; margin-bottom: 6px; }
-.bday-dept               { font-size: 26px; letter-spacing: 2px; }
-.bday-date-badge         { font-size: 32px; padding: 14px 38px; border-radius: 70px; gap: 12px; margin-top: 28px; }
-.wish-text               { font-size: 60px; margin-top: 36px; }
-.wish-sub                { font-size: 28px; margin-top: 10px; }
-.typing-wish             { font-size: 44px; min-height: 56px; }
-.cursor-blink            { width: 3px; height: 44px; }
+.bday-slide              { max-width: 100%; padding: 0 16px; }
+.bday-card               { max-width: 900px; padding: 47px 67px; border-radius: 24px; border-width: 2px; }
+.bday-card.today-mode    { border-width: 3px; }
+.person-section          { margin-top: 40px; }
+.avatar-wrap             { margin-bottom: 19px; }
+.avatar-ring             { width: 161px; height: 161px; border-width: 4px; border-radius: 50%; }
+.avatar-initials         { font-size: 67px; }
+.crown-wrap              { top: -29px; font-size: 60px; }
+.balloons                { padding: 0 28px; }
+.balloon                 { font-size: 54px; }
+.bday-name               { font-size: 74px; margin-bottom: 9px; }
+.bday-designation        { font-size: 20px; letter-spacing: 2px; margin-bottom: 4px; }
+.bday-dept               { font-size: 17px; letter-spacing: 1px; }
+.bday-date-badge         { font-size: 21px; padding: 9px 25px; border-radius: 70px; gap: 8px; margin-top: 19px; }
+.wish-text               { font-size: 40px; margin-top: 24px; }
+.wish-sub                { font-size: 19px; margin-top: 7px; }
+.typing-wish             { font-size: 29px; min-height: 38px; }
+.cursor-blink            { width: 2px; height: 29px; }
 
 /* ── Multi-Person ── */
-.multi-persons           { gap: 60px; margin-top: 44px; flex-wrap: wrap; }
-.mini-avatar             { width: 180px; height: 180px; border-width: 4px; margin-bottom: 18px; }
-.mini-initials           { font-size: 64px; }
-.mini-name               { font-size: 40px; }
-.mini-role               { font-size: 24px; margin-top: 5px; }
+.multi-persons           { gap: 40px; margin-top: 29px; flex-wrap: wrap; }
+.mini-avatar             { width: 121px; height: 121px; border-width: 3px; margin-bottom: 12px; }
+.mini-initials           { font-size: 43px; }
+.mini-name               { font-size: 27px; }
+.mini-role               { font-size: 16px; margin-top: 3px; }
 
 /* ── Slide Dots ── */
-#slide-dots              { padding: 14px 0 20px; gap: 12px; }
-.dot                     { width: 14px; height: 14px; }
-.dot.active              { width: 40px; border-radius: 6px; }
+#slide-dots              { padding: 9px 0 13px; gap: 8px; }
+.dot                     { width: 9px; height: 9px; }
+.dot.active              { width: 27px; border-radius: 4px; }
 
 /* ── Month Slide ── */
-.month-title             { font-size: 30px; letter-spacing: 5px; margin-bottom: 28px; }
-#month-slide             { padding: 20px 40px 10px; }
+.month-title             { font-size: 20px; letter-spacing: 3px; margin-bottom: 19px; }
+#month-slide             { padding: 13px 27px 7px; }
 .month-grid              {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 26px;
+  gap: 17px;
   width: 100%;
   max-width: 100%;
-  max-height: calc(100vh - 210px);
+  max-height: calc(100vh - 141px);
   overflow-y: auto;
-  padding-right: 6px;
+  padding-right: 4px;
 }
-/* Scrollbar hidden for TV */
 .month-grid::-webkit-scrollbar { display: none; }
 .month-card              {
-  padding: 36px 44px;
-  gap: 36px;
-  border-radius: 32px;
-  border-width: 2.5px;
-  min-height: 170px;
+  padding: 24px 29px;
+  gap: 24px;
+  border-radius: 21px;
+  border-width: 2px;
+  min-height: 114px;
   align-items: center;
 }
-.mc-thumb                { width: 148px; height: 148px; border-width: 4px; flex-shrink: 0; }
-.mc-thumb-init           { font-size: 52px; }
-.mc-date                 { min-width: 80px; text-align: center; }
-.mc-day                  { font-size: 84px; font-weight: 900; line-height: 1; }
-.mc-mon                  { font-size: 26px; letter-spacing: 2px; margin-top: 6px; }
-.mc-names                { font-size: 40px; font-weight: 700; margin-bottom: 10px; }
-.mc-roles                { font-size: 28px; line-height: 1.5; }
-.mc-dept                 { font-size: 25px; margin-top: 8px; }
-.mc-today-badge          { font-size: 20px; padding: 6px 18px; margin-left: 12px; border-radius: 70px; }
+.mc-thumb                { width: 99px; height: 99px; border-width: 3px; flex-shrink: 0; }
+.mc-thumb-init           { font-size: 35px; }
+.mc-date                 { min-width: 54px; text-align: center; }
+.mc-day                  { font-size: 56px; font-weight: 900; line-height: 1; }
+.mc-mon                  { font-size: 17px; letter-spacing: 1px; margin-top: 4px; }
+.mc-names                { font-size: 27px; font-weight: 700; margin-bottom: 7px; }
+.mc-roles                { font-size: 19px; line-height: 1.5; }
+.mc-dept                 { font-size: 17px; margin-top: 5px; }
+.mc-today-badge          { font-size: 13px; padding: 4px 12px; margin-left: 8px; border-radius: 70px; }
 
-/* ── Shift Timing Slide — TRUE FULL SCREEN ── */
-#shift-slide             { padding: 28px 60px 20px; justify-content: flex-start; }
+/* ── Shift Timing Slide ── */
+#shift-slide             { padding: 19px 40px 13px; justify-content: flex-start; }
 .shift-inner             { width: 100%; max-width: 100%; }
-.shift-header            { margin-bottom: 24px; }
-.shift-header-title      { font-size: 32px; letter-spacing: 5px; }
-.shift-header-sub        { font-size: 24px; letter-spacing: 2px; }
-.shift-table-wrap        { border-radius: 24px; }
+.shift-header            { margin-bottom: 16px; }
+.shift-header-title      { font-size: 21px; letter-spacing: 3px; }
+.shift-header-sub        { font-size: 16px; letter-spacing: 1px; }
+.shift-table-wrap        { border-radius: 16px; }
 .shift-table             { table-layout: fixed; }
 .shift-table thead tr    { background: var(--gold); }
 .shift-table thead th    {
-  font-size: 26px;
-  letter-spacing: 2px;
-  padding: 26px 14px;
+  font-size: 17px;
+  letter-spacing: 1px;
+  padding: 17px 9px;
   font-weight: 900;
 }
 .shift-table tbody tr:nth-child(1) { background: linear-gradient(135deg,#181800,#161600); }
 .shift-table tbody tr:nth-child(2) { background: linear-gradient(135deg,#141414,#121200); }
 .shift-table tbody td    {
-  font-size: 30px;
-  padding: 36px 14px;
+  font-size: 20px;
+  padding: 24px 9px;
   vertical-align: middle;
 }
-.shift-name-cell         { padding-left: 30px !important; }
-.shift-name              { font-size: 40px; letter-spacing: 1px; }
-.shift-days              { font-size: 26px; margin-top: 8px; }
+.shift-name-cell         { padding-left: 20px !important; }
+.shift-name              { font-size: 27px; letter-spacing: 0.7px; }
+.shift-days              { font-size: 17px; margin-top: 5px; }
 .time-chip               {
-  font-size: 28px;
-  padding: 12px 20px;
-  border-radius: 12px;
+  font-size: 19px;
+  padding: 8px 13px;
+  border-radius: 8px;
   border-width: 2px;
   white-space: nowrap;
 }
-.time-chip.na            { font-size: 26px; }
-.time-chip.start         { font-size: 28px; }
-.time-chip.end           { font-size: 28px; }
+.time-chip.na            { font-size: 17px; }
+.time-chip.start         { font-size: 19px; }
+.time-chip.end           { font-size: 19px; }
 .shift-notes-section     {
-  margin-top: 20px;
-  padding: 22px 30px;
-  border-radius: 20px;
+  margin-top: 13px;
+  padding: 15px 20px;
+  border-radius: 13px;
   border-width: 2px;
 }
-.shift-notes-title       { font-size: 26px; letter-spacing: 3px; margin-bottom: 16px; }
-.shift-note-row          { font-size: 28px; line-height: 1.7; gap: 12px; margin-bottom: 8px; }
+.shift-notes-title       { font-size: 17px; letter-spacing: 2px; margin-bottom: 11px; }
+.shift-note-row          { font-size: 19px; line-height: 1.7; gap: 8px; margin-bottom: 5px; }
+
+/* Shift cards TV sizing */
+#shift-slide,
+#shift-ta-slide          { padding: 14px 28px 8px; justify-content: flex-start; align-items: stretch; flex-direction: column; }
+.shift-cards             { gap: 10px; }
+.shift-card              { border-radius: 12px; }
+.shift-card-header       { padding: 12px 20px; gap: 16px; }
+.shift-card-name         { font-size: 21px; }
+.shift-card-days         { font-size: 15px; }
+.shift-card-times        { gap: 8px; }
+.shift-time-arrow        { font-size: 17px; }
+.break-item              { padding: 12px 14px; gap: 5px; }
+.break-icon              { font-size: 30px; }
+.break-label             { font-size: 12px; letter-spacing: 0.5px; }
+.break-time              { font-size: 18px; font-weight: 800; color: #fff; }
+.break-time.na           { font-size: 14px; }
+/* Compact notes for TV so cards get more space */
+#shift-slide .shift-notes-section,
+#shift-ta-slide .shift-notes-section {
+  margin-top: 8px; padding: 8px 16px; border-radius: 8px;
+}
+#shift-slide .shift-notes-title,
+#shift-ta-slide .shift-notes-title { font-size: 13px; letter-spacing: 1px; margin-bottom: 4px; }
+#shift-slide .shift-note-row,
+#shift-ta-slide .shift-note-row    { font-size: 13px; line-height: 1.4; gap: 5px; margin-bottom: 2px; }
 
 /* ── Wash Hands Slide ── */
-.wash-card               { max-width: 1100px; border-radius: 30px; border-width: 3px; }
-.wash-banner             { padding: 36px 40px; }
-.wash-banner-title       { font-size: 100px; letter-spacing: 4px; }
-.wash-steps              { padding: 24px 32px; gap: 18px; }
-.wash-step               { padding: 22px 28px; border-radius: 22px; gap: 26px; }
-.wash-step-icon          { width: 110px; height: 110px; font-size: 64px; border-radius: 18px; }
-.wash-step-num           { width: 46px; height: 46px; font-size: 22px; border-radius: 50%; }
-.wash-step-main          { font-size: 32px; letter-spacing: 0.5px; }
-.wash-step-sub           { font-size: 22px; margin-top: 5px; }
-.wash-footer             { font-size: 22px; padding: 16px 32px; }
+/* Wash Hands — full-screen (no card letterbox) */
+#wash-slide              { padding: 0; align-items: stretch; justify-content: stretch; }
+.wash-card               { max-width: none; border-radius: 0; border-width: 0; flex: 1; display: flex; flex-direction: column; }
+.wash-banner             { padding: 16px 40px; flex-shrink: 0; }
+.wash-banner-title       { font-size: 48px; letter-spacing: 3px; white-space: nowrap; }
+.wash-steps              { flex: 1; padding: 16px 60px; gap: 12px; justify-content: space-evenly; }
+.wash-step               { padding: 15px 24px; border-radius: 14px; gap: 20px; }
+.wash-step-icon          { width: 68px; height: 68px; font-size: 40px; border-radius: 12px; }
+.wash-step-num           { width: 30px; height: 30px; font-size: 14px; border-radius: 50%; }
+.wash-step-main          { font-size: 22px; letter-spacing: 0.3px; }
+.wash-step-sub           { font-size: 15px; margin-top: 3px; }
+.wash-footer             { font-size: 14px; padding: 11px 40px; flex-shrink: 0; }
 
-/* ── Awareness Slides (Fire / PPE / etc.) ── */
-.aware-card              { max-width: 1100px; border-radius: 30px; }
-.fire-banner,
-.ppe-banner,
-.nosmo-banner,
-.food-banner,
-.energy-banner,
-.elec-banner,
-.lift-banner,
-.cyber-banner,
-.waste-banner            { padding: 34px 40px; }
-.fire-banner-title,
-.ppe-banner-title,
-.nosmo-banner-title,
-.food-banner-title,
-.energy-banner-title,
-.elec-banner-title,
-.lift-banner-title,
-.cyber-banner-title,
-.waste-banner-title      { font-size: 80px; letter-spacing: 3px; }
-.fire-steps,
-.energy-steps,
-.elec-steps,
-.lift-steps,
-.cyber-steps,
-.waste-steps             { padding: 20px 28px; gap: 14px; }
-.fire-step,
-.energy-step,
-.elec-step,
-.lift-step,
-.cyber-step,
-.waste-step              { padding: 18px 24px; border-radius: 18px; gap: 20px; }
-.fire-icon,.energy-icon,.elec-icon,.lift-icon,.cyber-icon,.waste-icon { font-size: 60px; min-width: 80px; }
-.fire-num,.energy-num,.elec-num { width: 42px; height: 42px; font-size: 20px; }
+/* ── Awareness Slides (Fire / PPE / etc.) — FULL-SCREEN, MAX READABILITY ── */
+/* Awareness Slides — full-screen, max readability */
+.aware-slide             { padding:0; flex-direction:column; }
+.aware-card              { flex:1; width:100%; max-width:none; border-radius:0; display:flex; flex-direction:column; }
+.fire-banner,.ppe-banner,.nosmo-banner,.food-banner,
+.energy-banner,.elec-banner,.lift-banner,.cyber-banner,
+.waste-banner            { padding:17px 27px; flex-shrink:0; }
+.fire-banner-title,.ppe-banner-title,.nosmo-banner-title,
+.food-banner-title,.energy-banner-title,.elec-banner-title,
+.lift-banner-title,.cyber-banner-title,.waste-banner-title { font-size:54px; letter-spacing:2px; line-height:1.08; }
+.fire-steps,.energy-steps,.elec-steps,.lift-steps,.cyber-steps,.waste-steps
+                         { flex:1; padding:15px 40px; gap:11px; justify-content:space-evenly; }
+.fire-step,.energy-step,.elec-step,.lift-step,.cyber-step,.waste-step
+                         { padding:9px 21px; border-radius:13px; gap:20px; border-width:1.5px; }
+.fire-icon,.energy-icon,.elec-icon,.lift-icon,.cyber-icon,.waste-icon { font-size:42px; min-width:64px; }
+.fire-num,.energy-num,.elec-num { width:34px; height:34px; font-size:16px; }
 .fire-text-main,.energy-text-main,.elec-text-main,
-.lift-text-main,.cyber-text-main,.waste-text-main { font-size: 30px; letter-spacing: 0.5px; }
+.lift-text-main,.cyber-text-main,.waste-text-main { font-size:28px; letter-spacing:0.3px; font-weight:800; line-height:1.1; }
 .fire-text-sub,.energy-text-sub,.elec-text-sub,
-.lift-text-sub,.cyber-text-sub,.waste-text-sub    { font-size: 22px; margin-top: 4px; }
+.lift-text-sub,.cyber-text-sub,.waste-text-sub    { font-size:16px; margin-top:3px; line-height:1.2; }
 .fire-footer,.energy-footer,.elec-footer,
-.lift-footer,.cyber-footer,.waste-footer          { font-size: 22px; padding: 14px 28px; }
-/* PPE grid */
-.ppe-grid                { padding: 22px 28px; gap: 18px; }
-.ppe-item                { padding: 22px 14px; border-radius: 18px; }
-.ppe-icon                { font-size: 64px; margin-bottom: 12px; }
-.ppe-label               { font-size: 22px; letter-spacing: 0.5px; }
-.ppe-req                 { font-size: 18px; margin-top: 5px; }
-.ppe-footer              { font-size: 22px; padding: 14px 28px; }
-/* Food grid */
-.food-grid               { padding: 22px 28px; gap: 18px; }
-.food-item               { padding: 20px 22px; border-radius: 18px; gap: 18px; }
-.food-icon               { font-size: 56px; min-width: 70px; }
-.food-text-main          { font-size: 28px; }
-.food-text-sub           { font-size: 22px; margin-top: 4px; }
-.food-footer             { font-size: 22px; padding: 14px 28px; }
-/* No Smoking */
-.nosmo-big               { font-size: 160px; }
-.nosmo-rules             { padding: 8px 28px 22px; gap: 14px; }
-.nosmo-rule              { padding: 18px 22px; border-radius: 18px; gap: 20px; }
-.nosmo-rule-icon         { font-size: 52px; min-width: 64px; }
-.nosmo-rule-text         { font-size: 28px; line-height: 1.4; }
-.nosmo-footer            { font-size: 22px; padding: 14px 28px; }
+.lift-footer,.cyber-footer,.waste-footer          { font-size:16px; padding:11px 27px; flex-shrink:0; }
+.ppe-grid                { flex:1; padding:20px 40px; gap:17px; align-content:center; }
+.ppe-item                { padding:20px 11px; border-radius:13px; border-width:1.5px; }
+.ppe-icon                { font-size:60px; margin-bottom:9px; }
+.ppe-label               { font-size:24px; letter-spacing:0.3px; line-height:1.15; }
+.ppe-req                 { font-size:16px; margin-top:5px; }
+.ppe-footer              { font-size:16px; padding:11px 27px; flex-shrink:0; }
+.food-grid               { flex:1; padding:17px 40px; gap:16px; align-content:center; }
+.food-item               { padding:17px 19px; border-radius:13px; gap:16px; border-width:1.5px; }
+.food-icon               { font-size:48px; min-width:62px; }
+.food-text-main          { font-size:27px; font-weight:800; line-height:1.1; }
+.food-text-sub           { font-size:16px; margin-top:3px; }
+.food-footer             { font-size:16px; padding:11px 27px; flex-shrink:0; }
+.nosmo-big               { font-size:87px; line-height:1; padding:4px 0; flex-shrink:0; }
+.nosmo-rules             { flex:1; padding:4px 40px 11px; gap:12px; justify-content:center; }
+.nosmo-rule              { padding:15px 21px; border-radius:13px; gap:20px; border-width:1.5px; }
+.nosmo-rule-icon         { font-size:40px; min-width:54px; }
+.nosmo-rule-text         { font-size:28px; line-height:1.25; font-weight:700; }
+.nosmo-footer            { font-size:16px; padding:11px 27px; flex-shrink:0; }
+/* Nosmo-specific: compact so all 4 rules + footer always visible */
+#nosmo-slide .nosmo-banner,
+#nosmo-ta-slide .nosmo-banner { padding: 10px 27px; }
+#nosmo-slide .nosmo-banner-title,
+#nosmo-ta-slide .nosmo-banner-title { font-size: 40px; letter-spacing: 1.5px; }
+.nosmo-big               { font-size: 55px; padding: 1px 0; }
+.nosmo-rules             { flex:1; padding: 2px 36px 6px; gap: 8px; justify-content:space-evenly; }
+.nosmo-rule              { padding: 10px 16px; border-radius: 10px; gap: 14px; flex-shrink:1; }
+.nosmo-rule-icon         { font-size: 30px; min-width: 42px; flex-shrink:0; }
+.nosmo-rule-text         { font-size: 21px; line-height: 1.25; }
+.nosmo-footer            { font-size: 14px; padding: 8px 27px; }
 
-/* ── Celebration Screen ── */
-#celebration-screen .cel-content { max-width: 1520px; padding: 28px 40px; }
-.cel-emoji-row           { font-size: 74px; margin-bottom: 6px; }
-.cel-title               { font-size: 148px; }
-.cel-subtitle            { font-size: 38px; letter-spacing: 7px; margin-bottom: 28px; }
-.cel-phase-text          { font-size: 34px; letter-spacing: 4px; margin: 4px 0 14px; min-height: 46px; }
-.cel-controls            { gap: 18px; margin-bottom: 22px; }
-.cel-btn                 { padding: 12px 28px; font-size: 20px; border-width: 2px; border-radius: 60px; }
-.cel-instructions        { font-size: 32px; letter-spacing: 2px; margin-top: 10px; min-height: 48px; }
+.fire-step   { background:rgba(255,90,30,.16);  border-color:rgba(255,120,60,.45); }
+.energy-step { background:rgba(20,175,230,.16); border-color:rgba(70,200,255,.45); }
+.elec-step   { background:rgba(243,156,18,.15); border-color:rgba(255,185,70,.45); }
+.lift-step   { background:rgba(26,188,156,.16); border-color:rgba(70,220,190,.45); }
+.cyber-step  { background:rgba(0,200,255,.15);  border-color:rgba(80,225,255,.45); }
+.waste-step  { background:rgba(46,204,113,.16); border-color:rgba(95,225,150,.45); }
+.ppe-item    { background:rgba(46,204,113,.14); border-color:rgba(95,225,150,.40); }
+.food-item   { background:rgba(255,160,40,.15); border-color:rgba(255,190,90,.42); }
+.nosmo-rule  { background:rgba(125,95,240,.18); border-color:rgba(155,125,255,.45); }
+.fire-text-sub   { color:rgba(255,200,175,.95); }
+.energy-text-sub { color:rgba(185,230,255,.95); }
+.elec-text-sub   { color:rgba(255,230,180,.95); }
+.lift-text-sub   { color:rgba(190,250,230,.95); }
+.cyber-text-sub  { color:rgba(195,232,255,.95); }
+.waste-text-sub  { color:rgba(195,250,210,.95); }
+.food-text-sub   { color:rgba(255,210,160,.95); }
+.nosmo-rule-text { color:#efe9ff; }
 
-/* Scale cake assembly up for TV */
-#cake-wrapper            { transform: scale(1.85); transform-origin: center bottom; margin-bottom: 100px; }
+/* card backgrounds */
+#fire-slide   .aware-card { background:linear-gradient(165deg,#250a01,#140400); }
+#ppe-slide    .aware-card { background:linear-gradient(165deg,#05180b,#020b05); }
+#nosmo-slide  .aware-card { background:linear-gradient(165deg,#0c0730,#060316); }
+#food-slide   .aware-card { background:linear-gradient(165deg,#231604,#130c02); }
+#energy-slide .aware-card { background:linear-gradient(165deg,#001a2c,#000c16); }
+#elec-slide   .aware-card { background:linear-gradient(165deg,#201900,#100c00); }
+#lift-slide   .aware-card { background:linear-gradient(165deg,#00201a,#00100d); }
+#cyber-slide  .aware-card { background:linear-gradient(165deg,#06121d,#02080e); }
+#waste-slide  .aware-card { background:linear-gradient(165deg,#04190b,#020d06); }
 
-/* ── Celebration header titles on Cinematic screen ── */
-.cel-title               { line-height: 1.0; }
+/* Tamil slide backgrounds */
+#fire-ta-slide   .aware-card { background:linear-gradient(165deg,#250a01,#140400); }
+#ppe-ta-slide    .aware-card { background:linear-gradient(165deg,#05180b,#020b05); }
+#nosmo-ta-slide  .aware-card { background:linear-gradient(165deg,#0c0730,#060316); }
+#food-ta-slide   .aware-card { background:linear-gradient(165deg,#231604,#130c02); }
+#energy-ta-slide .aware-card { background:linear-gradient(165deg,#001a2c,#000c16); }
+#elec-ta-slide   .aware-card { background:linear-gradient(165deg,#201900,#100c00); }
+#lift-ta-slide   .aware-card { background:linear-gradient(165deg,#00201a,#00100d); }
+#cyber-ta-slide  .aware-card { background:linear-gradient(165deg,#06121d,#02080e); }
+#waste-ta-slide  .aware-card { background:linear-gradient(165deg,#04190b,#020d06); }
+
+.ta { font-family:'Noto Sans Tamil','Poppins',sans-serif; }
+
+/* Dinam Oru Thagaval Slides */
+.dinam-slide             { padding:0; flex-direction:column; }
+.dinam-card              { flex:1; width:100%; display:flex; flex-direction:column; font-family:'Noto Sans Tamil','Poppins',sans-serif; }
+#dinam-ta-slide .dinam-card { background:linear-gradient(160deg,#060e1a,#0a1528 60%,#02060f); }
+#dinam-en-slide .dinam-card { background:linear-gradient(160deg,#06100a,#0c1a0e 60%,#030802); }
+.dinam-header            { padding:16px 32px; flex-shrink:0; display:flex; align-items:center; gap:16px; }
+#dinam-ta-slide .dinam-header { background:linear-gradient(90deg,#FFCC00,#e6a800); }
+#dinam-en-slide .dinam-header { background:linear-gradient(90deg,#22c55e,#15803d); }
+.dinam-header-icon       { font-size:40px; }
+.dinam-header-title      { font-size:32px; font-weight:900; color:#0d0d0d; letter-spacing:1px; font-family:'Noto Sans Tamil','Poppins',sans-serif; }
+.dinam-header-date       { margin-left:auto; font-size:17px; font-weight:700; color:#1a1a1a; }
+.dinam-body              { flex:1; display:flex; }
+.dinam-hist-col          { flex:1.2; padding:18px 26px; display:flex; flex-direction:column; gap:12px; border-right:1px solid rgba(255,255,255,.08); }
+.dinam-gk-col            { flex:0.8; padding:18px 26px; display:flex; flex-direction:column; gap:12px; }
+.dinam-section-title     { font-size:13px; letter-spacing:3px; font-weight:700; opacity:.6; margin-bottom:4px; text-transform:uppercase; }
+/* Dinam hist item — horizontal layout: big emoji | year + text */
+.dinam-hist-item         {
+  background:rgba(255,204,0,.08); border:1px solid rgba(255,204,0,.2);
+  border-radius:11px; padding:14px 18px; flex:1;
+  display:flex; flex-direction:row; align-items:center; gap:16px;
+}
+#dinam-en-slide .dinam-hist-item { background:rgba(34,197,94,.08); border-color:rgba(34,197,94,.25); }
+.dinam-hist-emoji-big    { font-size:54px; flex-shrink:0; line-height:1; }
+.dinam-hist-content      { flex:1; min-width:0; }
+.dinam-hist-year         { font-size:22px; font-weight:900; color:#FFCC00; margin-bottom:5px; display:block; }
+#dinam-en-slide .dinam-hist-year { color:#22c55e; }
+.dinam-hist-text         { font-size:16px; line-height:1.5; font-family:'Noto Sans Tamil','Poppins',sans-serif; }
+/* GK box — centered with large emoji */
+.dinam-gk-box            {
+  flex:1; background:rgba(99,102,241,.12); border:1px solid rgba(99,102,241,.3);
+  border-radius:11px; padding:18px 16px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; text-align:center;
+}
+.dinam-gk-emoji          { font-size:72px; line-height:1; }
+.dinam-gk-text           { font-size:18px; line-height:1.6; font-family:'Noto Sans Tamil','Poppins',sans-serif; }
+.dinam-footer            { font-size:13px; padding:8px 26px; background:rgba(255,255,255,.04); flex-shrink:0; opacity:.7; }
+
+/* ── Celebration Screen (scaled ×0.67 for correct TV display) ── */
+#celebration-screen .cel-content { max-width: 1020px; padding: 19px 27px; }
+.cel-emoji-row           { font-size: 50px; margin-bottom: 4px; }
+.cel-title               { font-size: 99px; line-height: 1.0; }
+.cel-subtitle            { font-size: 25px; letter-spacing: 5px; margin-bottom: 19px; }
+.cel-phase-text          { font-size: 23px; letter-spacing: 3px; margin: 3px 0 9px; min-height: 31px; }
+.cel-controls            { gap: 12px; margin-bottom: 15px; }
+.cel-btn                 { padding: 8px 19px; font-size: 13px; border-width: 2px; border-radius: 40px; }
+.cel-instructions        { font-size: 21px; letter-spacing: 1px; margin-top: 7px; min-height: 32px; }
+/* Cake scale reduced to fit screen properly */
+#cake-wrapper            { transform: scale(1.24); transform-origin: center bottom; margin-bottom: 67px; }
 
 </style>
 </head><body>
@@ -1897,23 +2009,18 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
         <div class="shift-header-title">⏱ Shifts Working Timing &amp; Break Hours</div>
         <div class="shift-header-sub">HYDRASPECMA INDIA PRIVATE LIMITED</div>
       </div>
-      <div class="shift-table-wrap">
-        <table class="shift-table">
-          <thead>
-            <tr>
-              <th>Shift</th>
-              <th>Start Time</th>
-              <th>End Time</th>
-              <th>Breakfast</th>
-              <th>1st Tea Break</th>
-              <th>Lunch Break</th>
-              <th>2nd Tea Break</th>
-            </tr>
-          </thead>
-          <tbody id="shift-tbody"></tbody>
-        </table>
-      </div>
+      <div class="shift-cards" id="shift-cards-en"></div>
       <div class="shift-notes-section" id="shift-notes-display"></div>
+    </div>
+
+    <!-- TAMIL SHIFT SLIDE -->
+    <div id="shift-ta-slide">
+      <div class="shift-header">
+        <div class="shift-header-title ta">⏱ ஷிஃப்ட் பணி நேரம் &amp; இடைவேளை நேரங்கள்</div>
+        <div class="shift-header-sub">HYDRASPECMA INDIA PRIVATE LIMITED</div>
+      </div>
+      <div class="shift-cards" id="shift-cards-ta"></div>
+      <div class="shift-notes-section" id="shift-ta-notes-display"></div>
     </div>
     <div id="wash-slide">
       <div class="wash-card">
@@ -2112,6 +2219,231 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
         <div class="waste-footer">HYDRASPECMA INDIA PRIVATE LIMITED &nbsp;|&nbsp; <strong>Green Factory Initiative</strong></div>
       </div>
     </div>
+
+    <!-- ══ TAMIL AWARENESS SLIDES ══ -->
+
+    <!-- TAMIL: FIRE SAFETY -->
+    <div id="fire-ta-slide" class="aware-slide">
+      <div class="aware-card">
+        <div class="fire-banner">
+          <div class="fire-sparks"></div>
+          <div class="fire-banner-title ta">🔥 தீ பாதுகாப்பு<br>வழிகாட்டுதல்கள்</div>
+        </div>
+        <div class="fire-steps">
+          <div class="fire-step"><div class="fire-icon">🚨</div><div class="fire-num">1</div><div><div class="fire-text-main ta">அவசர வெளியேற்ற வழிகளை அறியுங்கள்</div><div class="fire-text-sub ta">அவசரநிலைக்கு முன்பே அனைத்து தீ வெளியேற்ற வழிகளையும் கண்டறியுங்கள்</div></div></div>
+          <div class="fire-step"><div class="fire-icon">🧯</div><div class="fire-num">2</div><div><div class="fire-text-main ta">தீ அணைப்பான் — PASS முறை</div><div class="fire-text-sub ta">இழு · நோக்கு · அழுத்து · துடைத்தெடு</div></div></div>
+          <div class="fire-step"><div class="fire-icon">🔔</div><div class="fire-num">3</div><div><div class="fire-text-main ta">தீ அலாரத்தை உடனடியாக இயக்குங்கள்</div><div class="fire-text-sub ta">அனைவரையும் எச்சரிக்கவும் — காத்திருக்காதீர்கள்</div></div></div>
+          <div class="fire-step"><div class="fire-icon">🚶</div><div class="fire-num">4</div><div><div class="fire-text-main ta">அமைதியாக வெளியேறுங்கள் — லிஃப்ட் வேண்டாம்</div><div class="fire-text-sub ta">படிக்கட்டு மட்டும் பயன்படுத்துங்கள், மற்றவர்களுக்கு உதவுங்கள்</div></div></div>
+          <div class="fire-step"><div class="fire-icon">📞</div><div class="fire-num">5</div><div><div class="fire-text-main ta">அவசர அழைப்பு: 108</div><div class="fire-text-sub ta">சந்திப்பு இடம் செல்லுங்கள் மற்றும் வழிகாட்டுதல்களுக்காக காத்திருங்கள்</div></div></div>
+        </div>
+        <div class="fire-footer ta">HYDRASPECMA INDIA PRIVATE LIMITED &nbsp;|&nbsp; <strong>தீ பாதுகாப்பு நெறிமுறை</strong></div>
+      </div>
+    </div>
+
+    <!-- TAMIL: PPE SAFETY -->
+    <div id="ppe-ta-slide" class="aware-slide">
+      <div class="aware-card">
+        <div class="ppe-banner">
+          <div class="ppe-banner-title ta">⚠️ உங்கள் பாதுகாப்பு உபகரணங்களை<br>எப்போதும் அணியுங்கள்</div>
+        </div>
+        <div class="ppe-grid">
+          <div class="ppe-item"><div class="ppe-icon">⛑️</div><div class="ppe-label ta">பாதுகாப்பு தலைக்கவசம்</div><div class="ppe-req ta">✔ கட்டாயம்</div></div>
+          <div class="ppe-item"><div class="ppe-icon">🦺</div><div class="ppe-label ta">பாதுகாப்பு ஜாக்கெட்</div><div class="ppe-req ta">✔ கட்டாயம்</div></div>
+          <div class="ppe-item"><div class="ppe-icon">🥽</div><div class="ppe-label ta">பாதுகாப்பு கண்ணாடி</div><div class="ppe-req ta">✔ கட்டாயம்</div></div>
+          <div class="ppe-item"><div class="ppe-icon">🧤</div><div class="ppe-label ta">பாதுகாப்பு கையுறை</div><div class="ppe-req ta">✔ கட்டாயம்</div></div>
+          <div class="ppe-item"><div class="ppe-icon">👢</div><div class="ppe-label ta">பாதுகாப்பு காலணி</div><div class="ppe-req ta">✔ கட்டாயம்</div></div>
+          <div class="ppe-item"><div class="ppe-icon">😷</div><div class="ppe-label ta">முக மறைப்பு</div><div class="ppe-req ta">✔ தேவைப்படும் போது</div></div>
+        </div>
+        <div class="ppe-footer ta">HYDRASPECMA INDIA PRIVATE LIMITED &nbsp;|&nbsp; <strong>பாதுகாப்பு முதல் — PPE இல்லாமல் வேலை இல்லை</strong></div>
+      </div>
+    </div>
+
+    <!-- TAMIL: NO SMOKING -->
+    <div id="nosmo-ta-slide" class="aware-slide">
+      <div class="aware-card">
+        <div class="nosmo-banner">
+          <div class="nosmo-banner-title ta">தூய்மையான &amp; ஆரோக்கியமான<br>பணியிட கொள்கை</div>
+        </div>
+        <div class="nosmo-big">🚭</div>
+        <div class="nosmo-rules">
+          <div class="nosmo-rule"><div class="nosmo-rule-icon">🚬</div><div class="nosmo-rule-text ta">தொழிற்சாலை வளாகத்தில் புகைபிடிக்க கூடாது</div></div>
+          <div class="nosmo-rule"><div class="nosmo-rule-icon">🗑️</div><div class="nosmo-rule-text ta">கழிவுகளை நியமிக்கப்பட்ட குப்பைத்தொட்டிகளில் மட்டும் போடவும்</div></div>
+          <div class="nosmo-rule"><div class="nosmo-rule-icon">🧹</div><div class="nosmo-rule-text ta">உங்கள் பணியிடத்தை சுத்தமாகவும் ஒழுங்காகவும் வைத்திருங்கள்</div></div>
+          <div class="nosmo-rule"><div class="nosmo-rule-icon">🌿</div><div class="nosmo-rule-text ta">சுத்தமான பணியிடம் — பாதுகாப்பான மற்றும் உற்பத்தியான பணியிடம்</div></div>
+        </div>
+        <div class="nosmo-footer ta">HYDRASPECMA INDIA PRIVATE LIMITED &nbsp;|&nbsp; <strong>5S பணியிட தரநிலைகள்</strong></div>
+      </div>
+    </div>
+
+    <!-- TAMIL: FOOD SAFETY -->
+    <div id="food-ta-slide" class="aware-slide">
+      <div class="aware-card">
+        <div class="food-banner">
+          <div class="food-banner-title ta">🍽️ உணவக சுகாதாரம்<br>&amp; உணவு பாதுகாப்பு</div>
+        </div>
+        <div class="food-grid">
+          <div class="food-item"><div class="food-icon">🙌</div><div><div class="food-text-main ta">சாப்பிடுவதற்கு முன் கைகளை கழுவுங்கள்</div><div class="food-text-sub ta">சோப்பு மற்றும் தண்ணீர் எப்போதும் பயன்படுத்துங்கள்</div></div></div>
+          <div class="food-item"><div class="food-icon">🪑</div><div><div class="food-text-main ta">நியமிக்கப்பட்ட இடங்களில் அமருங்கள்</div><div class="food-text-sub ta">பணியிடங்களில் சாப்பிடாதீர்கள்</div></div></div>
+          <div class="food-item"><div class="food-icon">🗑️</div><div><div class="food-text-main ta">உணவு கழிவுகளை சரியாக அகற்றுங்கள்</div><div class="food-text-sub ta">சரியான குப்பைத்தொட்டியை பயன்படுத்துங்கள்</div></div></div>
+          <div class="food-item"><div class="food-icon">🧼</div><div><div class="food-text-main ta">உணவகத்தை சுத்தமாக வைத்திருங்கள்</div><div class="food-text-sub ta">பயன்படுத்திய பிறகு தட்டுகளை திருப்பி வையுங்கள்</div></div></div>
+          <div class="food-item"><div class="food-icon">💧</div><div><div class="food-text-main ta">தூய்மையான தண்ணீர் மட்டும் குடியுங்கள்</div><div class="food-text-sub ta">வடிகட்டிய நீர் விநியோகிப்பான்களை பயன்படுத்துங்கள்</div></div></div>
+          <div class="food-item"><div class="food-icon">⏰</div><div><div class="food-text-main ta">இடைவேளை நேரங்களை மதிக்குங்கள்</div><div class="food-text-sub ta">உணவுக்கு பிறகு சரியான நேரத்தில் திரும்புங்கள்</div></div></div>
+        </div>
+        <div class="food-footer ta">HYDRASPECMA INDIA PRIVATE LIMITED &nbsp;|&nbsp; <strong>உணவக சுகாதார கொள்கை</strong></div>
+      </div>
+    </div>
+
+    <!-- TAMIL: ENERGY SAVING -->
+    <div id="energy-ta-slide" class="aware-slide">
+      <div class="aware-card">
+        <div class="energy-banner">
+          <div class="energy-banner-title ta">💡 ஆற்றலை சேமியுங்கள்<br>பூமியை காப்பாற்றுங்கள்</div>
+        </div>
+        <div class="energy-steps">
+          <div class="energy-step"><div class="energy-icon">💡</div><div><div class="energy-text-main ta">பயன்படுத்தாத போது விளக்குகளை அணைக்கவும்</div><div class="energy-text-sub ta">பணியிடம் விட்டு செல்வதற்கு முன் அனைத்து விளக்குகளையும் அணைக்கவும்</div></div></div>
+          <div class="energy-step"><div class="energy-icon">🖥️</div><div><div class="energy-text-main ta">வேலை முடிந்த பிறகு கணினிகளை முடக்கவும்</div><div class="energy-text-sub ta">இரவு முழுவதும் ஸ்டாண்ட்பை மோடில் விடாதீர்கள்</div></div></div>
+          <div class="energy-step"><div class="energy-icon">❄️</div><div><div class="energy-text-main ta">AC-ஐ 24°C-க்கு அமையுங்கள்</div><div class="energy-text-sub ta">ஆற்றல் பயன்பாட்டை 20% வரை குறைக்கிறது</div></div></div>
+          <div class="energy-step"><div class="energy-icon">🔧</div><div><div class="energy-text-main ta">கசிவுகள் &amp; குறைபாடுள்ள உபகரணங்களை தெரிவிக்கவும்</div><div class="energy-text-sub ta">சொட்டும் குழாய்கள் மற்றும் உடைந்த பொருட்கள் வளங்களை வீணாக்கும்</div></div></div>
+          <div class="energy-step"><div class="energy-icon">♻️</div><div><div class="energy-text-main ta">குறைக்கவும் · மீண்டும் பயன்படுத்தவும் · மறுசுழற்சி</div><div class="energy-text-sub ta">ஒவ்வொரு சிறிய நடவடிக்கையும் பெரிய மாற்றத்தை ஏற்படுத்துகிறது</div></div></div>
+        </div>
+        <div class="energy-footer ta">HYDRASPECMA INDIA PRIVATE LIMITED &nbsp;|&nbsp; <strong>பசுமை தொழிற்சாலை முயற்சி</strong></div>
+      </div>
+    </div>
+
+    <!-- TAMIL: ELECTRICAL SAFETY -->
+    <div id="elec-ta-slide" class="aware-slide">
+      <div class="aware-card">
+        <div class="elec-banner">
+          <div class="elec-banner-title ta">⚡ மின்சார பாதுகாப்பு<br>விதிகள்</div>
+        </div>
+        <div class="elec-steps">
+          <div class="elec-step"><div class="elec-icon">💧</div><div class="elec-num">1</div><div><div class="elec-text-main ta">மின் இணைப்புகளுக்கு அருகில் தண்ணீர் வேண்டாம்</div><div class="elec-text-sub ta">ஈர கைகளால் சுவிட்ச், சாக்கெட் அல்லது கம்பிகளை தொடாதீர்கள்</div></div></div>
+          <div class="elec-step"><div class="elec-icon">🔌</div><div class="elec-num">2</div><div><div class="elec-text-main ta">கருவிகள் மற்றும் கம்பிகளை சரிபாருங்கள்</div><div class="elec-text-sub ta">இணைப்பதற்கு முன்பு தேய்ந்த கம்பிகள் அல்லது சேதமடைந்த பிளக்குகளை சரிபாருங்கள்</div></div></div>
+          <div class="elec-step"><div class="elec-icon">🔲</div><div class="elec-num">3</div><div><div class="elec-text-main ta">சாக்கெட்டுகளில் அதிக சுமை போடாதீர்கள்</div><div class="elec-text-sub ta">விரிவாக்க கம்பிகளை சங்கிலியாக இணைக்காதீர்கள்</div></div></div>
+          <div class="elec-step"><div class="elec-icon">🚧</div><div class="elec-num">4</div><div><div class="elec-text-main ta">மின் பலகைகளை தடையின்றி வைத்திருங்கள்</div><div class="elec-text-sub ta">மின் பேனல்கள் மற்றும் சர்க்யூட் பிரேக்கர்களுக்கு தடையற்ற அணுகலை பராமரிக்கவும்</div></div></div>
+          <div class="elec-step"><div class="elec-icon">🔥</div><div class="elec-num">5</div><div><div class="elec-text-main ta">தீப்பொறிகள் அல்லது புகையை தெரிவிக்கவும்</div><div class="elec-text-sub ta">தீப்பொறிகள், சூடான சாக்கெட்கள் அல்லது எரியும் வாசனையை உடனடியாக தெரிவிக்கவும்</div></div></div>
+        </div>
+        <div class="elec-footer ta">HYDRASPECMA INDIA PRIVATE LIMITED &nbsp;|&nbsp; <strong>மின்சார பாதுகாப்பு தரநிலைகள்</strong></div>
+      </div>
+    </div>
+
+    <!-- TAMIL: SAFE LIFTING -->
+    <div id="lift-ta-slide" class="aware-slide">
+      <div class="aware-card">
+        <div class="lift-banner">
+          <div class="lift-banner-title ta">📦 பாதுகாப்பான சுமை தூக்கல்<br>&amp; பணிச்சூழலியல்</div>
+        </div>
+        <div class="lift-steps">
+          <div class="lift-step"><div class="lift-icon">⚖️</div><div class="lift-num">1</div><div><div class="lift-text-main ta">முதலில் எடையை மதிப்பிடுங்கள்</div><div class="lift-text-sub ta">தூக்குவதற்கு முன் சோதிக்கவும் — மிகவும் கனமாக இருந்தால் உதவி கேளுங்கள்</div></div></div>
+          <div class="lift-step"><div class="lift-icon">👣</div><div class="lift-num">2</div><div><div class="lift-text-main ta">அகலமான நிலையை கடைப்பிடியுங்கள்</div><div class="lift-text-sub ta">நிலையான சமனிலைக்கு கால்களை தோள்பட்டை அகலத்தில் வைக்கவும்</div></div></div>
+          <div class="lift-step"><div class="lift-icon">🦵</div><div class="lift-num">3</div><div><div class="lift-text-main ta">மூட்டுகளில் குனியுங்கள்</div><div class="lift-text-sub ta">முதுகை நேராக வைத்து குனியுங்கள்; கால்களால் தூக்குங்கள்</div></div></div>
+          <div class="lift-step"><div class="lift-icon">🤗</div><div class="lift-num">4</div><div><div class="lift-text-main ta">சுமையை நெருக்கமாக வைத்திருங்கள்</div><div class="lift-text-sub ta">கொண்டு செல்லும் போது பொருளை வயிற்றுக்கு அருகில் வைத்திருங்கள்</div></div></div>
+          <div class="lift-step"><div class="lift-icon">🔄</div><div class="lift-num">5</div><div><div class="lift-text-main ta">முதுகை முறுக்காதீர்கள்</div><div class="lift-text-sub ta">திரும்ப கால்களை மட்டும் இடமாற்றுங்கள்; தூக்கும்போது உடலை முறுக்காதீர்கள்</div></div></div>
+        </div>
+        <div class="lift-footer ta">HYDRASPECMA INDIA PRIVATE LIMITED &nbsp;|&nbsp; <strong>பணிச்சூழலியல் முன்னெடுப்பு</strong></div>
+      </div>
+    </div>
+
+    <!-- TAMIL: CYBER SECURITY -->
+    <div id="cyber-ta-slide" class="aware-slide">
+      <div class="aware-card">
+        <div class="cyber-banner">
+          <div class="cyber-banner-title ta">🔒 இணைய பாதுகாப்பு<br>விழிப்புணர்வு</div>
+        </div>
+        <div class="cyber-steps">
+          <div class="cyber-step"><div class="cyber-icon">🖥️</div><div class="cyber-num">1</div><div><div class="cyber-text-main ta">உங்கள் திரையை பூட்டுங்கள்</div><div class="cyber-text-sub ta">பணியிடம் விட்டு செல்லும் போது Win + L அழுத்துங்கள்</div></div></div>
+          <div class="cyber-step"><div class="cyber-icon">🔑</div><div class="cyber-num">2</div><div><div class="cyber-text-main ta">வலுவான கடவுச்சொற்களை பயன்படுத்துங்கள்</div><div class="cyber-text-sub ta">சிக்கலான கடவுச்சொற்களை உருவாக்குங்கள் — ஒருபோதும் பகிராதீர்கள்</div></div></div>
+          <div class="cyber-step"><div class="cyber-icon">🎣</div><div class="cyber-num">3</div><div><div class="cyber-text-main ta">ஃபிஷிங் மின்னஞ்சல்களில் கவனமாக இருங்கள்</div><div class="cyber-text-sub ta">சந்தேகத்திற்கிடமான இணைப்புகளை திறக்காதீர்கள்</div></div></div>
+          <div class="cyber-step"><div class="cyber-icon">📁</div><div class="cyber-num">4</div><div><div class="cyber-text-main ta">சுத்தமான மேசையை வைத்திருங்கள்</div><div class="cyber-text-sub ta">முக்கியமான ஆவணங்களை பாதுகாக்கவும், அலமாரிகளை பூட்டவும்</div></div></div>
+          <div class="cyber-step"><div class="cyber-icon">💾</div><div class="cyber-num">5</div><div><div class="cyber-text-main ta">அங்கீகரிக்கப்பட்ட USB மட்டும் பயன்படுத்துங்கள்</div><div class="cyber-text-sub ta">தனிப்பட்ட USB-களை நிறுவன கணினிகளில் ஒருபோதும் இணைக்காதீர்கள்</div></div></div>
+        </div>
+        <div class="cyber-footer ta">HYDRASPECMA INDIA PRIVATE LIMITED &nbsp;|&nbsp; <strong>IT பாதுகாப்பு கொள்கை</strong></div>
+      </div>
+    </div>
+
+    <!-- TAMIL: WASTE SEGREGATION -->
+    <div id="waste-ta-slide" class="aware-slide">
+      <div class="aware-card">
+        <div class="waste-banner">
+          <div class="waste-banner-title ta">♻️ கழிவு பிரித்தல்<br>&amp; சுற்றுச்சூழல்</div>
+        </div>
+        <div class="waste-steps">
+          <div class="waste-step"><div class="waste-icon">🍏</div><div class="waste-num">1</div><div><div class="waste-text-main ta">மக்கும் கழிவுகள்</div><div class="waste-text-sub ta">உணவு கழிவுகளை பச்சை தொட்டியில் போடவும்</div></div></div>
+          <div class="waste-step"><div class="waste-icon">📦</div><div class="waste-num">2</div><div><div class="waste-text-main ta">மறுசுழற்சி செய்யக்கூடிய பொருட்கள்</div><div class="waste-text-sub ta">காகிதம், பிளாஸ்டிக் பாட்டில்களை நீல தொட்டியில் போடவும்</div></div></div>
+          <div class="waste-step"><div class="waste-icon">🔋</div><div class="waste-num">3</div><div><div class="waste-text-main ta">ஆபத்தான பொருட்கள்</div><div class="waste-text-sub ta">மின்கலங்கள், மின்னணு கழிவுகளுக்கு சிவப்பு தொட்டியை பயன்படுத்துங்கள்</div></div></div>
+          <div class="waste-step"><div class="waste-icon">☕</div><div class="waste-num">4</div><div><div class="waste-text-main ta">ஒரு முறை பயன்படுத்தும் பொருட்களை தவிர்க்கவும்</div><div class="waste-text-sub ta">பிளாஸ்டிக் தடயத்தை குறைக்க மீண்டும் பயன்படுத்தக்கூடியவற்றை கொண்டுவாருங்கள்</div></div></div>
+          <div class="waste-step"><div class="waste-icon">🖨️</div><div class="waste-num">5</div><div><div class="waste-text-main ta">அச்சிடுவதற்கு முன்பு யோசியுங்கள்</div><div class="waste-text-sub ta">மரங்கள் மற்றும் ஆற்றலை பாதுகாக்க காகிதமில்லா முறையை பின்பற்றுங்கள்</div></div></div>
+        </div>
+        <div class="waste-footer ta">HYDRASPECMA INDIA PRIVATE LIMITED &nbsp;|&nbsp; <strong>பசுமை தொழிற்சாலை முயற்சி</strong></div>
+      </div>
+    </div>
+
+    <!-- ══ DINAM ORU THAGAVAL SLIDES ══ -->
+
+    <!-- TAMIL: தினம் ஒரு தகவல் -->
+    <div id="dinam-ta-slide" class="dinam-slide">
+      <div class="dinam-card">
+        <div class="dinam-header">
+          <div class="dinam-header-icon">📚</div>
+          <div class="dinam-header-title">தினம் ஒரு தகவல்</div>
+          <div class="dinam-header-date" id="dinam-ta-date"></div>
+        </div>
+        <div class="dinam-body">
+          <div class="dinam-hist-col">
+            <div class="dinam-section-title">📜 இன்று வரலாற்றில்</div>
+            <div class="dinam-hist-item" id="dinam-ta-hist1">
+              <div class="dinam-hist-emoji-big" id="dinam-ta-emoji1">📅</div>
+              <div class="dinam-hist-content"><div class="dinam-hist-year" id="dinam-ta-year1"></div><div class="dinam-hist-text" id="dinam-ta-text1"></div></div>
+            </div>
+            <div class="dinam-hist-item" id="dinam-ta-hist2">
+              <div class="dinam-hist-emoji-big" id="dinam-ta-emoji2">📅</div>
+              <div class="dinam-hist-content"><div class="dinam-hist-year" id="dinam-ta-year2"></div><div class="dinam-hist-text" id="dinam-ta-text2"></div></div>
+            </div>
+          </div>
+          <div class="dinam-gk-col">
+            <div class="dinam-section-title">🧠 தெரியுமா?</div>
+            <div class="dinam-gk-box">
+              <div class="dinam-gk-emoji" id="dinam-ta-gk-emoji">🌍</div>
+              <div class="dinam-gk-text" id="dinam-ta-gk-text"></div>
+            </div>
+          </div>
+        </div>
+        <div class="dinam-footer">HYDRASPECMA INDIA PRIVATE LIMITED &nbsp;|&nbsp; ஹைட்ராஸ்பெக்மா இந்தியா</div>
+      </div>
+    </div>
+
+    <!-- ENGLISH: Daily Dose of Knowledge -->
+    <div id="dinam-en-slide" class="dinam-slide">
+      <div class="dinam-card">
+        <div class="dinam-header">
+          <div class="dinam-header-icon">📖</div>
+          <div class="dinam-header-title" style="font-family:'Poppins',sans-serif;">Daily Dose of Knowledge</div>
+          <div class="dinam-header-date" id="dinam-en-date"></div>
+        </div>
+        <div class="dinam-body">
+          <div class="dinam-hist-col">
+            <div class="dinam-section-title">📜 This Day in History</div>
+            <div class="dinam-hist-item">
+              <div class="dinam-hist-emoji-big" id="dinam-en-emoji1">📅</div>
+              <div class="dinam-hist-content"><div class="dinam-hist-year" id="dinam-en-year1"></div><div class="dinam-hist-text" id="dinam-en-text1" style="font-family:'Poppins',sans-serif;"></div></div>
+            </div>
+            <div class="dinam-hist-item">
+              <div class="dinam-hist-emoji-big" id="dinam-en-emoji2">📅</div>
+              <div class="dinam-hist-content"><div class="dinam-hist-year" id="dinam-en-year2"></div><div class="dinam-hist-text" id="dinam-en-text2" style="font-family:'Poppins',sans-serif;"></div></div>
+            </div>
+          </div>
+          <div class="dinam-gk-col">
+            <div class="dinam-section-title">🧠 Did You Know?</div>
+            <div class="dinam-gk-box">
+              <div class="dinam-gk-emoji" id="dinam-en-gk-emoji">🌍</div>
+              <div class="dinam-gk-text" id="dinam-en-gk-text" style="font-family:'Poppins',sans-serif;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="dinam-footer" style="font-family:'Poppins',sans-serif;">HYDRASPECMA INDIA PRIVATE LIMITED &nbsp;|&nbsp; HydraSpecma India</div>
+      </div>
+    </div>
+
   </div>
   <div id="slide-dots"></div>
 </div>
@@ -2371,16 +2703,42 @@ function buildSlides(){
   // Add shift timing slide — 40s display
   const shiftEl=document.getElementById('shift-slide');
   if(shiftEl)slides.push({el:shiftEl,type:'shift'});
+  const shiftTaEl=document.getElementById('shift-ta-slide');
+  if(shiftTaEl)slides.push({el:shiftTaEl,type:'shift'});
 
   // Add wash hands slide — 20s
   const washEl=document.getElementById('wash-slide');
   if(washEl)slides.push({el:washEl,type:'awareness'});
 
-  // Add all 9 awareness slides — 20s each
+  // Add all 9 English awareness slides
   ['fire-slide','ppe-slide','nosmo-slide','food-slide','energy-slide','elec-slide','lift-slide','cyber-slide','waste-slide'].forEach(id=>{
     const el=document.getElementById(id);
     if(el)slides.push({el,type:'awareness'});
   });
+
+  // Add all 9 Tamil awareness slides
+  ['fire-ta-slide','ppe-ta-slide','nosmo-ta-slide','food-ta-slide','energy-ta-slide','elec-ta-slide','lift-ta-slide','cyber-ta-slide','waste-ta-slide'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)slides.push({el,type:'awareness'});
+  });
+
+  // Add Dinam Oru Thagaval slides (Tamil + English)
+  ['dinam-ta-slide','dinam-en-slide'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)slides.push({el,type:'awareness'});
+  });
+
+  // Shuffle all non-birthday slides so order varies each session
+  // (birthday slides come first and stay in order)
+  const bdaySlides=slides.filter(s=>s.type==='bday'||s.type==='month');
+  const infoSlides=slides.filter(s=>s.type!=='bday'&&s.type!=='month');
+  for(let i=infoSlides.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [infoSlides[i],infoSlides[j]]=[infoSlides[j],infoSlides[i]];
+  }
+  slides.length=0;
+  bdaySlides.forEach(s=>slides.push(s));
+  infoSlides.forEach(s=>slides.push(s));
 
   // Per-slide timings: ALL slides = 10 seconds
   slideTimings=slides.map(() => 10000);
@@ -2399,8 +2757,9 @@ function showSlide(idx){
   document.querySelectorAll('.bday-slide').forEach(el=>el.classList.remove('active'));
   const _ms=document.getElementById('month-slide');if(_ms)_ms.classList.remove('active');
   const _ss=document.getElementById('shift-slide');if(_ss)_ss.classList.remove('active');
+  const _sts=document.getElementById('shift-ta-slide');if(_sts)_sts.classList.remove('active');
   const _ws=document.getElementById('wash-slide');if(_ws)_ws.classList.remove('active');
-  document.querySelectorAll('.aware-slide').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.aware-slide,.dinam-slide').forEach(el=>el.classList.remove('active'));
   const s=slides[idx];if(!s)return;
   // For bday slides, show the wrapper container then activate the slide inside
   if(s.type==='bday'){
@@ -2823,40 +3182,81 @@ function timeChip(val){
   return `<span class="time-chip">${val}</span>`;
 }
 
+function buildBreakItems(s,labels){
+  const breaks=[
+    {icon:'🍳',lbl:labels[0],val:s.breakfast},
+    {icon:'🫖',lbl:labels[1],val:s.tea1},
+    {icon:'🍽️',lbl:labels[2],val:s.lunch},
+    {icon:'☕',lbl:labels[3],val:s.tea2}
+  ];
+  return breaks.map(b=>{
+    const na=!b.val||b.val.toUpperCase()==='NA';
+    return `<div class="break-item">
+      <div class="break-icon">${b.icon}</div>
+      <div class="break-label">${b.lbl}</div>
+      <div class="break-time${na?' na':''}">${na?'N/A':b.val}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderShiftCards(containerId,d,labels,taDays){
+  const el=document.getElementById(containerId);
+  if(!el)return;
+  const EN_LABELS=['Breakfast','1st Tea Break','Lunch Break','2nd Tea Break'];
+  const lbl=labels||EN_LABELS;
+  el.innerHTML=[d.s1,d.s2].map(s=>`
+    <div class="shift-card">
+      <div class="shift-card-header">
+        <span class="shift-card-name">${s.name}</span>
+        <span class="shift-card-days">📅 ${taDays?taDays(s.days):s.days}</span>
+        <span class="shift-card-times">
+          <span class="time-chip start">${s.start}</span>
+          <span class="shift-time-arrow">→</span>
+          <span class="time-chip end">${s.end}</span>
+        </span>
+      </div>
+      <div class="shift-card-breaks">${buildBreakItems(s,lbl)}</div>
+    </div>`).join('');
+}
+
+function renderShiftNotes(notesId,d,titleHtml){
+  const notesDiv=document.getElementById(notesId);
+  if(!notesDiv)return;
+  const lines=d.notes.split('\n').filter(l=>l.trim());
+  notesDiv.innerHTML=(titleHtml||'<div class="shift-notes-title">📋 Note</div>')+
+    lines.map(line=>{
+      const ci=line.indexOf(':');
+      if(ci>0){
+        const label=line.slice(0,ci);
+        const rest=line.slice(ci+1).trim();
+        return `<div class="shift-note-row"><span class="shift-note-label">${label}:</span> ${rest}</div>`;
+      }
+      return `<div class="shift-note-row">${line}</div>`;
+    }).join('');
+}
+
 function renderShiftSlide(){
   const d=getShiftData();
-  const tbody=document.getElementById('shift-tbody');
-  if(!tbody)return;
+  renderShiftCards('shift-cards-en',d,null,null);
+  renderShiftNotes('shift-notes-display',d);
+  renderShiftTaSlide();
+}
 
-  const rows=[d.s1,d.s2];
-  tbody.innerHTML=rows.map(s=>`
-    <tr>
-      <td class="shift-name-cell">
-        <div class="shift-name">${s.name}</div>
-        <div class="shift-days">${s.days}</div>
-      </td>
-      <td><span class="time-chip start">${s.start}</span></td>
-      <td><span class="time-chip end">${s.end}</span></td>
-      <td>${timeChip(s.breakfast)}</td>
-      <td>${timeChip(s.tea1)}</td>
-      <td>${timeChip(s.lunch)}</td>
-      <td>${timeChip(s.tea2)}</td>
-    </tr>`).join('');
-
-  // Notes
-  const notesDiv=document.getElementById('shift-notes-display');
-  if(notesDiv){
-    const lines=d.notes.split('\n').filter(l=>l.trim());
-    notesDiv.innerHTML='<div class="shift-notes-title">📋 Note</div>'+
-      lines.map(line=>{
-        const colonIdx=line.indexOf(':');
-        if(colonIdx>0){
-          const label=line.slice(0,colonIdx);
-          const rest=line.slice(colonIdx+1).trim();
-          return `<div class="shift-note-row"><span class="shift-note-label">${label}:</span> ${rest}</div>`;
-        }
-        return `<div class="shift-note-row">${line}</div>`;
-      }).join('');
+function renderShiftTaSlide(){
+  const d=getShiftData();
+  const TA_BREAK_LABELS=['காலை உணவு','1வது தேயிலை','மதிய இடைவேளை','2வது தேயிலை'];
+  const taDays=str=>str
+    .replace('Monday','திங்கள்').replace('Saturday','சனி').replace('Friday','வெள்ளி')
+    .replace('Tuesday','செவ்வாய்').replace('Wednesday','புதன்')
+    .replace('Thursday','வியாழன்').replace('Sunday','ஞாயிறு');
+  renderShiftCards('shift-cards-ta',d,TA_BREAK_LABELS,taDays);
+  const taNotesEl=document.getElementById('shift-ta-notes-display');
+  if(taNotesEl){
+    taNotesEl.innerHTML=`<div class="shift-notes-title ta">📋 குறிப்பு</div>
+<div class="shift-note-row ta"><span class="shift-note-label ta">கட்டாய வருகை:</span> அனைத்து ஊழியர்களும் தங்கள் ஷிஃப்ட் தொடக்க நேரத்தில் நியமிக்கப்பட்ட பணியிடங்களில் இருக்க வேண்டும்.</div>
+<div class="shift-note-row ta"><span class="shift-note-label ta">நேர பதிவு:</span> ஷிஃப்ட் தொடக்கத்தில் சரியாக நேர பதிவு செய்யவும், முடிவில் வெளியேற்ற பதிவு செய்யவும்.</div>
+<div class="shift-note-row ta"><span class="shift-note-label ta">இடைவேளை நேர கட்டுப்பாடு:</span> அனைத்து ஊழியர்களும் திட்டமிட்ட இடைவேளை நேரங்களை கடைப்பிடிக்க வேண்டும்.</div>
+<div class="shift-note-row ta"><span class="shift-note-label ta">இடைவேளை காலம்:</span> ஒதுக்கப்பட்ட இடைவேளை முடிந்தவுடன் உடனடியாக பணியிடத்திற்கு திரும்புங்கள்.</div>`;
   }
 }
 
@@ -3039,10 +3439,11 @@ function startCelebration() {
   const monthSlide = document.getElementById('month-slide');
   if (monthSlide) monthSlide.classList.remove('active');
   const shiftSlide = document.getElementById('shift-slide');
+  const shiftTaSlide = document.getElementById('shift-ta-slide');
   if (shiftSlide) shiftSlide.classList.remove('active');
   const washSlide = document.getElementById('wash-slide');
   if (washSlide) washSlide.classList.remove('active');
-  document.querySelectorAll('.aware-slide').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.aware-slide,.dinam-slide').forEach(el => el.classList.remove('active'));
   
   // Stop normal rotation timer
   if (slideTimer) clearTimeout(slideTimer);
@@ -3825,4 +4226,127 @@ checkCelebrationStatus();
     setTimeout(()=>openPwdOverlay(),700);
   }
 })();
+
+// ═══════════════════════════════════════════════════════════════
+//  DINAM ORU THAGAVAL — historical data & GK pool
+// ═══════════════════════════════════════════════════════════════
+var TA_MONTHS_D=['ஜனவரி','பிப்ரவரி','மார்ச்','ஏப்ரல்','மே','ஜூன்','ஜூலை','ஆகஸ்ட்','செப்டம்பர்','அக்டோபர்','நவம்பர்','டிசம்பர்'];
+var TA_DAYS_D=['ஞாயிறு','திங்கள்','செவ்வாய்','புதன்','வியாழன்','வெள்ளி','சனி'];
+
+var HIST={
+  "1-1":[{yr:"1863",ta:"அமெரிக்காவில் அடிமைத்தனத்திலிருந்து விடுதலை பிரகடனம் அமலுக்கு வந்தது",en:"The Emancipation Proclamation took effect, freeing slaves in US Confederate states"},{yr:"1801",ta:"இங்கிலாந்து, ஐர்லாந்தை இணைத்து ஐக்கிய இராஜ்ஜியம் உருவானது",en:"The United Kingdom of Great Britain and Ireland formed by Act of Union"}],
+  "1-15":[{yr:"1929",ta:"மார்ட்டின் லூதர் கிங் ஜூனியர் பிறந்தார் — அமெரிக்க மனித உரிமை தலைவர்",en:"Martin Luther King Jr. was born in Atlanta — champion of civil rights in America"},{yr:"1559",ta:"இங்கிலாந்தின் ராணி முதலாம் எலிசபெத் பட்டமேற்று வைக்கப்பட்டார்",en:"Queen Elizabeth I was crowned at Westminster Abbey, beginning her 44-year reign"}],
+  "1-26":[{yr:"1950",ta:"இந்தியா குடியரசு நாடாக மாறியது — இந்திய அரசியலமைப்பு நடைமுறைக்கு வந்தது",en:"India became a Republic — the Indian Constitution came into force"},{yr:"2001",ta:"குஜராத்தில் கடுமையான நிலநடுக்கம் — 20,000-க்கும் மேற்பட்டோர் உயிரிழந்தனர்",en:"A devastating 7.7 magnitude earthquake struck Gujarat, killing over 20,000 people"}],
+  "2-4":[{yr:"1948",ta:"இலங்கை (சிலோன்) பிரிட்டனிடமிருந்து சுதந்திரம் பெற்றது",en:"Sri Lanka (Ceylon) gained independence from Britain"},{yr:"2004",ta:"மார்க் ஜூக்கர்பெர்க் ஹார்வர்டில் இருந்து Facebook ஆரம்பித்தார்",en:"Mark Zuckerberg launched Facebook from Harvard University"}],
+  "2-28":[{yr:"1928",ta:"சி.வி. ராமன் ராமன் விளைவை கண்டுபிடித்தார் — நோபல் பரிசு பெற்றார்",en:"C.V. Raman discovered the Raman Effect, earning him the 1930 Nobel Prize in Physics"},{yr:"1986",ta:"சுவீடன் பிரதமர் ஒலோஃப் பால்மே படுகொலை செய்யப்பட்டார்",en:"Swedish Prime Minister Olof Palme was assassinated in Stockholm"}],
+  "3-8":[{yr:"1857",ta:"நியூயார்க்கில் பெண் தொழிலாளர்கள் கடினமான நிலைமைகளுக்கு எதிராக போராட்டம் நடத்தினர்",en:"Women garment workers in New York protested harsh conditions — origin of Women's Day"},{yr:"1975",ta:"ஐக்கிய நாடுகள் சபை இந்த நாளை சர்வதேச பெண்கள் தினமாக அறிவித்தது",en:"The UN officially recognised March 8 as International Women's Day since 1975"}],
+  "3-22":[{yr:"1992",ta:"ஐக்கிய நாடுகள் சபை மார்ச் 22-ஐ உலக நீர் நாளாக அறிவித்தது",en:"United Nations designated March 22 as World Water Day"},{yr:"2024",ta:"உலகில் 200 கோடிக்கும் மேலான மக்கள் தூய்மையான குடிநீர் இல்லாமல் வாழ்கின்றனர்",en:"Over 2 billion people worldwide still lack access to safe drinking water"}],
+  "4-7":[{yr:"1948",ta:"உலக சுகாதார அமைப்பு (WHO) நிறுவப்பட்டது — ஏப்ரல் 7 உலக சுகாதார தினம்",en:"World Health Organization (WHO) was established — April 7 is World Health Day"},{yr:"2020",ta:"கோவிட்-19 உலகளாவிய பெருந்தொற்றாக WHO அறிவித்தது",en:"COVID-19 was declared a global pandemic by WHO, affecting every country on Earth"}],
+  "4-13":[{yr:"1919",ta:"ஜலியன்வாலாபாக் படுகொலை — பிரிட்டிஷ் படைகள் 379 அப்பாவி மக்களை கொன்றன",en:"Jallianwala Bagh massacre — British troops killed 379 peaceful protesters in Amritsar"},{yr:"2019",ta:"ஜலியன்வாலாபாக் படுகொலையின் 100வது ஆண்டு நினைவு நாள் கொண்டாடப்பட்டது",en:"India observed the 100th anniversary of the Jallianwala Bagh massacre with tributes"}],
+  "4-14":[{yr:"1891",ta:"டாக்டர் பி.ஆர். அம்பேத்கர் பிறந்தார் — இந்திய அரசியலமைப்பின் சிற்பி",en:"Dr. B.R. Ambedkar was born — the principal architect of the Indian Constitution"},{yr:"1912",ta:"RMS டைட்டானிக் பனிமலையில் மோதி கடலில் மூழ்கியது — 1,500 பேர் உயிரிழந்தனர்",en:"RMS Titanic sank after hitting an iceberg — over 1,500 people perished"}],
+  "4-22":[{yr:"1970",ta:"முதல் உலக பூமி தினம் — 2 கோடி அமெரிக்கர்கள் சுற்றுச்சூழல் பாதுகாப்பிற்காக திரண்டனர்",en:"First Earth Day — 20 million Americans rallied for environmental protection"},{yr:"2016",ta:"170 நாடுகள் பாரிஸ் காலநிலை ஒப்பந்தத்தில் கையொப்பமிட்டன",en:"170 countries signed the Paris Climate Agreement on Earth Day 2016"}],
+  "5-1":[{yr:"1886",ta:"சிகாகோவில் தொழிலாளர்கள் 8 மணி நேர வேலை நாளுக்காக போராட்டம் — கார்மிக தினத்தின் தோற்றம்",en:"Workers in Chicago struck for an 8-hour workday — origin of International Labour Day"},{yr:"1960",ta:"மகாராஷ்டிரா மற்றும் குஜராத் மாநிலங்கள் உருவாயின",en:"Maharashtra and Gujarat were carved out as separate states on Maharashtra Day"}],
+  "5-7":[{yr:"1861",ta:"இரவீந்திரநாத் தாகூர் பிறந்தார் — நோபல் பரிசு பெற்ற முதல் ஆசியர்",en:"Rabindranath Tagore was born — the first Asian to win the Nobel Prize (Literature 1913)"},{yr:"1945",ta:"இரண்டாம் உலகப் போரில் நாஜி ஜெர்மனி சரணடைந்தது — ஐரோப்பாவில் போர் முடிந்தது",en:"Nazi Germany signed unconditional surrender — Victory in Europe (VE) Day"}],
+  "5-11":[{yr:"1998",ta:"இந்தியா போக்ரான் II அணுகுண்டு சோதனை — ஆப்ரேஷன் சக்தி",en:"India conducted Pokhran-II nuclear tests (Operation Shakti) under PM Vajpayee"},{yr:"1981",ta:"பாப் மார்லி புற்றுநோயால் இறந்தார் — ரெகே இசை உலகின் சின்னம்",en:"Bob Marley died of cancer — his reggae music remains a global cultural icon"}],
+  "6-1":[{yr:"1980",ta:"சிஎன்என் (CNN) டெட் டர்னரால் தொடங்கப்பட்டது — முதல் 24 மணி நேர செய்தி சேனல்",en:"CNN was launched by Ted Turner — world's first 24-hour news television channel"},{yr:"2010",ta:"ஜூன் 1 சர்வதேச குழந்தைகள் தினமாக பல நாடுகளில் கொண்டாடப்படுகிறது",en:"June 1 is celebrated as International Children's Day in many countries worldwide"}],
+  "6-5":[{yr:"1972",ta:"ஸ்டாக்ஹோமில் முதல் ஐக்கிய நாடுகள் சுற்றுச்சூழல் மாநாடு — ஜூன் 5 உலக சுற்றுச்சூழல் தினம்",en:"First UN Environment Conference in Stockholm — June 5 became World Environment Day"},{yr:"2023",ta:"ஒவ்வொரு ஆண்டும் 15 பில்லியன் மரங்கள் வெட்டப்படுகின்றன — 5 பில்லியன் மட்டுமே நடப்படுகின்றன",en:"Every year 15 billion trees are cut globally but only 5 billion replanted — plant more!"}],
+  "6-21":[{yr:"2015",ta:"ஐக்கிய நாடுகள் சபை ஜூன் 21-ஐ சர்வதேச யோகா தினமாக அறிவித்தது",en:"United Nations declared June 21 International Yoga Day on India PM Modi's proposal"},{yr:"2016",ta:"5 கோடிக்கும் மேலான மக்கள் முதல் சர்வதேச யோகா தினத்தை கொண்டாடினர்",en:"Over 50 million people across the world participated in the first International Yoga Day"}],
+  "6-25":[{yr:"1975",ta:"இந்திய பிரதமர் இந்திரா காந்தி நாட்டில் அவசரகால நிலையை பிரகடனம் செய்தார்",en:"Indian PM Indira Gandhi declared a state of Emergency — civil liberties suspended for 21 months"},{yr:"1950",ta:"கொரிய போர் தொடங்கியது — வட கொரியா தென் கொரியா மீது படையெடுத்தது",en:"Korean War began — North Korea invaded South Korea, drawing in UN and US forces"}],
+  "7-11":[{yr:"1995",ta:"ஸ்ரெப்ரனிக்கா படுகொலை — 8,000 முஸ்லிம் ஆண்கள் கொல்லப்பட்டனர்",en:"Srebrenica massacre — 8,000 Bosniak Muslims killed in Europe's worst post-WWII atrocity"},{yr:"1987",ta:"உலக மக்கள்தொகை 500 கோடியை தாண்டியது — ஜூலை 11 உலக மக்கள்தொகை தினம்",en:"World population hit 5 billion — UN declared July 11 as World Population Day"}],
+  "7-27":[{yr:"1947",ta:"இந்திய தேசிய கொடி ஏற்றுக்கொள்ளப்பட்டது — திரிவர்ண கொடி",en:"India's national Tricolour flag was officially adopted by the Constituent Assembly"},{yr:"1953",ta:"கொரிய போர் யுத்த விரமிப்பு ஒப்பந்தம் கையொப்பமிடப்பட்டது",en:"Korean War armistice was signed — ending 3 years of fighting"}],
+  "8-6":[{yr:"1945",ta:"அமெரிக்கா ஹிரோஷிமா மீது அணுகுண்டு வீசியது — 70,000 பேர் உடனடியாக உயிரிழந்தனர்",en:"USA dropped the atomic bomb 'Little Boy' on Hiroshima — over 70,000 killed instantly"},{yr:"1991",ta:"டிம் பெர்னர்ஸ்-லீ உலகளாவிய வலை (WWW) பொதுமக்களுக்கு திறந்து வைத்தார்",en:"Tim Berners-Lee made the World Wide Web publicly available — changing the world forever"}],
+  "8-15":[{yr:"1947",ta:"இந்தியா பிரிட்டனிடமிருந்து சுதந்திரம் பெற்றது — ஜவஹர்லால் நேரு முதல் பிரதமர்",en:"India gained independence from Britain — Jawaharlal Nehru became the first Prime Minister"},{yr:"1869",ta:"சூயஸ் கால்வாய் திறக்கப்பட்டது — ஐரோப்பா மற்றும் ஆசியாவை இணைக்கும் நீர்வழி",en:"Suez Canal opened in 1869, connecting the Mediterranean Sea to the Red Sea"}],
+  "9-5":[{yr:"1888",ta:"சர்வேபள்ளி ராதாகிருஷ்ணன் பிறந்தார் — இந்தியாவின் முதல் துணை ஜனாதிபதி",en:"Dr. Sarvepalli Radhakrishnan born — India's 1st VP, September 5 is Teachers' Day"},{yr:"1997",ta:"மதர் தெரசா கல்கத்தாவில் இறந்தார் — நோபல் சாந்தி பரிசு பெற்றவர்",en:"Mother Teresa died in Kolkata — Nobel Peace Prize laureate who lived for the poor"}],
+  "9-14":[{yr:"1949",ta:"இந்தி மொழி இந்தியாவின் அதிகாரப்பூர்வ மொழியாக ஏற்றுக்கொள்ளப்பட்டது — ஹிந்தி தினம்",en:"Hindi was adopted as official language of India — September 14 is Hindi Diwas"},{yr:"1959",ta:"சோவியத் லூனா 2 சந்திரனை தொட்ட முதல் விண்கலமாக வரலாற்றில் இடம்பெற்றது",en:"Soviet Luna 2 became the first spacecraft to land on the Moon"}],
+  "10-2":[{yr:"1869",ta:"மகாத்மா காந்தி பிறந்தார் — போர்பந்தர், குஜராத் — இந்திய தேசத்தின் தந்தை",en:"Mahatma Gandhi was born in Porbandar, Gujarat — father of the Indian nation"},{yr:"1950",ta:"Peanuts கார்ட்டூன் — சார்லி பிரவுன் மற்றும் ஸ்நூபி முதல் முறை வெளியிடப்பட்டது",en:"Charles Schulz published the first Peanuts comic strip featuring Charlie Brown"}],
+  "10-14":[{yr:"1956",ta:"டாக்டர் அம்பேத்கர் நாக்பூரில் 6 லட்சம் பேருடன் புத்த மதம் தழுவினார்",en:"Dr. Ambedkar converted to Buddhism with 600,000 followers — largest mass conversion"},{yr:"1947",ta:"சக் யேகர் ஒலியை விட வேக விமானத்தை முதன்முதலில் பறந்தார்",en:"Chuck Yeager became first person to break the sound barrier at 1,234 km/h"}],
+  "11-1":[{yr:"1956",ta:"மொழி வாரியாக மாநிலங்கள் பிரிக்கப்பட்டன — தமிழ்நாடு, கர்நாடகா, கேரளா உருவானது",en:"India reorganised states by language — Tamil Nadu, Karnataka, Kerala, AP formed"},{yr:"1973",ta:"சிட்னி ஒபரா ஹவுஸ் திறக்கப்பட்டது — UNESCO உலக பாரம்பரிய தளம்",en:"Sydney Opera House opened by Queen Elizabeth II — now a UNESCO World Heritage Site"}],
+  "11-14":[{yr:"1889",ta:"ஜவஹர்லால் நேரு பிறந்தார் — இந்தியாவின் முதல் பிரதமர், 'சாச்சா நேரு'",en:"Jawaharlal Nehru born — India's first PM, November 14 is Children's Day in India"},{yr:"1969",ta:"அப்போலோ 12 சந்திரனுக்கு இரண்டாவது நிலவிறக்க பயணத்தை தொடங்கியது",en:"Apollo 12 launched for the second crewed Moon landing mission"}],
+  "12-1":[{yr:"1988",ta:"ஜெனீவாவில் முதல் உலக AIDS தினம் கொண்டாடப்பட்டது",en:"World AIDS Day was observed for the first time in Geneva, Switzerland"},{yr:"1955",ta:"ரோசா பார்க்ஸ் பேரணியில் வெள்ளையர்களுக்கு இடம் கொடுக்க மறுத்தார் — வரலாற்று தருணம்",en:"Rosa Parks refused to give up her bus seat — sparking the Montgomery Bus Boycott"}],
+  "12-10":[{yr:"1901",ta:"முதல் நோபல் பரிசு விழா நடைபெற்றது — ஆல்ஃபிரட் நோபல் நினைவாக",en:"First Nobel Prize ceremony held on the anniversary of Alfred Nobel's death"},{yr:"1948",ta:"ஐக்கிய நாடுகள் மனித உரிமைகள் பிரகடனம் ஏற்றுக்கொள்ளப்பட்டது",en:"UN Universal Declaration of Human Rights was adopted — Human Rights Day"}],
+  "12-26":[{yr:"2004",ta:"இந்தியப் பெருங்கடலில் பயங்கரமான சுனாமி — 14 நாடுகளில் 2 லட்சம் பேர் உயிரிழந்தனர்",en:"Indian Ocean tsunami devastated 14 countries killing over 200,000 people"},{yr:"1991",ta:"சோவியத் ஒன்றியம் கலைக்கப்பட்டது — 15 சுதந்திர குடியரசுகள் உருவாயின",en:"Soviet Union was officially dissolved — 15 independent republics formed"}]
+};
+
+var GK_POOL=[
+  {emoji:"🌍",ta:"பூமி சூரியனை ஒரு முறை சுற்ற 365 நாட்கள் 6 மணி நேரம் ஆகும். அதனால் ஒவ்வொரு 4 ஆண்டுக்கும் ஒரு லீப் ஆண்டு வருகிறது!",en:"Earth takes 365 days and 6 hours to orbit the Sun — that's why we have a Leap Year every 4 years!"},
+  {emoji:"🧠",ta:"மனித மூளை 86 பில்லியன் நரம்பு செல்களை கொண்டுள்ளது — நமது காலாக்சியில் உள்ள நட்சத்திரங்களை விட அதிகம்!",en:"The human brain has 86 billion neurons — more than the number of stars in the Milky Way!"},
+  {emoji:"☀️",ta:"சூரியனிலிருந்து ஒளி பூமிக்கு வர 8 நிமிடம் 20 விநாடிகள் ஆகும். சூரியன் அணைந்தால் 8 நிமிடம் கழித்தே நாம் அறிவோம்!",en:"Sunlight takes 8 min 20 sec to reach Earth. If the Sun vanished, we wouldn't know for 8 minutes!"},
+  {emoji:"💧",ta:"பனிக்கட்டி தண்ணீரில் மிதக்கிறது ஏனெனில் திடமான நீரின் அடர்த்தி திரவ நீரை விட குறைவு!",en:"Ice floats on water because solid water is less dense than liquid water — a unique property of H₂O!"},
+  {emoji:"🐙",ta:"ஆக்டோபஸிற்கு 3 இதயங்கள், 8 கைகள் மற்றும் நீல நிற இரத்தம் உள்ளது!",en:"An octopus has 3 hearts, 8 arms, and blue blood — because it uses copper instead of iron!"},
+  {emoji:"🔢",ta:"பூஜ்யம் (0) என்ற கணிதக் கருத்தை இந்திய கணிதவியலாளர்கள் உருவாக்கினர். இல்லாமல் இருந்தால் நவீன கணிதமே இல்லை!",en:"The concept of Zero was invented in India — without it, modern mathematics and computers wouldn't exist!"},
+  {emoji:"🌊",ta:"பசிபிக் பெருங்கடல் பூமியின் மொத்த நிலப்பரப்பை விட அகலமானது!",en:"The Pacific Ocean is larger than all the landmass on Earth combined — truly vast!"},
+  {emoji:"🏋️",ta:"மனித எலும்புகள் ஒரே அளவில் எஃகை விட அதிக சுமை தாங்கும் திறன் கொண்டுள்ளன!",en:"Bone is stronger than steel by weight — a small piece can support 17,000 lbs of pressure!"},
+  {emoji:"🍯",ta:"தேனீக்கள் 1 கிலோ தேன் உற்பத்தி செய்ய 40 லட்சம் பூக்களிலிருந்து தேன் சேகரிக்கின்றன!",en:"Bees must visit 4 million flowers and fly 90,000 km to produce just 1 kg of honey!"},
+  {emoji:"🌿",ta:"ஒரு மரம் ஆண்டுக்கு 22 கிலோ CO₂ உறிஞ்சுகிறது. ஒரு மனிதன் ஆண்டுக்கு 4 டன் CO₂ வெளியிடுகிறான்!",en:"One tree absorbs 22 kg of CO₂ per year. One human emits 4 tons annually — plant trees!"},
+  {emoji:"🎵",ta:"இசை கேட்பது மூளையில் செரோடோனின், டோபமைன், ஆக்சிடோசின் ஆகிய மூன்று மகிழ்ச்சி ரசாயனங்களையும் ஒரே நேரத்தில் வெளியிடுகிறது!",en:"Listening to music releases 3 happiness chemicals simultaneously — serotonin, dopamine, and oxytocin!"},
+  {emoji:"🛸",ta:"நாசாவின் வாயேஜர் 1 விண்கலம் 1977-ல் ஏவப்பட்டது — இப்போது 23 பில்லியன் கிலோமீட்டர் தொலைவில் உள்ளது!",en:"NASA's Voyager 1 (launched 1977) is now 23 billion km away — farthest human-made object!"},
+  {emoji:"🦒",ta:"ஒட்டகச்சிவிங்கி மற்றும் மனிதர் — இருவருக்கும் கழுத்தில் 7 எலும்புகள் மட்டுமே உள்ளன!",en:"A giraffe and a human both have exactly 7 neck vertebrae — just very different sizes!"},
+  {emoji:"⚡",ta:"மின்னல் ஒரு வினாடியில் 3 லட்சம் கிலோமீட்டர் வேகத்தில் பயணிக்கிறது — 1 பில்லியன் வோல்ட் சக்தி!",en:"Lightning travels at 300,000 km/s. A single bolt carries around 1 billion volts!"},
+  {emoji:"🐋",ta:"நீலத் திமிங்கலத்தின் இதயம் ஒரு கார் அளவு கொண்டது — நிமிடத்திற்கு 5-6 முறை மட்டுமே துடிக்கும்!",en:"A Blue Whale's heart is the size of a small car and beats only 5-6 times per minute!"},
+  {emoji:"🏔️",ta:"எவரெஸ்ட் சிகரம் ஒவ்வொரு ஆண்டும் 4 மில்லிமீட்டர் உயரமாகிறது!",en:"Mount Everest grows 4mm taller every year as tectonic plates keep pushing it upward!"},
+  {emoji:"🦷",ta:"மனித உடலில் மிகவும் கடினமான பொருள் பல் மினா (Enamel) — எந்த எலும்பை விடவும் கடினமானது!",en:"Tooth enamel is the hardest substance in the human body — harder than any bone!"},
+  {emoji:"📱",ta:"உலகில் மனிதர்களை விட அதிகமாக மொபைல் போன்கள் உள்ளன — 800 கோடி மக்களுக்கு 800 கோடிக்கும் மேலான போன்கள்!",en:"There are more mobile phones in the world than people — over 8 billion phones for 8 billion humans!"},
+  {emoji:"🦠",ta:"மனித உடலில் உள்ள பாக்டீரியாக்களின் எண்ணிக்கை நம் சொந்த செல்களை விட அதிகம் — பெரும்பாலானவை நண்பர்கள்!",en:"Your body has more bacteria cells than human cells — but most are helpful friends, not enemies!"},
+  {emoji:"🌡️",ta:"டங்ஸ்டன் மிகவும் அதிக வெப்பநிலையை தாங்கும் உலோகம் — 3,422°C வரை உருகாது!",en:"Tungsten has the highest melting point of any metal at 3,422°C — used in light bulb filaments!"}
+];
+
+function getHistEmoji(text){
+  const t=(text||'').toLowerCase();
+  if(/india|indian|gandhi|nehru|ambedkar|republic|independence|constitution/.test(t))return'🇮🇳';
+  if(/war|battle|massacre|invasion|military|attack|bomb/.test(t))return'⚔️';
+  if(/space|moon|nasa|rocket|satellite|launch/.test(t))return'🚀';
+  if(/internet|web|facebook|computer|tech|software/.test(t))return'💻';
+  if(/health|hospital|who|disease|covid|aids/.test(t))return'🏥';
+  if(/nobel|prize|award|laureate/.test(t))return'🏆';
+  if(/woman|women|feminist|mother teresa/.test(t))return'👩';
+  if(/earthquake|tsunami|disaster|flood/.test(t))return'🌊';
+  if(/music|film|art|poet|tagore|cinema/.test(t))return'🎭';
+  if(/environment|earth|climate|tree|nature/.test(t))return'🌍';
+  if(/science|discovery|research|raman|invention/.test(t))return'🔬';
+  if(/people|population|billion|million/.test(t))return'👥';
+  if(/korea|korean/.test(t))return'🪖';
+  if(/ussr|soviet|communist|cold war/.test(t))return'☭';
+  if(/usa|america|united states/.test(t))return'🇺🇸';
+  if(/slavery|slave|civil rights|rosa parks/.test(t))return'✊';
+  if(/buddha|buddhism|religion|converted/.test(t))return'☸️';
+  if(/bomb|hiroshima|nagasaki|nuclear/.test(t))return'💥';
+  if(/sport|olympic|cricket|football/.test(t))return'⚽';
+  if(/yoga|meditation/.test(t))return'🧘';
+  if(/uk|britain|england|london/.test(t))return'🏛️';
+  return'📅';
+}
+
+function populateDinamSlides(){
+  const now=new Date();
+  const m=now.getMonth()+1,d=now.getDate(),dow=now.getDay();
+  const key=m+'-'+d;
+  const setEl=(id,val)=>{const e=document.getElementById(id);if(e)e.textContent=val||'';};
+
+  // Date header
+  setEl('dinam-ta-date',TA_DAYS_D[dow]+', '+d+' '+TA_MONTHS_D[m-1]+' '+now.getFullYear());
+  setEl('dinam-en-date',now.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'}));
+
+  // Historical facts for today
+  const facts=HIST[key]||[
+    {yr:"இன்று",ta:"ஒவ்வொரு நாளும் வரலாறாகும்! இன்றை நாளை சிறப்பாக மாற்றுங்கள்!",en:"Every day makes history! Make today count with your best effort at work!"},
+    {yr:"HydraSpecma",ta:"ஒவ்வொரு நாளும் புதிய வாய்ப்பு — சிறந்தவர்களாக செயல்படுவோம்!",en:"Every day at HydraSpecma is a new opportunity — let's give our best together!"}
+  ];
+  const f1=facts[0]||{},f2=facts[1]||{};
+  // Set emojis based on content
+  setEl('dinam-ta-emoji1',getHistEmoji(f1.en||f1.ta));
+  setEl('dinam-ta-emoji2',getHistEmoji(f2.en||f2.ta));
+  setEl('dinam-en-emoji1',getHistEmoji(f1.en));
+  setEl('dinam-en-emoji2',getHistEmoji(f2.en));
+  setEl('dinam-ta-year1',f1.yr||'');setEl('dinam-ta-text1',f1.ta||'');
+  setEl('dinam-ta-year2',f2.yr||'');setEl('dinam-ta-text2',f2.ta||'');
+  setEl('dinam-en-year1',f1.yr||'');setEl('dinam-en-text1',f1.en||'');
+  setEl('dinam-en-year2',f2.yr||'');setEl('dinam-en-text2',f2.en||'');
+
+  // GK — rotate by day of month
+  const gk=GK_POOL[(d-1)%GK_POOL.length];
+  setEl('dinam-ta-gk-emoji',gk.emoji);setEl('dinam-ta-gk-text',gk.ta);
+  setEl('dinam-en-gk-emoji',gk.emoji);setEl('dinam-en-gk-text',gk.en);
+}
+// Call after all data is initialized:
+if(typeof populateDinamSlides==="function")populateDinamSlides();
 </script></body></html>
