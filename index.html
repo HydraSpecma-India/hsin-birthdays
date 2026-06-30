@@ -3,10 +3,10 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="version" content="20260630083539">
+<meta name="version" content="20260630103603">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Buddies – HydraSpecma India</title>
-<!-- v20260630083539 -->
+<!-- v20260630103603 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700;800;900&amp;family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -2461,7 +2461,7 @@ const MONTHS=['January','February','March','April','May','June','July','August',
 const MS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const WISHES=["May all your dreams come true! ✨","Wishing you joy, laughter & cake! 🎂","Many happy returns of the day! 🌟","May this year bring great success! 🚀","HydraSpecma family wishes you well! 💛","Have an amazing birthday! 🎊","You make our team brighter! ⭐"];
 
-let birthdays=JSON.parse(localStorage.getItem('hsin_bd')||'null')||[{"id":3,"name":"M. Prasanth","designation":"Jr. Technician","dept":"Production","month":5,"day":8,"photo":null},{"id":7,"name":"A.Vignesh","designation":"Technician","dept":"Production","month":5,"day":25,"photo":null},{"id":8,"name":"S.Mohan","designation":"Production Manager","dept":"Production","month":5,"day":27,"photo":null},{"id":9,"name":"R.SathishKumar","designation":"Diploma Trainee","dept":"Production","month":5,"day":29,"photo":null},{"id":10,"name":"AnandRaj Gopalan","designation":"Technical Engineer","dept":"Engineering","month":6,"day":1,"photo":null},{"id":11,"name":"S Selvi","designation":"Junior Technician","dept":"Production","month":6,"day":30,"photo":null},{"id":12,"name":"A Arunkumar","designation":"Diploma Trainee","dept":"Production","month":6,"day":7,"photo":null}];
+let birthdays=JSON.parse(localStorage.getItem('hsin_bd')||'null')||[{"id":3,"name":"M. Prasanth","designation":"Jr. Technician","dept":"Production","month":5,"day":8,"photo":null},{"id":7,"name":"A.Vignesh","designation":"Technician","dept":"Production","month":5,"day":25,"photo":null},{"id":8,"name":"S.Mohan","designation":"Production Manager","dept":"Production","month":5,"day":27,"photo":null},{"id":9,"name":"R.SathishKumar","designation":"Diploma Trainee","dept":"Production","month":5,"day":29,"photo":null},{"id":10,"name":"AnandRaj Gopalan","designation":"Technical Engineer","dept":"Engineering","month":6,"day":1,"photo":null},{"id":11,"name":"S Selvi","designation":"Junior Technician","dept":"Production","month":6,"day":30,"photo":null},{"id":12,"name":"A Arunkumar","designation":"Diploma Trainee","dept":"Production","month":6,"day":7,"photo":null},{"id":13,"name":"Anandhavasan Ravikumar","designation":"Sales Coordinator","dept":"Customer Service","month":7,"day":3,"photo":null},{"id":14,"name":"Vignesh Elangovan","designation":"Assitant Manager","dept":"NPD","month":7,"day":9,"photo":null},{"id":15,"name":"Sureshkumar Paramasivam","designation":"People and Culture - Business partner","dept":"P&C","month":7,"day":22,"photo":null},{"id":16,"name":"MOHAMMED RAFIQ","designation":"Junior Technician","dept":"Production","month":7,"day":25,"photo":null}];
 let nextId=Math.max(0,...birthdays.map(b=>b.id))+1;
 function save(){localStorage.setItem('hsin_bd',JSON.stringify(birthdays));}
 function gInit(n){return n.trim().split(/\s+/).map(w=>w[0]&&w[0].toUpperCase()).filter(Boolean).slice(0,2).join('');}
