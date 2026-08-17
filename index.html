@@ -8,6 +8,7 @@
 <title>Birthday Buddies – HydraSpecma India</title>
 <!-- v20260804043540 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700;800;900&amp;family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{--gold:#FFCC00;--gold-dark:#b8940a;--dark:#0d0d0d;--dark2:#141414;--dark3:#1c1c1c;--dark4:#242424;--text:#f0f0f0;--muted:#999;--red:#e74c3c;--blue:#58a6ff;}
@@ -515,6 +516,45 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
 .wash-drops{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden;}
 .wdrop{position:absolute;width:4px;background:linear-gradient(180deg,rgba(100,180,255,.6),transparent);border-radius:2px;animation:wdrop-fall linear infinite;}
 @keyframes wdrop-fall{0%{transform:translateY(-20px);opacity:0;}10%{opacity:.8;}90%{opacity:.4;}100%{transform:translateY(120px);opacity:0;}}
+
+/* ═══════════ ANNOUNCEMENT / POSTER SLIDES ═══════════ */
+#announce-wrapper{display:contents;}
+.announce-slide{position:absolute;top:0;left:0;right:0;height:var(--ann-h,100%);display:none;flex-direction:column;align-items:center;justify-content:center;padding:6px 12px 4px;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,#1a1a1a 0%,#0b0b0b 70%);}
+.announce-slide.active{display:flex;animation:ann-enter .6s cubic-bezier(.23,1,.32,1) both;}
+@keyframes ann-enter{0%{opacity:0;transform:scale(.94) translateY(22px);}100%{opacity:1;transform:scale(1) translateY(0);}}
+.ann-head{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:5px;flex-shrink:0;flex-wrap:nowrap;max-width:100%;line-height:1.2;}
+.ann-tag{background:linear-gradient(135deg,var(--gold),#ffe27a);color:#141414;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:3px 13px;border-radius:20px;white-space:nowrap;flex-shrink:0;animation:ann-pulse 2.2s ease-in-out infinite;}
+@keyframes ann-pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,204,0,.5);}50%{box-shadow:0 0 0 11px rgba(255,204,0,0);}}
+.ann-title{font-size:18px;font-weight:800;color:var(--gold);letter-spacing:.4px;text-shadow:0 2px 14px rgba(255,204,0,.28);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ann-page-chip{font-size:10px;color:var(--muted);border:1px solid #333;border-radius:12px;padding:2px 10px;letter-spacing:1px;}
+.ann-stage{flex:1;width:100%;display:flex;align-items:center;justify-content:center;min-height:0;position:relative;}
+.ann-media{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:10px;border:1px solid #2b2b2b;box-shadow:0 14px 45px rgba(0,0,0,.75),0 0 0 1px rgba(255,204,0,.13);background:#fff;display:block;}
+/* fill the full available height, keep aspect ratio, never overflow the width */
+img.ann-media,canvas.ann-media{width:auto;height:100%;max-width:100%;max-height:100%;}
+.ann-loading{color:var(--muted);font-size:13px;letter-spacing:1.5px;animation:ann-blink 1.2s ease-in-out infinite;}
+@keyframes ann-blink{0%,100%{opacity:.35;}50%{opacity:1;}}
+/* ── admin: announcement manager ── */
+.ann-row{display:flex;align-items:center;gap:12px;background:var(--dark3);border:1px solid #2a2a2a;border-radius:11px;padding:10px 12px;margin-bottom:8px;}
+.ann-row.ann-off{opacity:.42;}
+.ann-thumb{width:54px;height:54px;border-radius:8px;object-fit:cover;background:var(--dark4);flex-shrink:0;border:1px solid #333;}
+.ann-thumb-pdf{width:54px;height:54px;border-radius:8px;background:var(--dark4);display:flex;align-items:center;justify-content:center;font-size:23px;flex-shrink:0;border:1px solid #333;}
+.ann-meta{flex:1;min-width:0;}
+.ann-meta-title{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ann-meta-sub{font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.5;}
+.ann-live{color:#3fb950;font-weight:700;}
+.ann-sched{color:var(--blue);font-weight:700;}
+.ann-exp{color:var(--red);font-weight:700;}
+.ann-btns{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.ann-mini{background:transparent;border:1px solid #3a3a3a;color:var(--muted);border-radius:7px;padding:5px 9px;font-size:11px;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s;}
+.ann-mini:hover{border-color:var(--gold);color:var(--gold);}
+.ann-del{background:transparent;border:1px solid var(--red);color:var(--red);border-radius:7px;padding:5px 10px;font-size:11px;cursor:pointer;font-family:'Poppins',sans-serif;}
+.ann-del:hover{background:var(--red);color:#fff;}
+.ann-empty{text-align:center;color:var(--muted);font-size:12px;padding:28px 0;}
+.ann-preview{max-width:100%;max-height:150px;border-radius:8px;display:none;margin:0 auto;}
+.ann-prog{display:none;height:4px;background:#222;border-radius:3px;overflow:hidden;margin-top:10px;}
+.ann-prog-bar{height:100%;background:linear-gradient(90deg,var(--gold-dark),var(--gold));animation:prog 1.5s ease-in-out infinite;}
+.ann-status{font-size:11.5px;margin-top:8px;min-height:16px;}
+.ann-status.ok{color:#3fb950;}.ann-status.err{color:var(--red);}.ann-status.load{color:var(--blue);}
 
 /* ═══════ AWARENESS SLIDES BASE ═══════ */
 .aware-slide{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:16px 20px;overflow-y:auto;}
@@ -1684,6 +1724,7 @@ input:checked + .slider:before {
       <button class="tab-btn" onclick="switchTab(event,'tab-github')">⬆ GitHub</button>
       <button class="tab-btn" onclick="switchTab(event,'tab-shifts')">⏱ Shifts</button>
       <button class="tab-btn" onclick="switchTab(event,'tab-celebration')">🎂 Celebration</button>
+      <button class="tab-btn" onclick="switchTab(event,'tab-announce')">📢 Announcements</button>
     </div>
     <div class="admin-body">
 
@@ -1877,6 +1918,57 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
         </div>
       </div>
 
+      <!-- ══════════ ANNOUNCEMENTS TAB ══════════ -->
+      <div id="tab-announce" class="tab-content">
+        <div style="background:var(--dark3);border:1px solid #2a2a2a;border-radius:12px;padding:16px;margin-bottom:16px;">
+          <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px;">📢 Upload Announcement Poster</div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.5;">
+            Upload a <strong>JPG / PNG image</strong> or a <strong>PDF</strong>. The file is saved to your GitHub repo under
+            <code style="color:var(--blue);">announcements/</code> and shown full-screen in the slide rotation.
+            PDF files are rendered page-by-page — each page becomes its own slide.
+          </div>
+
+          <div class="photo-upload-area" id="ann-drop">
+            <input type="file" id="ann-file-input" accept="image/*,application/pdf" onchange="onAnnFileSelected(event)">
+            <img class="ann-preview" id="ann-preview">
+            <div class="photo-upload-icon" id="ann-icon">📢</div>
+            <div class="photo-upload-text" id="ann-drop-text">Click to select poster (JPG, PNG or PDF)</div>
+            <div class="photo-upload-name" id="ann-fname"></div>
+          </div>
+
+          <div class="form-row" style="margin-top:14px;">
+            <div class="form-group"><label>Announcement Title</label><input type="text" id="ann-title" placeholder="e.g. Safety Week — 25 Aug"></div>
+            <div class="form-group"><label>Display Duration (seconds)</label><input type="number" id="ann-duration" value="20" min="3" max="300"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Show From (optional)</label><input type="date" id="ann-start"></div>
+            <div class="form-group"><label>Show Until (optional)</label><input type="date" id="ann-end"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Order (lower shows first)</label><input type="number" id="ann-order" value="1" min="1" max="99"></div>
+            <div class="form-group">
+              <label>Active</label>
+              <label class="switch" style="margin-top:6px;">
+                <input type="checkbox" id="ann-active" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <button class="btn-add" id="btn-ann-upload" onclick="uploadAnnouncement()" disabled>⬆ Upload &amp; Add Announcement</button>
+          <div class="ann-prog" id="ann-prog"><div class="ann-prog-bar"></div></div>
+          <div class="ann-status" id="ann-status"></div>
+        </div>
+
+        <div style="font-size:12px;font-weight:700;color:var(--gold);margin:0 0 10px 2px;letter-spacing:1px;">CURRENT ANNOUNCEMENTS</div>
+        <div id="ann-list"></div>
+
+        <div style="font-size:11px;color:var(--muted);margin-top:16px;line-height:1.6;border-top:1px solid #2a2a2a;padding-top:12px;">
+          💡 <strong>Remember:</strong> after adding or removing announcements, open the
+          <strong>⬆ GitHub</strong> tab and click <strong>Push HTML to GitHub</strong> so the display screen picks up the changes.
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -2001,6 +2093,8 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
       <p>Add records from the Admin panel.</p>
     </div>
     <div id="slides-wrapper"></div>
+    <!-- ANNOUNCEMENT POSTER SLIDES (built dynamically) -->
+    <div id="announce-wrapper"></div>
     <div id="month-slide">
       <div class="month-title" id="month-slide-title"></div>
       <div class="month-grid" id="month-grid"></div>
@@ -2601,6 +2695,358 @@ function addFireworks(card){
   card.appendChild(fr);
 }
 
+// ══════════════════════════════════════════════════════════════════════════════
+//  📢 ANNOUNCEMENT POSTERS  —  data, GitHub upload, slide rendering
+// ══════════════════════════════════════════════════════════════════════════════
+const DEFAULT_ANNOUNCEMENTS = [];
+
+function getAnnouncements(){
+  const raw=JSON.parse(localStorage.getItem('hsin_announce')||'null');
+  const list=(raw&&Array.isArray(raw))?raw:DEFAULT_ANNOUNCEMENTS;
+  return list.map(a=>Object.assign({active:true,duration:20,order:1,start:'',end:'',type:'image'},a));
+}
+function saveAnnouncements(list){localStorage.setItem('hsin_announce',JSON.stringify(list));}
+
+// Public URL of an uploaded poster inside the repo
+function announceUrl(file){
+  const c=getGhCfg();
+  const user=c.user||'hydraspecma-india';
+  const repo=c.repo||'hsin-birthdays';
+  const branch=c.branch||'main';
+  return `https://raw.githubusercontent.com/${user}/${repo}/${branch}/announcements/${encodeURIComponent(file)}`;
+}
+
+// yyyy-mm-dd for "today" in local time
+function annToday(){
+  const d=new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+// Is this announcement due to be on screen right now?
+function annIsLive(a){
+  if(!a.active)return false;
+  const t=annToday();
+  if(a.start&&t<a.start)return false;
+  if(a.end&&t>a.end)return false;
+  return true;
+}
+function annStatusLabel(a){
+  const t=annToday();
+  if(!a.active)return '<span style="color:var(--muted);font-weight:700;">PAUSED</span>';
+  if(a.end&&t>a.end)return '<span class="ann-exp">EXPIRED</span>';
+  if(a.start&&t<a.start)return '<span class="ann-sched">SCHEDULED</span>';
+  return '<span class="ann-live">● LIVE</span>';
+}
+function annVisible(){
+  return getAnnouncements().filter(annIsLive)
+    .sort((a,b)=>(a.order||1)-(b.order||1)||(a.id-b.id));
+}
+
+// ── Fit poster slides to the exact free space above the dots ────────────────
+function annFitScreen(){
+  const area=document.getElementById('slide-area');
+  if(!area)return;
+  const dots=document.getElementById('slide-dots');
+  const top=area.getBoundingClientRect().top;        // below top-bar + today-strip
+  const dotsH=dots?dots.offsetHeight:0;
+  const h=Math.max(220,Math.round(window.innerHeight-top-dotsH));
+  document.documentElement.style.setProperty('--ann-h',h+'px');
+}
+window.addEventListener('resize',annFitScreen);
+window.addEventListener('orientationchange',annFitScreen);
+document.addEventListener('fullscreenchange',()=>setTimeout(annFitScreen,120));
+
+// ── Build one poster slide element ──────────────────────────────────────────
+function makeAnnSlideEl(a,pageLabel){
+  const el=document.createElement('div');
+  el.className='announce-slide';
+  el.innerHTML=`
+    <div class="ann-head">
+      <span class="ann-tag">📢 Announcement</span>
+      <span class="ann-title">${(a.title||'Notice').replace(/</g,'&lt;')}</span>
+      ${pageLabel?`<span class="ann-page-chip">${pageLabel}</span>`:''}
+    </div>
+    <div class="ann-stage"><div class="ann-loading">LOADING…</div></div>`;
+  return el;
+}
+
+// ── Render a PDF into one canvas slide per page ─────────────────────────────
+async function annRenderPdf(a,container,out){
+  if(typeof pdfjsLib==='undefined')throw new Error('pdf.js not loaded');
+  pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  const pdf=await pdfjsLib.getDocument({url:announceUrl(a.file),withCredentials:false}).promise;
+  const total=pdf.numPages;
+  for(let p=1;p<=total;p++){
+    const el=makeAnnSlideEl(a,total>1?`Page ${p} of ${total}`:'');
+    container.appendChild(el);
+    out.push({el,type:'announce',dur:(a.duration||20)*1000,annId:a.id});
+    try{
+      const page=await pdf.getPage(p);
+      // Render at ~2x device resolution for a crisp big-screen image
+      const base=page.getViewport({scale:1});
+      const availH=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--ann-h'),10);
+      const targetH=Math.max((availH||window.innerHeight-150)-40,700);
+      const scale=Math.min((targetH/base.height)*2,4);
+      const vp=page.getViewport({scale});
+      const canvas=document.createElement('canvas');
+      canvas.className='ann-media';
+      canvas.width=vp.width;canvas.height=vp.height;
+      await page.render({canvasContext:canvas.getContext('2d'),viewport:vp}).promise;
+      const stage=el.querySelector('.ann-stage');
+      stage.innerHTML='';stage.appendChild(canvas);
+    }catch(e){
+      console.error('PDF page render failed',p,e);
+      el.querySelector('.ann-stage').innerHTML='<div class="ann-loading">⚠ Could not render page '+p+'</div>';
+    }
+  }
+}
+
+// ── Render an image poster ──────────────────────────────────────────────────
+function annRenderImage(a,container,out){
+  const el=makeAnnSlideEl(a,'');
+  container.appendChild(el);
+  out.push({el,type:'announce',dur:(a.duration||20)*1000,annId:a.id});
+  const img=new Image();
+  img.className='ann-media';
+  img.onload=()=>{const st=el.querySelector('.ann-stage');st.innerHTML='';st.appendChild(img);};
+  img.onerror=()=>{el.querySelector('.ann-stage').innerHTML='<div class="ann-loading">⚠ Poster not found on GitHub</div>';};
+  img.src=announceUrl(a.file);
+}
+
+// ── Build all announcement slides and splice them into the rotation ─────────
+let _annBuildToken=0;
+async function buildAnnouncementSlides(){
+  const token=++_annBuildToken;
+  const container=document.getElementById('announce-wrapper');
+  if(!container)return;
+  annFitScreen();
+  container.innerHTML='';
+  const list=annVisible();
+  if(!list.length){
+    slideTimings=slides.map(s=>s.dur||15000);
+    renderDots();
+    return;
+  }
+  const out=[];
+  for(const a of list){
+    if(token!==_annBuildToken)return; // a newer build started — abandon this one
+    try{
+      if(a.type==='pdf')await annRenderPdf(a,container,out);
+      else annRenderImage(a,container,out);
+    }catch(e){
+      console.error('Announcement failed:',a.title,e);
+      const el=makeAnnSlideEl(a,'');
+      container.appendChild(el);
+      el.querySelector('.ann-stage').innerHTML='<div class="ann-loading">⚠ Could not load this announcement</div>';
+      out.push({el,type:'announce',dur:(a.duration||20)*1000,annId:a.id});
+    }
+  }
+  if(token!==_annBuildToken)return;
+
+  // Insert announcements right after the birthday + month-overview slides
+  let insertAt=0;
+  for(let i=0;i<slides.length;i++){
+    if(slides[i].type==='bday'||slides[i].type==='month')insertAt=i+1;
+  }
+  const wasEmpty=slides.length===0;
+  slides.splice(insertAt,0,...out);
+  slideTimings=slides.map(s=>s.dur||15000);
+
+  if(wasEmpty){
+    // No birthdays this month — announcements become the whole rotation
+    const nb=document.getElementById('no-birthday');
+    if(nb)nb.style.display='none';
+    showSlide(0);
+    startAutoSlideVarible();
+  }
+  renderDots();
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  📢 ADMIN — upload & manage announcements
+// ══════════════════════════════════════════════════════════════════════════════
+let annFile=null,annFileType='image';
+
+function annSetStatus(cls,msg){
+  const el=document.getElementById('ann-status');
+  if(!el)return;
+  el.className='ann-status '+(cls||'');el.innerHTML=msg||'';
+}
+
+function onAnnFileSelected(ev){
+  const f=ev.target.files[0];if(!f)return;
+  const isPdf=/pdf$/i.test(f.type)||/\.pdf$/i.test(f.name);
+  const isImg=/^image\//i.test(f.type);
+  if(!isPdf&&!isImg){
+    annSetStatus('err','❌ Only JPG, PNG or PDF files are supported.');
+    ev.target.value='';return;
+  }
+  if(f.size>8*1024*1024){
+    annSetStatus('err','❌ File is larger than 8 MB. Please compress it first.');
+    ev.target.value='';return;
+  }
+  annFile=f;annFileType=isPdf?'pdf':'image';
+  document.getElementById('ann-fname').textContent=f.name+'  ('+Math.round(f.size/1024)+' KB)';
+  const prev=document.getElementById('ann-preview');
+  const icon=document.getElementById('ann-icon');
+  if(isImg){
+    const r=new FileReader();
+    r.onload=e=>{prev.src=e.target.result;prev.style.display='block';icon.style.display='none';};
+    r.readAsDataURL(f);
+  }else{
+    prev.style.display='none';icon.style.display='block';icon.textContent='📄';
+  }
+  // Pre-fill the title from the filename if it's still blank
+  const t=document.getElementById('ann-title');
+  if(t&&!t.value.trim())t.value=f.name.replace(/\.[^.]+$/,'').replace(/[-_]+/g,' ').trim();
+  document.getElementById('btn-ann-upload').disabled=false;
+  annSetStatus('','');
+}
+
+function annFilename(title,isPdf,originalName){
+  const slug=(title||'poster').trim().toLowerCase()
+    .replace(/[^a-z0-9]/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'').slice(0,42)||'poster';
+  const stamp=Date.now().toString(36);
+  let ext=isPdf?'pdf':'jpg';
+  if(!isPdf&&originalName){
+    const m=originalName.toLowerCase().match(/\.(jpe?g|png|gif|webp|bmp|svg)$/);
+    if(m)ext=(m[1]==='jpeg')?'jpg':m[1];
+  }
+  return `${slug}-${stamp}.${ext}`;
+}
+
+async function annUploadFileToGitHub(file,filename){
+  const cfg=getGhCfg();
+  if(!cfg.user||!cfg.repo||!cfg.token){
+    annSetStatus('err','❌ GitHub config missing. Open the ⬆ GitHub tab, fill in the details and Save first.');
+    return false;
+  }
+  const b64=await fileToBase64(file);
+  const path=`announcements/${filename}`;
+  const apiUrl=`https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/${path}`;
+  const headers={'Authorization':'token '+cfg.token,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'};
+  let sha=null;
+  try{const r=await fetch(`${apiUrl}?ref=${cfg.branch||'main'}`,{headers});if(r.ok){const d=await r.json();sha=d.sha;}}catch(e){}
+  const body={message:`Add announcement: ${filename}`,content:b64,branch:cfg.branch||'main'};
+  if(sha)body.sha=sha;
+  const res=await fetch(apiUrl,{method:'PUT',headers,body:JSON.stringify(body)});
+  if(!res.ok){
+    let m='';try{m=(await res.json()).message||'';}catch(e){}
+    annSetStatus('err','❌ Upload failed: '+(m||res.status));
+    return false;
+  }
+  return true;
+}
+
+async function uploadAnnouncement(){
+  if(!annFile){annSetStatus('err','❌ Please select a poster file first.');return;}
+  const title=document.getElementById('ann-title').value.trim();
+  if(!title){annSetStatus('err','❌ Please enter a title.');return;}
+  const duration=Math.max(3,Math.min(300,parseInt(document.getElementById('ann-duration').value,10)||20));
+  const order=Math.max(1,Math.min(99,parseInt(document.getElementById('ann-order').value,10)||1));
+  const start=document.getElementById('ann-start').value||'';
+  const end=document.getElementById('ann-end').value||'';
+  if(start&&end&&end<start){annSetStatus('err','❌ "Show Until" cannot be before "Show From".');return;}
+
+  const btn=document.getElementById('btn-ann-upload');
+  btn.disabled=true;
+  document.getElementById('ann-prog').style.display='block';
+  annSetStatus('load','⏳ Uploading poster to GitHub…');
+
+  const filename=annFilename(title,annFileType==='pdf',annFile.name);
+  let ok=false;
+  try{ok=await annUploadFileToGitHub(annFile,filename);}
+  catch(e){console.error(e);annSetStatus('err','❌ '+e.message);}
+  document.getElementById('ann-prog').style.display='none';
+
+  if(!ok){btn.disabled=false;return;}
+
+  const list=getAnnouncements();
+  const id=Math.max(0,...list.map(a=>a.id||0))+1;
+  list.push({id,title,file:filename,type:annFileType,active:document.getElementById('ann-active').checked,
+             start,end,duration,order,added:new Date().toISOString()});
+  saveAnnouncements(list);
+  annSetStatus('ok','✅ Announcement added! Remember to Push HTML to GitHub so the display screen updates.');
+  annResetForm();
+  renderAnnouncements();
+}
+
+function annResetForm(){
+  annFile=null;annFileType='image';
+  const el=id=>document.getElementById(id);
+  el('ann-file-input').value='';
+  el('ann-title').value='';
+  el('ann-duration').value='20';
+  el('ann-order').value='1';
+  el('ann-start').value='';
+  el('ann-end').value='';
+  el('ann-active').checked=true;
+  el('ann-preview').style.display='none';
+  el('ann-preview').src='';
+  el('ann-icon').style.display='block';
+  el('ann-icon').textContent='📢';
+  el('ann-fname').textContent='';
+  el('btn-ann-upload').disabled=true;
+}
+
+function renderAnnouncements(){
+  const box=document.getElementById('ann-list');
+  if(!box)return;
+  const list=getAnnouncements().sort((a,b)=>(a.order||1)-(b.order||1)||(a.id-b.id));
+  if(!list.length){
+    box.innerHTML='<div class="ann-empty">No announcements yet. Upload a poster above to get started.</div>';
+    return;
+  }
+  box.innerHTML=list.map(a=>{
+    const thumb=a.type==='pdf'
+      ? '<div class="ann-thumb-pdf">📄</div>'
+      : `<img class="ann-thumb" src="${announceUrl(a.file)}" onerror="this.style.display='none';">`;
+    const range=(a.start||a.end)
+      ? `${a.start||'always'} → ${a.end||'no end'}`
+      : 'always on';
+    return `
+      <div class="ann-row${a.active?'':' ann-off'}">
+        ${thumb}
+        <div class="ann-meta">
+          <div class="ann-meta-title">${(a.title||'Untitled').replace(/</g,'&lt;')}</div>
+          <div class="ann-meta-sub">
+            ${annStatusLabel(a)} &nbsp;·&nbsp; ${a.type==='pdf'?'PDF':'Image'} &nbsp;·&nbsp; ${a.duration||20}s &nbsp;·&nbsp; order ${a.order||1}<br>
+            📅 ${range}
+          </div>
+        </div>
+        <div class="ann-btns">
+          <button class="ann-mini" onclick="annMove(${a.id},-1)" title="Move up">▲</button>
+          <button class="ann-mini" onclick="annMove(${a.id},1)" title="Move down">▼</button>
+          <button class="ann-mini" onclick="annToggle(${a.id})">${a.active?'⏸ Pause':'▶ Resume'}</button>
+          <button class="ann-del" onclick="annDelete(${a.id})">🗑</button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function annToggle(id){
+  const list=getAnnouncements();
+  const a=list.find(x=>x.id===id);if(!a)return;
+  a.active=!a.active;saveAnnouncements(list);renderAnnouncements();
+  annSetStatus('ok','✅ Updated. Push HTML to GitHub to apply on the display screen.');
+}
+function annMove(id,dir){
+  const list=getAnnouncements().sort((a,b)=>(a.order||1)-(b.order||1)||(a.id-b.id));
+  const i=list.findIndex(x=>x.id===id);
+  const j=i+dir;
+  if(i<0||j<0||j>=list.length)return;
+  [list[i],list[j]]=[list[j],list[i]];
+  list.forEach((a,k)=>a.order=k+1);
+  saveAnnouncements(list);renderAnnouncements();
+}
+function annDelete(id){
+  const list=getAnnouncements();
+  const a=list.find(x=>x.id===id);if(!a)return;
+  if(!confirm('Remove "'+(a.title||'this announcement')+'" from the slide screen?\n\n(The file stays in the GitHub repo — only the listing is removed.)'))return;
+  saveAnnouncements(list.filter(x=>x.id!==id));
+  renderAnnouncements();
+  annSetStatus('ok','✅ Removed. Push HTML to GitHub to apply on the display screen.');
+}
+
 // ===== SLIDES =====
 let currentSlide=0,slides=[],slideTimer=null;
 
@@ -2625,7 +3071,13 @@ function buildSlides(){
   const msEl=document.getElementById('month-slide');
   if(msEl)msEl.classList.remove('active');
 
-  if(!monthBdays.length){document.getElementById('no-birthday').style.display='flex';document.getElementById('slide-dots').innerHTML='';return;}
+  if(!monthBdays.length){
+    document.getElementById('no-birthday').style.display='flex';
+    document.getElementById('slide-dots').innerHTML='';
+    slides.length=0;slideTimings=[];
+    buildAnnouncementSlides();   // announcements still play even with no birthdays
+    return;
+  }
 
   const byDay={};
   monthBdays.forEach(b=>{if(!byDay[b.day])byDay[b.day]=[];byDay[b.day].push(b);});
@@ -2742,12 +3194,13 @@ function buildSlides(){
   infoSlides.forEach(s=>slides.push(s));
 
   // Per-slide timings: ALL slides = 15 seconds
-  slideTimings=slides.map(() => 15000);
+  slideTimings=slides.map(s => s.dur || 15000);
 
   renderShiftSlide();
   renderDots();
   showSlide(0);
   startAutoSlideVarible();
+  buildAnnouncementSlides();   // 📢 posters load async, then splice into rotation
 }
 
 function showSlide(idx){
@@ -2760,12 +3213,13 @@ function showSlide(idx){
   const _ss=document.getElementById('shift-slide');if(_ss)_ss.classList.remove('active');
   const _sts=document.getElementById('shift-ta-slide');if(_sts)_sts.classList.remove('active');
   const _ws=document.getElementById('wash-slide');if(_ws)_ws.classList.remove('active');
-  document.querySelectorAll('.aware-slide,.dinam-slide').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.aware-slide,.dinam-slide,.announce-slide').forEach(el=>el.classList.remove('active'));
   const s=slides[idx];if(!s)return;
   // For bday slides, show the wrapper container then activate the slide inside
   if(s.type==='bday'){
     if(wrapper)wrapper.style.display='flex';
   }
+  if(s.type==='announce')annFitScreen();   // 📢 re-measure: the today-strip may have appeared/hidden
   s.el.classList.add('active');
   if(s.isToday&&s.type==='bday')launchConfetti();
   // Re-trigger step animations each time slide appears
@@ -2810,7 +3264,7 @@ document.getElementById('pwd-input').addEventListener('keydown',e=>{if(e.key==='
 
 // ===== ADMIN =====
 function openAdmin(){
-  loadGhConfig();renderRecords();renderHistory();loadShiftAdminFields();
+  loadGhConfig();renderRecords();renderHistory();loadShiftAdminFields();renderAnnouncements();
   if (typeof populateHourSelects === 'function') {
     populateHourSelects();
     loadCelebrationAdminFields();
@@ -2833,6 +3287,7 @@ function switchTab(ev,id){
   document.getElementById(id).classList.add('active');ev.target.classList.add('active');
   if(id==='tab-records')renderRecords();
   if(id==='tab-history')renderHistory();
+  if(id==='tab-announce')renderAnnouncements();
 }
 
 // Add photo state
@@ -3073,6 +3528,7 @@ function generateBakedHTML(){
   const ts=new Date().toISOString().replace(/[^0-9]/g,'').slice(0,14);
   const shiftDataJson=JSON.stringify(getShiftData());
   const celDataJson=JSON.stringify(getCelebrationData());
+  const annDataJson=JSON.stringify(getAnnouncements());
   let out=_originalCleanHTML
     // Inject current birthday data
     .replace(
@@ -3088,6 +3544,11 @@ function generateBakedHTML(){
     .replace(
       /const DEFAULT_CELEBRATION = \{[\s\S]*?\};/,
       `const DEFAULT_CELEBRATION = ${celDataJson};`
+    )
+    // Inject current announcement posters
+    .replace(
+      /const DEFAULT_ANNOUNCEMENTS = \[[\s\S]*?\];/,
+      `const DEFAULT_ANNOUNCEMENTS = ${annDataJson};`
     )
     // Update version timestamp in comment so browsers always fetch fresh
     .replace(/<!-- v\d+ -->/, `<!-- v${ts} -->`)
