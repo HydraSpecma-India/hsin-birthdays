@@ -3,10 +3,10 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="version" content="20260804043540">
+<meta name="version" content="20260817072200">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Buddies – HydraSpecma India</title>
-<!-- v20260804043540 -->
+<!-- v20260817072200 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700;800;900&amp;family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
@@ -1949,19 +1949,30 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
             <div class="form-group">
               <label>Active</label>
               <label class="switch" style="margin-top:6px;">
-                <input type="checkbox" id="ann-active" checked>
+                <input type="checkbox" id="ann-active" checked="">
                 <span class="slider round"></span>
               </label>
             </div>
           </div>
 
-          <button class="btn-add" id="btn-ann-upload" onclick="uploadAnnouncement()" disabled>⬆ Upload &amp; Add Announcement</button>
+          <button class="btn-add" id="btn-ann-upload" onclick="uploadAnnouncement()" disabled="">⬆ Upload &amp; Add Announcement</button>
           <div class="ann-prog" id="ann-prog"><div class="ann-prog-bar"></div></div>
           <div class="ann-status" id="ann-status"></div>
         </div>
 
-        <div style="font-size:12px;font-weight:700;color:var(--gold);margin:0 0 10px 2px;letter-spacing:1px;">CURRENT ANNOUNCEMENTS</div>
+        <div id="ann-dirty" style="display:none;background:rgba(231,76,60,.12);border:1px solid var(--red);border-radius:10px;padding:10px 13px;font-size:11.5px;color:#ff9c8f;margin-bottom:12px;line-height:1.55;">
+          ⚠ <strong>Not published yet.</strong> Your announcement list has changed on this PC.
+          Open the <strong>⬆ GitHub</strong> tab and click <strong>Push HTML to GitHub</strong> —
+          until you do, the display screen will keep showing the old list.
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 10px;">
+          <div style="font-size:12px;font-weight:700;color:var(--gold);letter-spacing:1px;">CURRENT ANNOUNCEMENTS</div>
+          <button class="ann-mini" onclick="annSyncFromGitHub()" title="Read the announcements/ folder in your repo">🔄 Sync from GitHub</button>
+        </div>
         <div id="ann-list"></div>
+        <div id="ann-sync-box" style="display:none;margin-top:12px;border-top:1px dashed #333;padding-top:12px;"></div>
+        <div id="ann-diag" style="font-size:10.5px;color:var(--muted);margin-top:10px;line-height:1.6;"></div>
 
         <div style="font-size:11px;color:var(--muted);margin-top:16px;line-height:1.6;border-top:1px solid #2a2a2a;padding-top:12px;">
           💡 <strong>Remember:</strong> after adding or removing announcements, open the
@@ -2698,14 +2709,37 @@ function addFireworks(card){
 // ══════════════════════════════════════════════════════════════════════════════
 //  📢 ANNOUNCEMENT POSTERS  —  data, GitHub upload, slide rendering
 // ══════════════════════════════════════════════════════════════════════════════
-const DEFAULT_ANNOUNCEMENTS = [];
+const DEFAULT_ANNOUNCEMENTS = [{"active":true,"duration":30,"order":1,"start":"2026-08-16","end":"2026-09-20","type":"image","id":1,"title":"Health Month","file":"health-month-mswvk1j3.png","added":"2026-08-17T06:50:39.751Z"}];
 
 function getAnnouncements(){
-  const raw=JSON.parse(localStorage.getItem('hsin_announce')||'null');
-  const list=(raw&&Array.isArray(raw))?raw:DEFAULT_ANNOUNCEMENTS;
+  let raw=null;
+  try{raw=JSON.parse(localStorage.getItem('hsin_announce')||'null');}catch(e){console.warn('announce storage unreadable',e);}
+  const baked=Array.isArray(DEFAULT_ANNOUNCEMENTS)?DEFAULT_ANNOUNCEMENTS:[];
+  // Local edits win — but an EMPTY local list must never hide the list baked
+  // into the pushed HTML (that was the "list is empty everywhere" bug).
+  let list;
+  if(Array.isArray(raw)&&raw.length)list=raw;
+  else list=baked;
   return list.map(a=>Object.assign({active:true,duration:20,order:1,start:'',end:'',type:'image'},a));
 }
-function saveAnnouncements(list){localStorage.setItem('hsin_announce',JSON.stringify(list));}
+function saveAnnouncements(list){
+  try{
+    localStorage.setItem('hsin_announce',JSON.stringify(list));
+    localStorage.setItem('hsin_announce_dirty','1');
+  }catch(e){
+    console.error('Could not save announcements',e);
+    alert('⚠ Could not save to this browser\'s storage: '+e.message+'\n\nIf you are in Private/Incognito mode, switch to a normal window.');
+    return false;
+  }
+  annUpdateDirtyBanner();
+  return true;
+}
+function annUpdateDirtyBanner(){
+  const el=document.getElementById('ann-dirty');
+  if(!el)return;
+  const dirty=localStorage.getItem('hsin_announce_dirty')==='1';
+  el.style.display=dirty?'block':'none';
+}
 
 // Public URL of an uploaded poster inside the repo
 function announceUrl(file){
@@ -2960,12 +2994,22 @@ async function uploadAnnouncement(){
 
   if(!ok){btn.disabled=false;return;}
 
+  // ── persist FIRST, before touching any UI ──
   const list=getAnnouncements();
   const id=Math.max(0,...list.map(a=>a.id||0))+1;
   list.push({id,title,file:filename,type:annFileType,active:document.getElementById('ann-active').checked,
              start,end,duration,order,added:new Date().toISOString()});
-  saveAnnouncements(list);
-  annSetStatus('ok','✅ Announcement added! Remember to Push HTML to GitHub so the display screen updates.');
+  const saved=saveAnnouncements(list);
+  // verify it really landed in storage
+  let verified=false;
+  try{verified=(JSON.parse(localStorage.getItem('hsin_announce')||'[]')||[]).some(a=>a.file===filename);}catch(e){}
+  if(!saved||!verified){
+    annSetStatus('err','⚠ The poster reached GitHub but could NOT be saved in this browser. Use "🔄 Sync from GitHub" below to add it.');
+    btn.disabled=false;
+    renderAnnouncements();
+    return;
+  }
+  annSetStatus('ok','✅ Added! Now open the <strong>⬆ GitHub</strong> tab and click <strong>Push HTML to GitHub</strong> — otherwise the display screen will not see it.');
   annResetForm();
   renderAnnouncements();
 }
@@ -2991,6 +3035,16 @@ function annResetForm(){
 function renderAnnouncements(){
   const box=document.getElementById('ann-list');
   if(!box)return;
+  annUpdateDirtyBanner();
+  const dg=document.getElementById('ann-diag');
+  if(dg){
+    const c=getGhCfg();
+    const u=c.user||'hydraspecma-india',r=c.repo||'hsin-birthdays',b=c.branch||'main';
+    const stored=(()=>{try{return (JSON.parse(localStorage.getItem('hsin_announce')||'[]')||[]).length;}catch(e){return '?';}})();
+    dg.innerHTML=`📁 Posters folder: <code style="color:var(--blue);">${u}/${r}@${b}/announcements/</code>`+
+      `<br>🔑 GitHub token: ${c.token?'<span style="color:#3fb950;">saved</span>':'<span style="color:var(--red);">NOT SET — uploads will fail</span>'}`+
+      `<br>💾 Saved on this PC: ${stored} &nbsp;·&nbsp; 📦 Published in this HTML: ${(DEFAULT_ANNOUNCEMENTS||[]).length} &nbsp;·&nbsp; ▶ Playing now: ${annVisible().length}`;
+  }
   const list=getAnnouncements().sort((a,b)=>(a.order||1)-(b.order||1)||(a.id-b.id));
   if(!list.length){
     box.innerHTML='<div class="ann-empty">No announcements yet. Upload a poster above to get started.</div>';
@@ -3021,6 +3075,78 @@ function renderAnnouncements(){
         </div>
       </div>`;
   }).join('');
+}
+
+// ── Read the real contents of announcements/ in the repo ──────────────────
+async function annSyncFromGitHub(){
+  const box=document.getElementById('ann-sync-box');
+  const cfg=getGhCfg();
+  const user=cfg.user||'hydraspecma-india';
+  const repo=cfg.repo||'hsin-birthdays';
+  const branch=cfg.branch||'main';
+  box.style.display='block';
+  box.innerHTML='<div class="ann-empty">⏳ Reading '+user+'/'+repo+' → announcements/ …</div>';
+  const headers={'Accept':'application/vnd.github.v3+json'};
+  if(cfg.token)headers['Authorization']='token '+cfg.token;
+  let files=[];
+  try{
+    const url=`https://api.github.com/repos/${user}/${repo}/contents/announcements?ref=${branch}`;
+    const res=await fetch(url,{headers});
+    if(res.status===404){
+      box.innerHTML='<div class="ann-empty">📁 No <code>announcements/</code> folder found in '+user+'/'+repo+' (branch '+branch+').<br>Upload a poster above to create it.</div>';
+      return;
+    }
+    if(!res.ok){
+      let m='';try{m=(await res.json()).message||'';}catch(e){}
+      box.innerHTML='<div class="ann-empty" style="color:var(--red);">❌ GitHub said: '+(m||res.status)+'</div>';
+      return;
+    }
+    const data=await res.json();
+    files=(Array.isArray(data)?data:[]).filter(f=>f.type==='file'&&/\.(pdf|jpe?g|png|gif|webp|bmp)$/i.test(f.name));
+  }catch(e){
+    box.innerHTML='<div class="ann-empty" style="color:var(--red);">❌ '+e.message+'</div>';
+    return;
+  }
+
+  const known=new Set(getAnnouncements().map(a=>a.file));
+  const missing=files.filter(f=>!known.has(f.name));
+  if(!files.length){
+    box.innerHTML='<div class="ann-empty">📁 The <code>announcements/</code> folder exists but is empty.</div>';
+    return;
+  }
+  if(!missing.length){
+    box.innerHTML='<div class="ann-empty">✅ All '+files.length+' file(s) in the repo are already in your list above.</div>';
+    return;
+  }
+  box.innerHTML='<div style="font-size:11.5px;color:var(--gold);margin-bottom:8px;font-weight:700;">Found '+missing.length+
+    ' poster(s) in GitHub that are missing from your list:</div>'+
+    missing.map(f=>{
+      const isPdf=/\.pdf$/i.test(f.name);
+      const safe=f.name.replace(/'/g,"\\'");
+      return `<div class="ann-row">
+        ${isPdf?'<div class="ann-thumb-pdf">📄</div>':`<img class="ann-thumb" src="${announceUrl(f.name)}" onerror="this.style.display='none';">`}
+        <div class="ann-meta">
+          <div class="ann-meta-title">${f.name}</div>
+          <div class="ann-meta-sub">${Math.round((f.size||0)/1024)} KB · ${isPdf?'PDF':'Image'}</div>
+        </div>
+        <div class="ann-btns"><button class="ann-mini" style="border-color:var(--gold);color:var(--gold);" onclick="annAdopt('${safe}')">➕ Add to slides</button></div>
+      </div>`;
+    }).join('');
+}
+
+function annAdopt(filename){
+  const list=getAnnouncements();
+  if(list.some(a=>a.file===filename))return;
+  const isPdf=/\.pdf$/i.test(filename);
+  const title=filename.replace(/\.[^.]+$/,'').replace(/-[a-z0-9]{6,}$/i,'').replace(/[-_]+/g,' ').trim()||'Announcement';
+  const id=Math.max(0,...list.map(a=>a.id||0))+1;
+  const order=Math.max(0,...list.map(a=>a.order||0))+1;
+  list.push({id,title:title.charAt(0).toUpperCase()+title.slice(1),file:filename,type:isPdf?'pdf':'image',
+             active:true,start:'',end:'',duration:20,order,added:new Date().toISOString()});
+  saveAnnouncements(list);
+  renderAnnouncements();
+  annSyncFromGitHub();
+  annSetStatus('ok','✅ Added "'+title+'". Now Push HTML to GitHub so the display screen sees it.');
 }
 
 function annToggle(id){
@@ -3588,6 +3714,8 @@ async function pushHTMLToGitHub(){
       const el=document.getElementById('gh-status');
       el.className='gh-status success';
       el.innerHTML=`✅ Pushed successfully!<br><a href="${pageUrl}" target="_blank" style="color:#3fb950;font-size:12px;word-break:break-all;">🔗 ${pageUrl}</a>`;
+      try{localStorage.removeItem('hsin_announce_dirty');}catch(e){}
+      if(typeof annUpdateDirtyBanner==='function')annUpdateDirtyBanner();
     }else setGhStatus('error','❌ '+(data.message||res.status));
   }catch(e){setGhStatus('error','❌ '+e.message);}
   finally{btn.disabled=false;btn.textContent='⬆ Push HTML to GitHub';document.getElementById('gh-progress').style.display='none';}
