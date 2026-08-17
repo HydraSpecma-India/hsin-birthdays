@@ -3,10 +3,10 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="version" content="20260817072342">
+<meta name="version" content="20260804043540">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Buddies – HydraSpecma India</title>
-<!-- v20260817072342 -->
+<!-- v20260804043540 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700;800;900&amp;family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
@@ -547,6 +547,8 @@ img.ann-media,canvas.ann-media{width:auto;height:100%;max-width:100%;max-height:
 .ann-btns{display:flex;align-items:center;gap:6px;flex-shrink:0;}
 .ann-mini{background:transparent;border:1px solid #3a3a3a;color:var(--muted);border-radius:7px;padding:5px 9px;font-size:11px;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s;}
 .ann-mini:hover{border-color:var(--gold);color:var(--gold);}
+.ann-replace{border-color:#3a4a5a;color:var(--blue);}
+.ann-replace:hover{border-color:var(--blue);color:#fff;background:rgba(88,166,255,.14);}
 .ann-del{background:transparent;border:1px solid var(--red);color:var(--red);border-radius:7px;padding:5px 10px;font-size:11px;cursor:pointer;font-family:'Poppins',sans-serif;}
 .ann-del:hover{background:var(--red);color:#fff;}
 .ann-empty{text-align:center;color:var(--muted);font-size:12px;padding:28px 0;}
@@ -1949,21 +1951,22 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
             <div class="form-group">
               <label>Active</label>
               <label class="switch" style="margin-top:6px;">
-                <input type="checkbox" id="ann-active" checked="">
+                <input type="checkbox" id="ann-active" checked>
                 <span class="slider round"></span>
               </label>
             </div>
           </div>
 
-          <button class="btn-add" id="btn-ann-upload" onclick="uploadAnnouncement()" disabled="">⬆ Upload &amp; Add Announcement</button>
+          <button class="btn-add" id="btn-ann-upload" onclick="uploadAnnouncement()" disabled>⬆ Upload &amp; Add Announcement</button>
           <div class="ann-prog" id="ann-prog"><div class="ann-prog-bar"></div></div>
           <div class="ann-status" id="ann-status"></div>
         </div>
 
+        <input type="file" id="ann-replace-input" accept="image/*,application/pdf" style="display:none;" onchange="onAnnReplaceSelected(event)">
+
         <div id="ann-dirty" style="display:none;background:rgba(231,76,60,.12);border:1px solid var(--red);border-radius:10px;padding:10px 13px;font-size:11.5px;color:#ff9c8f;margin-bottom:12px;line-height:1.55;">
-          ⚠ <strong>Not published yet.</strong> Your announcement list has changed on this PC.
-          Open the <strong>⬆ GitHub</strong> tab and click <strong>Push HTML to GitHub</strong> —
-          until you do, the display screen will keep showing the old list.
+          ⚠ <strong>Not published yet.</strong> These changes are only on this PC — the display screen still shows the old list.
+          <button class="btn-add" style="margin-top:9px;padding:7px 16px;font-size:12px;" onclick="annPublish('✅ Published')">⬆ Publish Now</button>
         </div>
 
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 10px;">
@@ -1975,8 +1978,9 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
         <div id="ann-diag" style="font-size:10.5px;color:var(--muted);margin-top:10px;line-height:1.6;"></div>
 
         <div style="font-size:11px;color:var(--muted);margin-top:16px;line-height:1.6;border-top:1px solid #2a2a2a;padding-top:12px;">
-          💡 <strong>Remember:</strong> after adding or removing announcements, open the
-          <strong>⬆ GitHub</strong> tab and click <strong>Push HTML to GitHub</strong> so the display screen picks up the changes.
+          💡 <strong>Adding</strong> a poster and <strong>🔁 Replace</strong> publish <code>index.html</code> automatically —
+          nothing else to do. For pause, reorder or delete, use the red <strong>⬆ Publish Now</strong> button that appears above.
+          The display screen reloads itself every 10 minutes.
         </div>
       </div>
 
@@ -2709,7 +2713,7 @@ function addFireworks(card){
 // ══════════════════════════════════════════════════════════════════════════════
 //  📢 ANNOUNCEMENT POSTERS  —  data, GitHub upload, slide rendering
 // ══════════════════════════════════════════════════════════════════════════════
-const DEFAULT_ANNOUNCEMENTS = [{"active":true,"duration":30,"order":1,"start":"2026-08-16","end":"2026-09-20","type":"image","id":1,"title":"Health Month","file":"health-month-mswvk1j3.png","added":"2026-08-17T06:50:39.751Z"}];
+const DEFAULT_ANNOUNCEMENTS = [];
 
 function getAnnouncements(){
   let raw=null;
@@ -3009,9 +3013,10 @@ async function uploadAnnouncement(){
     renderAnnouncements();
     return;
   }
-  annSetStatus('ok','✅ Added! Now open the <strong>⬆ GitHub</strong> tab and click <strong>Push HTML to GitHub</strong> — otherwise the display screen will not see it.');
   annResetForm();
   renderAnnouncements();
+  // Publish index.html straight away — otherwise the display screen never sees it
+  await annPublish('✅ "'+title+'" added');
 }
 
 function annResetForm(){
@@ -3030,6 +3035,7 @@ function annResetForm(){
   el('ann-icon').textContent='📢';
   el('ann-fname').textContent='';
   el('btn-ann-upload').disabled=true;
+  el('btn-ann-upload').textContent='⬆ Upload & Add Announcement';
 }
 
 function renderAnnouncements(){
@@ -3064,17 +3070,84 @@ function renderAnnouncements(){
           <div class="ann-meta-title">${(a.title||'Untitled').replace(/</g,'&lt;')}</div>
           <div class="ann-meta-sub">
             ${annStatusLabel(a)} &nbsp;·&nbsp; ${a.type==='pdf'?'PDF':'Image'} &nbsp;·&nbsp; ${a.duration||20}s &nbsp;·&nbsp; order ${a.order||1}<br>
-            📅 ${range}
+            📅 ${range}${a.replaced?` &nbsp;·&nbsp; <span style="color:var(--blue);">🔁 replaced ${new Date(a.replaced).toLocaleDateString('en-IN')}</span>`:''}
           </div>
         </div>
         <div class="ann-btns">
           <button class="ann-mini" onclick="annMove(${a.id},-1)" title="Move up">▲</button>
           <button class="ann-mini" onclick="annMove(${a.id},1)" title="Move down">▼</button>
+          <button class="ann-mini ann-replace" onclick="annReplace(${a.id})" title="Upload a new file for this announcement, keeping its title, dates and order">🔁 Replace</button>
           <button class="ann-mini" onclick="annToggle(${a.id})">${a.active?'⏸ Pause':'▶ Resume'}</button>
           <button class="ann-del" onclick="annDelete(${a.id})">🗑</button>
         </div>
       </div>`;
   }).join('');
+}
+
+// ── Publish index.html straight from the Announcements tab ────────────────
+async function annPublish(prefix){
+  const cfg=getGhCfg();
+  if(!cfg.user||!cfg.repo||!cfg.token){
+    annSetStatus('err','⚠ Saved on this PC, but GitHub config is incomplete — open the ⬆ GitHub tab, save your token, then press Publish.');
+    return false;
+  }
+  document.getElementById('ann-prog').style.display='block';
+  annSetStatus('load','⏳ Publishing index.html to GitHub…');
+  let ok=false;
+  try{ok=await pushHTMLToGitHub();}catch(e){console.error(e);}
+  document.getElementById('ann-prog').style.display='none';
+  if(ok){
+    const pageUrl=`https://${cfg.user}.github.io/${cfg.repo}/`;
+    annSetStatus('ok',(prefix||'✅ Done')+' and published. <a href="'+pageUrl+'" target="_blank" style="color:#3fb950;">'+pageUrl+'</a> — the display screen refreshes itself every 10 minutes.');
+  }else{
+    annSetStatus('err','⚠ Saved on this PC, but publishing index.html failed. Open the ⬆ GitHub tab and press "Push HTML to GitHub".');
+  }
+  annUpdateDirtyBanner();
+  renderAnnouncements();
+  return ok;
+}
+
+// ── Replace the poster file on an existing announcement ───────────────────
+let annReplaceId=null;
+function annReplace(id){
+  const a=getAnnouncements().find(x=>x.id===id);
+  if(!a)return;
+  annReplaceId=id;
+  const inp=document.getElementById('ann-replace-input');
+  inp.value='';
+  annSetStatus('load','📎 Choose the new poster for "'+a.title+'"…');
+  inp.click();
+}
+
+async function onAnnReplaceSelected(ev){
+  const f=ev.target.files[0];
+  if(!f||!annReplaceId){annReplaceId=null;return;}
+  const isPdf=/pdf$/i.test(f.type)||/\.pdf$/i.test(f.name);
+  const isImg=/^image\//i.test(f.type);
+  if(!isPdf&&!isImg){annSetStatus('err','❌ Only JPG, PNG or PDF files are supported.');annReplaceId=null;return;}
+  if(f.size>8*1024*1024){annSetStatus('err','❌ File is larger than 8 MB. Please compress it first.');annReplaceId=null;return;}
+
+  const list=getAnnouncements();
+  const a=list.find(x=>x.id===annReplaceId);
+  annReplaceId=null;
+  if(!a)return;
+
+  // Always upload under a NEW filename so no browser or CDN can serve the old image
+  const filename=annFilename(a.title,isPdf,f.name);
+  document.getElementById('ann-prog').style.display='block';
+  annSetStatus('load','⏳ Uploading the new poster for "'+a.title+'"…');
+  let ok=false;
+  try{ok=await annUploadFileToGitHub(f,filename);}catch(e){console.error(e);annSetStatus('err','❌ '+e.message);}
+  document.getElementById('ann-prog').style.display='none';
+  if(!ok)return;
+
+  a.previousFile=a.file;
+  a.file=filename;
+  a.type=isPdf?'pdf':'image';
+  a.replaced=new Date().toISOString();
+  if(!saveAnnouncements(list))return;
+  renderAnnouncements();
+  await annPublish('✅ Poster replaced for "'+a.title+'"');
 }
 
 // ── Read the real contents of announcements/ in the repo ──────────────────
@@ -3684,7 +3757,7 @@ function generateBakedHTML(){
 }
 async function pushHTMLToGitHub(){
   const cfg=getGhCfg();
-  if(!cfg.user||!cfg.repo||!cfg.token){setGhStatus('error','❌ Please fill and save GitHub config first.');return;}
+  if(!cfg.user||!cfg.repo||!cfg.token){setGhStatus('error','❌ Please fill and save GitHub config first.');return false;}
   const btn=document.getElementById('btn-push-html');
   btn.disabled=true;btn.textContent='Pushing...';
   document.getElementById('gh-progress').style.display='block';
@@ -3695,7 +3768,7 @@ async function pushHTMLToGitHub(){
       setGhStatus('error','❌ Failed to generate HTML. Please try again.');
       btn.disabled=false;btn.textContent='⬆ Push HTML to GitHub';
       document.getElementById('gh-progress').style.display='none';
-      return;
+      return false;
     }
     setGhStatus('loading','⏳ Connecting to GitHub...');
     const b64Content=btoa(unescape(encodeURIComponent(htmlContent)));
@@ -3716,8 +3789,9 @@ async function pushHTMLToGitHub(){
       el.innerHTML=`✅ Pushed successfully!<br><a href="${pageUrl}" target="_blank" style="color:#3fb950;font-size:12px;word-break:break-all;">🔗 ${pageUrl}</a>`;
       try{localStorage.removeItem('hsin_announce_dirty');}catch(e){}
       if(typeof annUpdateDirtyBanner==='function')annUpdateDirtyBanner();
-    }else setGhStatus('error','❌ '+(data.message||res.status));
-  }catch(e){setGhStatus('error','❌ '+e.message);}
+      return true;
+    }else{setGhStatus('error','❌ '+(data.message||res.status));return false;}
+  }catch(e){setGhStatus('error','❌ '+e.message);return false;}
   finally{btn.disabled=false;btn.textContent='⬆ Push HTML to GitHub';document.getElementById('gh-progress').style.display='none';}
 }
 
