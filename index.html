@@ -3,10 +3,10 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="version" content="20260908054914">
+<meta name="version" content="20260908060917">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Buddies – HydraSpecma India</title>
-<!-- v20260908054914 -->
+<!-- v20260908060917 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700;800;900&amp;family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
@@ -1745,6 +1745,149 @@ input:checked + .slider:before {
 /* Cake scale reduced to fit screen properly */
 #cake-wrapper            { transform: scale(1.24); transform-origin: center bottom; margin-bottom: 67px; }
 
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BIRTHDAY BUDDIES — full-page adaptive card grid
+   Columns/rows are chosen in JS from the number of people and written to
+   --mc-cols / data-cols / data-layout. The grid then fills the whole slide.
+   ═══════════════════════════════════════════════════════════════════════ */
+#month-slide{justify-content:flex-start !important;padding:14px 26px 6px !important;}
+.month-title{margin-bottom:14px !important;flex-shrink:0;}
+
+.month-grid{
+  display:grid !important;
+  grid-template-columns:repeat(var(--mc-cols,2),minmax(0,1fr)) !important;
+  grid-auto-rows:minmax(0,1fr) !important;
+  gap:16px !important;
+  width:100% !important;
+  max-width:100% !important;
+  flex:1 1 auto !important;
+  min-height:0 !important;
+  max-height:none !important;
+  height:auto !important;
+  align-content:stretch !important;
+  overflow:hidden !important;
+  padding:0 !important;
+}
+.month-card{
+  min-height:0 !important;
+  height:100% !important;
+  overflow:hidden !important;
+}
+
+/* ───────── VERTICAL cards (1–2 rows: tall cells, portrait layout) ───────── */
+.month-grid[data-layout="v"] .month-card{
+  flex-direction:column !important;
+  justify-content:center !important;
+  align-items:center !important;
+  text-align:center !important;
+  gap:10px !important;
+  padding:20px 18px !important;
+}
+.month-grid[data-layout="v"] .mc-info{flex:0 1 auto !important;width:100%;}
+.month-grid[data-layout="v"] .mc-date{
+  order:3;min-width:0 !important;display:flex;align-items:baseline;justify-content:center;gap:7px;
+  background:rgba(255,204,0,.10);border:1px solid rgba(255,204,0,.28);border-radius:100px;padding:5px 18px;
+}
+.month-grid[data-layout="v"] .mc-day{line-height:1 !important;}
+.month-grid[data-layout="v"] .mc-mon{margin-top:0 !important;}
+.month-grid[data-layout="v"] .mc-names{
+  display:flex;flex-direction:column;align-items:center;gap:7px;justify-content:center;
+}
+
+/* ───────── size tiers by column count ───────── */
+.month-grid[data-cols="1"] .mc-thumb,
+.month-grid[data-cols="2"] .mc-thumb{width:200px !important;height:200px !important;}
+.month-grid[data-cols="1"] .mc-day,
+.month-grid[data-cols="2"] .mc-day{font-size:74px !important;}
+.month-grid[data-cols="1"] .mc-mon,
+.month-grid[data-cols="2"] .mc-mon{font-size:22px !important;}
+.month-grid[data-cols="1"] .mc-names,
+.month-grid[data-cols="2"] .mc-names{font-size:42px !important;margin-bottom:4px !important;}
+.month-grid[data-cols="1"] .mc-roles,
+.month-grid[data-cols="2"] .mc-roles{font-size:26px !important;}
+.month-grid[data-cols="1"] .mc-dept,
+.month-grid[data-cols="2"] .mc-dept{font-size:21px !important;}
+.month-grid[data-cols="1"] .mc-thumb-init,
+.month-grid[data-cols="2"] .mc-thumb-init{font-size:72px !important;}
+
+.month-grid[data-cols="3"] .mc-thumb{width:168px !important;height:168px !important;}
+.month-grid[data-cols="3"] .mc-day{font-size:64px !important;}
+.month-grid[data-cols="3"] .mc-mon{font-size:19px !important;}
+.month-grid[data-cols="3"] .mc-names{font-size:34px !important;}
+.month-grid[data-cols="3"] .mc-roles{font-size:22px !important;}
+.month-grid[data-cols="3"] .mc-dept{font-size:18px !important;}
+.month-grid[data-cols="3"] .mc-thumb-init{font-size:60px !important;}
+
+.month-grid[data-cols="4"] .mc-thumb{width:138px !important;height:138px !important;}
+.month-grid[data-cols="4"] .mc-day{font-size:54px !important;}
+.month-grid[data-cols="4"] .mc-mon{font-size:16px !important;}
+.month-grid[data-cols="4"] .mc-names{font-size:27px !important;}
+.month-grid[data-cols="4"] .mc-roles{font-size:18px !important;}
+.month-grid[data-cols="4"] .mc-dept{font-size:15px !important;}
+.month-grid[data-cols="4"] .mc-thumb-init{font-size:48px !important;}
+
+.month-grid[data-cols="5"] .mc-thumb{width:112px !important;height:112px !important;}
+.month-grid[data-cols="5"] .mc-day{font-size:44px !important;}
+.month-grid[data-cols="5"] .mc-mon{font-size:14px !important;}
+.month-grid[data-cols="5"] .mc-names{font-size:22px !important;}
+.month-grid[data-cols="5"] .mc-roles{font-size:15px !important;}
+.month-grid[data-cols="5"] .mc-dept{font-size:13px !important;}
+.month-grid[data-cols="5"] .mc-thumb-init{font-size:40px !important;}
+
+.month-grid[data-cols="6"] .mc-thumb{width:92px !important;height:92px !important;}
+.month-grid[data-cols="6"] .mc-day{font-size:36px !important;}
+.month-grid[data-cols="6"] .mc-mon{font-size:12px !important;}
+.month-grid[data-cols="6"] .mc-names{font-size:18px !important;}
+.month-grid[data-cols="6"] .mc-roles{font-size:13px !important;}
+.month-grid[data-cols="6"] .mc-dept{font-size:11px !important;}
+.month-grid[data-cols="6"] .mc-thumb-init{font-size:32px !important;}
+
+/* horizontal (3+ rows) keeps the compact banner look but never overflows */
+.month-grid[data-layout="h"] .month-card{padding:16px 22px !important;gap:18px !important;}
+.month-grid[data-layout="h"] .mc-thumb{width:clamp(56px,9vh,99px) !important;height:clamp(56px,9vh,99px) !important;}
+.month-grid[data-layout="h"] .mc-day{font-size:clamp(26px,4.6vh,56px) !important;}
+.month-grid[data-layout="h"] .mc-mon{font-size:clamp(10px,1.5vh,17px) !important;}
+.month-grid[data-layout="h"] .mc-names{font-size:clamp(15px,2.4vh,27px) !important;}
+.month-grid[data-layout="h"] .mc-roles{font-size:clamp(11px,1.7vh,19px) !important;}
+.month-grid[data-layout="h"] .mc-dept{font-size:clamp(10px,1.5vh,17px) !important;}
+
+/* when a row is not full, the last card widens so the page stays filled */
+.month-card.mc-fill{grid-column:var(--mc-span,auto);}
+
+/* ═══════════ Birthday Buddies — crown + card borders ═══════════ */
+.mc-avatar-wrap{position:relative;display:inline-flex;flex-shrink:0;padding-top:var(--crown-h,0px);}
+.mc-crown{
+  position:absolute;top:0;left:50%;z-index:4;line-height:1;
+  font-size:var(--crown-size,28px);
+  filter:drop-shadow(0 3px 10px rgba(255,204,0,.65));
+  animation:mc-crown-bob 1.6s ease-in-out infinite alternate;
+}
+@keyframes mc-crown-bob{
+  from{transform:translateX(-50%) translateY(3px) rotate(-7deg);}
+  to  {transform:translateX(-50%) translateY(-4px) rotate(7deg);}
+}
+
+/* every card gets a clear gold outline so the grid reads as separate panels */
+.month-grid .month-card{
+  border:2px solid rgba(255,204,0,.40) !important;
+  background:rgba(22,20,10,.55) !important;
+}
+/* today's card: thicker, brighter — the glow animation is left alone */
+.month-grid .month-card.today-card{
+  border:3px solid rgba(255,204,0,.95) !important;
+  background:rgba(42,31,0,.66) !important;
+}
+
+/* crown scales with the column tier (padding-top reserves its space,
+   so it can never be clipped by the card's overflow:hidden) */
+.month-grid[data-cols="1"] .today-card .mc-avatar-wrap,
+.month-grid[data-cols="2"] .today-card .mc-avatar-wrap{--crown-h:58px;--crown-size:52px;}
+.month-grid[data-cols="3"] .today-card .mc-avatar-wrap{--crown-h:47px;--crown-size:42px;}
+.month-grid[data-cols="4"] .today-card .mc-avatar-wrap{--crown-h:39px;--crown-size:34px;}
+.month-grid[data-cols="5"] .today-card .mc-avatar-wrap{--crown-h:32px;--crown-size:28px;}
+.month-grid[data-cols="6"] .today-card .mc-avatar-wrap{--crown-h:27px;--crown-size:23px;}
+.month-grid[data-layout="h"] .today-card .mc-avatar-wrap{--crown-h:clamp(21px,3.4vh,36px);--crown-size:clamp(18px,3vh,32px);}
 </style>
 </head><body>
 
@@ -2946,7 +3089,7 @@ const BK_ACTS=[
   {key:'tea2',     icon:'☕',label:'2nd Tea Break',   ta:'இரண்டாம் தேநீர் இடைவேளை'}
 ];
 
-const DEFAULT_BREAKS = {"enabled":true,"shift":"both","grace":20,"repeat":5,"sound":true,"slideEnabled":true,"slideDur":10,"acts":{"breakfast":{"on":true,"dur":""},"tea1":{"on":true,"dur":""},"lunch":{"on":true,"dur":""},"tea2":{"on":true,"dur":""}}};
+const DEFAULT_BREAKS = {"enabled":true,"shift":"both","grace":30,"repeat":10,"sound":true,"slideEnabled":true,"slideDur":10,"acts":{"breakfast":{"on":true,"dur":""},"tea1":{"on":true,"dur":""},"lunch":{"on":true,"dur":""},"tea2":{"on":true,"dur":""}}};
 
 function getBreakData(){
   let raw=null;
@@ -4020,7 +4163,7 @@ function buildSlides(){
     card.className='month-card'+(isToday?' today-card':'');
     card.style.animationDelay=`${i*80}ms`;
     card.innerHTML=`
-      ${makeAvatarHTML(p,'mc')}
+      <div class="mc-avatar-wrap">${makeAvatarHTML(p,'mc')}${isToday?'<span class="mc-crown">👑</span>':''}</div>
       <div class="mc-date">
         <div class="mc-day">${p.day}</div>
         <div class="mc-mon">${MS[cm-1]}</div>
@@ -4032,6 +4175,23 @@ function buildSlides(){
       </div>`;
     grid.appendChild(card);
   });
+
+  // ── Lay the cards out so they always fill the page ──
+  // 1-4 people go in a single row; after that we add rows and shrink.
+  const _n=monthBdays.length;
+  const _cols=(_n<=1)?1:(_n<=4)?_n:(_n<=9)?3:(_n<=16)?4:(_n<=25)?5:6;
+  const _rows=Math.ceil(_n/_cols);
+  grid.style.setProperty('--mc-cols',String(_cols));
+  grid.setAttribute('data-cols',String(Math.min(_cols,6)));
+  grid.setAttribute('data-layout',_rows<=2?'v':'h');
+  // a half-empty last row would leave a hole — stretch the final card across it
+  const _rem=_n%_cols;
+  [...grid.children].forEach(c=>{c.classList.remove('mc-fill');c.style.removeProperty('--mc-span');});
+  if(_rem!==0&&grid.lastElementChild){
+    grid.lastElementChild.classList.add('mc-fill');
+    grid.lastElementChild.style.setProperty('--mc-span','span '+(_cols-_rem+1));
+  }
+
   const msEl2=document.getElementById('month-slide');
   if(msEl2)slides.push({el:msEl2,type:'month'});
 
