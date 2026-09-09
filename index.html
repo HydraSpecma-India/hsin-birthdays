@@ -3,10 +3,10 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="version" content="20260909115001">
+<meta name="version" content="20260909115335">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Buddies – HydraSpecma India</title>
-<!-- v20260909115001 -->
+<!-- v20260909115335 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700;800;900&amp;family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
@@ -3222,7 +3222,7 @@ const BK_VOICE_DEFAULT = {"on":true,"text":"Hope you enjoyed the break. Thank yo
   "minutes":2,"every":30,"rate":0.95,"pitch":1.2,"voiceName":"","clip":"","card":true,
   "ta":"இடைவேளை முடிந்தது — நன்றி"};
 
-const DEFAULT_BREAKS = {"enabled":false,"shift":"both","grace":20,"repeat":10,"sound":true,"slideEnabled":true,"slideDur":10,"acts":{"breakfast":{"on":true,"dur":""},"tea1":{"on":true,"dur":""},"lunch":{"on":true,"dur":""},"tea2":{"on":true,"dur":""}},"alertOn":false,"voice":{"on":true,"text":"Hope you enjoyed the break. Thank you.","minutes":10,"every":30,"rate":1.5,"pitch":1,"voiceName":"","clip":"break-voice-mtu0lvq3.mp3","card":true,"ta":"இடைவேளை முடிந்தது — நன்றி"}};
+const DEFAULT_BREAKS = {"enabled":false,"shift":"both","grace":30,"repeat":5,"sound":false,"slideEnabled":false,"slideDur":15,"acts":{"breakfast":{"on":true,"dur":""},"tea1":{"on":true,"dur":""},"lunch":{"on":true,"dur":""},"tea2":{"on":true,"dur":""}},"alertOn":false,"voice":{"on":true,"text":"Hope you enjoyed the break. Thank you.","minutes":10,"every":30,"rate":1.5,"pitch":1,"voiceName":"","clip":"break-voice-mtu0lvq3.mp3","card":true,"ta":"இடைவேளை முடிந்தது — நன்றி"}};
 
 function getBreakData(){
   let raw=null;
@@ -3987,7 +3987,7 @@ function saveBreakData(){
 // ══════════════════════════════════════════════════════════════════════════════
 //  📢 ANNOUNCEMENT POSTERS  —  data, GitHub upload, slide rendering
 // ══════════════════════════════════════════════════════════════════════════════
-const DEFAULT_ANNOUNCEMENTS = [{"active":true,"duration":30,"order":1,"start":"2026-08-16","end":"2026-09-20","type":"image","id":1,"title":"Health Month","file":"health-month-mswvk1j3.png","added":"2026-08-17T06:50:39.751Z"}];
+const DEFAULT_ANNOUNCEMENTS = [{"active":true,"duration":30,"order":1,"start":"2026-08-17","end":"2026-09-20","type":"image","id":1,"title":"Health Month","file":"health-month-mswzny27.png","added":"2026-08-17T07:04:01.270Z","previousFile":"health-month-msww17h5.png","replaced":"2026-08-17T08:45:41.410Z"},{"active":true,"duration":20,"order":2,"start":"","end":"","type":"image","id":2,"title":"Coffebreak","file":"coffebreak-mtqszct7.png","added":"2026-09-09T11:53:10.469Z"},{"active":true,"duration":20,"order":3,"start":"","end":"","type":"pdf","id":3,"title":"Health month activities","file":"health-month-activities-mtqt42x1.pdf","added":"2026-09-09T11:53:14.141Z"},{"active":true,"duration":20,"order":4,"start":"","end":"","type":"image","id":4,"title":"Health month","file":"health-month-mswvk1j3.png","added":"2026-09-09T11:53:18.521Z"},{"active":true,"duration":20,"order":5,"start":"","end":"","type":"image","id":5,"title":"Health month","file":"health-month-msww17h5.png","added":"2026-09-09T11:53:19.457Z"},{"active":true,"duration":20,"order":6,"start":"","end":"","type":"image","id":6,"title":"Movement breakeng 1","file":"movement-breakeng-1-mtqt085n.png","added":"2026-09-09T11:53:20.990Z"},{"active":true,"duration":20,"order":7,"start":"","end":"","type":"pdf","id":7,"title":"Poster health month","file":"poster-health-month-mswtivqo.pdf","added":"2026-09-09T11:53:21.840Z"},{"active":true,"duration":20,"order":8,"start":"","end":"","type":"image","id":8,"title":"Team challengee","file":"team-challengee-mtqsvk84.png","added":"2026-09-09T11:53:22.984Z"}];
 
 function getAnnouncements(){
   let raw=null;
