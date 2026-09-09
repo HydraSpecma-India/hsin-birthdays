@@ -3,10 +3,10 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="version" content="20260908083131">
+<meta name="version" content="20260909115001">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Buddies – HydraSpecma India</title>
-<!-- v20260908083131 -->
+<!-- v20260909115001 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700;800;900&amp;family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
@@ -569,6 +569,35 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
 .bke-next-in-val{font-size:30px;font-weight:900;color:#fff;font-variant-numeric:tabular-nums;line-height:1.1;}
 .bke-next-in-lbl{font-size:9px;color:var(--muted);letter-spacing:2.5px;text-transform:uppercase;margin-top:2px;}
 
+/* ═══════════ BREAK TIMER — SPOKEN ANNOUNCEMENT CARD ═══════════ */
+#voice-card{position:fixed;inset:0;z-index:3800;display:none;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at center,rgba(34,28,4,.97) 0%,rgba(8,8,6,.99) 72%);}
+#voice-card.show{display:flex;animation:vc-in .45s cubic-bezier(.23,1,.32,1) both;}
+@keyframes vc-in{from{opacity:0;transform:scale(.965);}to{opacity:1;transform:scale(1);}}
+.vc-card{max-width:1120px;text-align:center;padding:46px 64px 40px;border-radius:34px;position:relative;overflow:hidden;
+  background:linear-gradient(155deg,rgba(255,204,0,.11),rgba(20,20,14,.92) 62%);
+  border:1.5px solid rgba(255,204,0,.42);
+  box-shadow:0 26px 80px rgba(0,0,0,.7),inset 0 0 70px rgba(255,204,0,.05);}
+.vc-card::before{content:'';position:absolute;top:0;left:-60%;width:55%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,204,0,.09),transparent);animation:bk-sheen 4.5s linear infinite;}
+.vc-ico{font-size:72px;line-height:1;animation:vc-breathe 2s ease-in-out infinite;}
+@keyframes vc-breathe{0%,100%{transform:scale(1);opacity:.88;}50%{transform:scale(1.1);opacity:1;}}
+.vc-bars{display:flex;align-items:flex-end;justify-content:center;gap:9px;height:66px;margin:20px 0 4px;}
+.vc-bars span{width:11px;border-radius:6px;background:linear-gradient(180deg,var(--gold),var(--gold-dark));
+  box-shadow:0 0 14px rgba(255,204,0,.35);animation:vc-bar .9s ease-in-out infinite;}
+@keyframes vc-bar{0%,100%{height:14px;opacity:.5;}50%{height:64px;opacity:1;}}
+.vc-bars span:nth-child(1){animation-delay:0s;}
+.vc-bars span:nth-child(2){animation-delay:.12s;}
+.vc-bars span:nth-child(3){animation-delay:.24s;}
+.vc-bars span:nth-child(4){animation-delay:.36s;}
+.vc-bars span:nth-child(5){animation-delay:.24s;}
+.vc-bars span:nth-child(6){animation-delay:.12s;}
+.vc-bars span:nth-child(7){animation-delay:0s;}
+.vc-text{font-size:46px;font-weight:800;color:var(--gold);line-height:1.24;margin-top:16px;
+  text-shadow:0 3px 22px rgba(255,204,0,.3);}
+.vc-ta{font-size:22px;color:#d8d0b6;margin-top:12px;font-family:'Noto Sans Tamil',sans-serif;}
+.vc-sub{font-size:14px;color:var(--muted);letter-spacing:4px;text-transform:uppercase;margin-top:18px;}
+
 /* ═══════════ BREAK TIMER — "BREAK IS OVER" ALERT ═══════════ */
 #break-alert{position:fixed;inset:0;z-index:4000;display:none;align-items:center;justify-content:center;
   background:radial-gradient(circle at center,rgba(120,10,0,.97),rgba(20,0,0,.99));}
@@ -607,6 +636,9 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
 .bk-status b{color:var(--gold);}
 .bk-status .bk-run{color:#3fb950;font-weight:700;}
 .bk-status .bk-ovr{color:var(--red);font-weight:700;}
+.bk-voice-cap{font-size:11.5px;border-radius:9px;padding:9px 12px;line-height:1.55;border:1px solid #2a2a2a;background:var(--dark4);color:#ccc;}
+.bk-voice-cap.ok{border-color:rgba(63,185,80,.5);color:#8fe0a0;}
+.bk-voice-cap.warn{border-color:rgba(231,76,60,.5);color:#ff9c8f;}
 
 /* ═══════════ ANNOUNCEMENT / POSTER SLIDES ═══════════ */
 #announce-wrapper{display:contents;}
@@ -1745,6 +1777,149 @@ input:checked + .slider:before {
 /* Cake scale reduced to fit screen properly */
 #cake-wrapper            { transform: scale(1.24); transform-origin: center bottom; margin-bottom: 67px; }
 
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BIRTHDAY BUDDIES — full-page adaptive card grid
+   Columns/rows are chosen in JS from the number of people and written to
+   --mc-cols / data-cols / data-layout. The grid then fills the whole slide.
+   ═══════════════════════════════════════════════════════════════════════ */
+#month-slide{justify-content:flex-start !important;padding:14px 26px 6px !important;}
+.month-title{margin-bottom:14px !important;flex-shrink:0;}
+
+.month-grid{
+  display:grid !important;
+  grid-template-columns:repeat(var(--mc-cols,2),minmax(0,1fr)) !important;
+  grid-auto-rows:minmax(0,1fr) !important;
+  gap:16px !important;
+  width:100% !important;
+  max-width:100% !important;
+  flex:1 1 auto !important;
+  min-height:0 !important;
+  max-height:none !important;
+  height:auto !important;
+  align-content:stretch !important;
+  overflow:hidden !important;
+  padding:0 !important;
+}
+.month-card{
+  min-height:0 !important;
+  height:100% !important;
+  overflow:hidden !important;
+}
+
+/* ───────── VERTICAL cards (1–2 rows: tall cells, portrait layout) ───────── */
+.month-grid[data-layout="v"] .month-card{
+  flex-direction:column !important;
+  justify-content:center !important;
+  align-items:center !important;
+  text-align:center !important;
+  gap:10px !important;
+  padding:20px 18px !important;
+}
+.month-grid[data-layout="v"] .mc-info{flex:0 1 auto !important;width:100%;}
+.month-grid[data-layout="v"] .mc-date{
+  order:3;min-width:0 !important;display:flex;align-items:baseline;justify-content:center;gap:7px;
+  background:rgba(255,204,0,.10);border:1px solid rgba(255,204,0,.28);border-radius:100px;padding:5px 18px;
+}
+.month-grid[data-layout="v"] .mc-day{line-height:1 !important;}
+.month-grid[data-layout="v"] .mc-mon{margin-top:0 !important;}
+.month-grid[data-layout="v"] .mc-names{
+  display:flex;flex-direction:column;align-items:center;gap:7px;justify-content:center;
+}
+
+/* ───────── size tiers by column count ───────── */
+.month-grid[data-cols="1"] .mc-thumb,
+.month-grid[data-cols="2"] .mc-thumb{width:200px !important;height:200px !important;}
+.month-grid[data-cols="1"] .mc-day,
+.month-grid[data-cols="2"] .mc-day{font-size:74px !important;}
+.month-grid[data-cols="1"] .mc-mon,
+.month-grid[data-cols="2"] .mc-mon{font-size:22px !important;}
+.month-grid[data-cols="1"] .mc-names,
+.month-grid[data-cols="2"] .mc-names{font-size:42px !important;margin-bottom:4px !important;}
+.month-grid[data-cols="1"] .mc-roles,
+.month-grid[data-cols="2"] .mc-roles{font-size:26px !important;}
+.month-grid[data-cols="1"] .mc-dept,
+.month-grid[data-cols="2"] .mc-dept{font-size:21px !important;}
+.month-grid[data-cols="1"] .mc-thumb-init,
+.month-grid[data-cols="2"] .mc-thumb-init{font-size:72px !important;}
+
+.month-grid[data-cols="3"] .mc-thumb{width:168px !important;height:168px !important;}
+.month-grid[data-cols="3"] .mc-day{font-size:64px !important;}
+.month-grid[data-cols="3"] .mc-mon{font-size:19px !important;}
+.month-grid[data-cols="3"] .mc-names{font-size:34px !important;}
+.month-grid[data-cols="3"] .mc-roles{font-size:22px !important;}
+.month-grid[data-cols="3"] .mc-dept{font-size:18px !important;}
+.month-grid[data-cols="3"] .mc-thumb-init{font-size:60px !important;}
+
+.month-grid[data-cols="4"] .mc-thumb{width:138px !important;height:138px !important;}
+.month-grid[data-cols="4"] .mc-day{font-size:54px !important;}
+.month-grid[data-cols="4"] .mc-mon{font-size:16px !important;}
+.month-grid[data-cols="4"] .mc-names{font-size:27px !important;}
+.month-grid[data-cols="4"] .mc-roles{font-size:18px !important;}
+.month-grid[data-cols="4"] .mc-dept{font-size:15px !important;}
+.month-grid[data-cols="4"] .mc-thumb-init{font-size:48px !important;}
+
+.month-grid[data-cols="5"] .mc-thumb{width:112px !important;height:112px !important;}
+.month-grid[data-cols="5"] .mc-day{font-size:44px !important;}
+.month-grid[data-cols="5"] .mc-mon{font-size:14px !important;}
+.month-grid[data-cols="5"] .mc-names{font-size:22px !important;}
+.month-grid[data-cols="5"] .mc-roles{font-size:15px !important;}
+.month-grid[data-cols="5"] .mc-dept{font-size:13px !important;}
+.month-grid[data-cols="5"] .mc-thumb-init{font-size:40px !important;}
+
+.month-grid[data-cols="6"] .mc-thumb{width:92px !important;height:92px !important;}
+.month-grid[data-cols="6"] .mc-day{font-size:36px !important;}
+.month-grid[data-cols="6"] .mc-mon{font-size:12px !important;}
+.month-grid[data-cols="6"] .mc-names{font-size:18px !important;}
+.month-grid[data-cols="6"] .mc-roles{font-size:13px !important;}
+.month-grid[data-cols="6"] .mc-dept{font-size:11px !important;}
+.month-grid[data-cols="6"] .mc-thumb-init{font-size:32px !important;}
+
+/* horizontal (3+ rows) keeps the compact banner look but never overflows */
+.month-grid[data-layout="h"] .month-card{padding:16px 22px !important;gap:18px !important;}
+.month-grid[data-layout="h"] .mc-thumb{width:clamp(56px,9vh,99px) !important;height:clamp(56px,9vh,99px) !important;}
+.month-grid[data-layout="h"] .mc-day{font-size:clamp(26px,4.6vh,56px) !important;}
+.month-grid[data-layout="h"] .mc-mon{font-size:clamp(10px,1.5vh,17px) !important;}
+.month-grid[data-layout="h"] .mc-names{font-size:clamp(15px,2.4vh,27px) !important;}
+.month-grid[data-layout="h"] .mc-roles{font-size:clamp(11px,1.7vh,19px) !important;}
+.month-grid[data-layout="h"] .mc-dept{font-size:clamp(10px,1.5vh,17px) !important;}
+
+/* when a row is not full, the last card widens so the page stays filled */
+.month-card.mc-fill{grid-column:var(--mc-span,auto);}
+
+/* ═══════════ Birthday Buddies — crown + card borders ═══════════ */
+.mc-avatar-wrap{position:relative;display:inline-flex;flex-shrink:0;padding-top:var(--crown-h,0px);}
+.mc-crown{
+  position:absolute;top:0;left:50%;z-index:4;line-height:1;
+  font-size:var(--crown-size,28px);
+  filter:drop-shadow(0 3px 10px rgba(255,204,0,.65));
+  animation:mc-crown-bob 1.6s ease-in-out infinite alternate;
+}
+@keyframes mc-crown-bob{
+  from{transform:translateX(-50%) translateY(3px) rotate(-7deg);}
+  to  {transform:translateX(-50%) translateY(-4px) rotate(7deg);}
+}
+
+/* every card gets a clear gold outline so the grid reads as separate panels */
+.month-grid .month-card{
+  border:2px solid rgba(255,204,0,.40) !important;
+  background:rgba(22,20,10,.55) !important;
+}
+/* today's card: thicker, brighter — the glow animation is left alone */
+.month-grid .month-card.today-card{
+  border:3px solid rgba(255,204,0,.95) !important;
+  background:rgba(42,31,0,.66) !important;
+}
+
+/* crown scales with the column tier (padding-top reserves its space,
+   so it can never be clipped by the card's overflow:hidden) */
+.month-grid[data-cols="1"] .today-card .mc-avatar-wrap,
+.month-grid[data-cols="2"] .today-card .mc-avatar-wrap{--crown-h:58px;--crown-size:52px;}
+.month-grid[data-cols="3"] .today-card .mc-avatar-wrap{--crown-h:47px;--crown-size:42px;}
+.month-grid[data-cols="4"] .today-card .mc-avatar-wrap{--crown-h:39px;--crown-size:34px;}
+.month-grid[data-cols="5"] .today-card .mc-avatar-wrap{--crown-h:32px;--crown-size:28px;}
+.month-grid[data-cols="6"] .today-card .mc-avatar-wrap{--crown-h:27px;--crown-size:23px;}
+.month-grid[data-layout="h"] .today-card .mc-avatar-wrap{--crown-h:clamp(21px,3.4vh,36px);--crown-size:clamp(18px,3vh,32px);}
 </style>
 </head><body>
 
@@ -2086,8 +2261,8 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
           <div style="font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.55;">
             Break times are read straight from the <strong>⏱ Shifts</strong> tab — change them there and the timer follows.
             <br>• <strong>During the break</strong> a live countdown is woven into the slide rotation.
-            <br>• <strong>When it ends</strong> the slides keep playing and a full-screen <strong>BREAK IS OVER</strong> alert
-            flashes over them every few seconds for the alert window below.
+            <br>• <strong>When it ends</strong> the spoken announcement plays and a calm full-screen card appears while it speaks.
+            The red flashing <strong>BREAK IS OVER</strong> alert is switched off by default — turn it back on below whenever you want it.
             <br>• <strong>After the alert window</strong> a “break has ended — next break” slide stays in the rotation
             until the next break begins.
           </div>
@@ -2111,8 +2286,21 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
           </div>
 
           <div class="form-row">
+            <div class="form-group">
+              <label>Flashing “Break Is Over” Alert</label>
+              <label class="switch" style="margin-top:6px;">
+                <input type="checkbox" id="bk-alert-on" onchange="saveBreakData()">
+                <span class="slider round"></span>
+              </label>
+              <div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.5;">
+                Off — the spoken announcement below is used instead. Turn on any time to bring back the red flashing overlay.
+              </div>
+            </div>
             <div class="form-group"><label>Alert Window After Break (minutes)</label><input type="number" id="bk-grace" min="1" max="60" value="5" onchange="saveBreakData()"></div>
+          </div>
+          <div class="form-row">
             <div class="form-group"><label>Alert Flashes Every (seconds)</label><input type="number" id="bk-repeat" min="1" max="120" value="5" onchange="saveBreakData()"></div>
+            <div class="form-group"></div>
           </div>
 
           <div class="form-row">
@@ -2137,6 +2325,79 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
             <div class="form-group" style="justify-content:flex-end;">
               <button class="btn-add" style="margin-top:0;background:var(--blue);color:#fff;" onclick="bkTestAlert()">⚡ Test Alert (8s)</button>
             </div>
+          </div>
+        </div>
+
+
+        <div style="font-size:12px;font-weight:700;color:var(--gold);margin:18px 0 10px 2px;letter-spacing:1px;">🔊 SPOKEN ANNOUNCEMENT</div>
+        <div style="background:var(--dark3);border:1px solid #2a2a2a;border-radius:12px;padding:16px;margin-bottom:16px;">
+
+          <div class="bk-voice-cap" id="bk-voice-cap">Checking this device…</div>
+
+          <div class="form-row" style="margin-top:12px;">
+            <div class="form-group">
+              <label>Speak After Break Ends</label>
+              <label class="switch" style="margin-top:6px;">
+                <input type="checkbox" id="bk-v-on" onchange="saveBreakData()">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="form-group">
+              <label>Keep Speaking For (minutes)</label>
+              <input type="number" id="bk-v-minutes" min="0" max="60" step="0.5" value="2" onchange="saveBreakData()">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom:12px;">
+            <label>Message shown on screen &amp; spoken</label>
+            <input type="text" id="bk-v-text" maxlength="220" placeholder="Hope you enjoyed the break. Thank you." onchange="saveBreakData()">
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Tamil line on the card (optional)</label><input type="text" id="bk-v-ta" maxlength="220" placeholder="இடைவேளை முடிந்தது — நன்றி" onchange="saveBreakData()"></div>
+            <div class="form-group">
+              <label>Show Full-Screen Card While Speaking</label>
+              <label class="switch" style="margin-top:6px;">
+                <input type="checkbox" id="bk-v-card" onchange="saveBreakData()">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group"><label>Repeat Every (seconds)</label><input type="number" id="bk-v-every" min="5" max="600" value="30" onchange="saveBreakData()"></div>
+            <div class="form-group">
+              <label>Voice (installed on this device)</label>
+              <select id="bk-v-name" onchange="saveBreakData()"><option value="">Auto — pick a female English voice</option></select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group"><label>Speaking Speed (0.5 – 1.6)</label><input type="number" id="bk-v-rate" min="0.5" max="1.6" step="0.05" value="0.95" onchange="saveBreakData()"></div>
+            <div class="form-group"><label>Pitch — higher is softer (0 – 2)</label><input type="number" id="bk-v-pitch" min="0" max="2" step="0.05" value="1.2" onchange="saveBreakData()"></div>
+          </div>
+
+          <div style="border-top:1px dashed #333;margin-top:14px;padding-top:14px;">
+            <div style="font-size:11.5px;font-weight:700;color:var(--blue);margin-bottom:4px;">📺 Voice clip — needed for Fire TV / Smart TV</div>
+            <div style="font-size:11px;color:var(--muted);margin-bottom:12px;line-height:1.55;">
+              TV browsers usually have <strong>no speech voices installed</strong>, so the message above stays silent there.
+              Upload a short recorded MP3 instead and it plays on any device. When a clip is set it is always used
+              in place of the built-in voice.
+            </div>
+
+            <div class="photo-upload-area" id="bk-v-drop">
+              <input type="file" id="bk-v-file" accept="audio/*" onchange="onBkVoiceFileSelected(event)">
+              <div class="photo-upload-icon" id="bk-v-icon">🎙️</div>
+              <div class="photo-upload-text">Click to select an MP3 / M4A / WAV voice clip</div>
+              <div class="photo-upload-name" id="bk-v-fname"></div>
+            </div>
+
+            <div style="display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap;">
+              <button class="btn-add" id="bk-v-upload" style="margin-top:0;" onclick="bkUploadVoiceClip()" disabled="">⬆ Upload Clip &amp; Use It</button>
+              <button class="ann-mini" onclick="bkTestVoice()">▶ Test Voice</button>
+              <button class="ann-mini" id="bk-v-clear" onclick="bkClearVoiceClip()">✕ Remove Clip</button>
+            </div>
+            <div class="ann-prog" id="bk-v-prog"><div class="ann-prog-bar"></div></div>
+            <div class="ann-status" id="bk-v-status"></div>
           </div>
         </div>
 
@@ -2775,6 +3036,17 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
 <div class="emoji-rain" id="emoji-rain"></div>
 <div class="confetti-container" id="confetti-container"></div>
 
+<!-- ═══ SPOKEN ANNOUNCEMENT CARD ═══ -->
+<div id="voice-card">
+  <div class="vc-card">
+    <div class="vc-ico">🔊</div>
+    <div class="vc-bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="vc-text" id="vc-text">Hope you enjoyed the break. Thank you.</div>
+    <div class="vc-ta" id="vc-ta">இடைவேளை முடிந்தது — நன்றி</div>
+    <div class="vc-sub" id="vc-sub">Announcement</div>
+  </div>
+</div>
+
 <!-- ═══ BREAK OVER ALERT ═══ -->
 <div id="break-alert">
   <div class="bkal-inner">
@@ -2946,7 +3218,11 @@ const BK_ACTS=[
   {key:'tea2',     icon:'☕',label:'2nd Tea Break',   ta:'இரண்டாம் தேநீர் இடைவேளை'}
 ];
 
-const DEFAULT_BREAKS = {"enabled":true,"shift":"both","grace":30,"repeat":5,"sound":true,"slideEnabled":true,"slideDur":15,"acts":{"breakfast":{"on":true,"dur":""},"tea1":{"on":true,"dur":""},"lunch":{"on":true,"dur":""},"tea2":{"on":true,"dur":""}}};
+const BK_VOICE_DEFAULT = {"on":true,"text":"Hope you enjoyed the break. Thank you.",
+  "minutes":2,"every":30,"rate":0.95,"pitch":1.2,"voiceName":"","clip":"","card":true,
+  "ta":"இடைவேளை முடிந்தது — நன்றி"};
+
+const DEFAULT_BREAKS = {"enabled":false,"shift":"both","grace":20,"repeat":10,"sound":true,"slideEnabled":true,"slideDur":10,"acts":{"breakfast":{"on":true,"dur":""},"tea1":{"on":true,"dur":""},"lunch":{"on":true,"dur":""},"tea2":{"on":true,"dur":""}},"alertOn":false,"voice":{"on":true,"text":"Hope you enjoyed the break. Thank you.","minutes":10,"every":30,"rate":1.5,"pitch":1,"voiceName":"","clip":"break-voice-mtu0lvq3.mp3","card":true,"ta":"இடைவேளை முடிந்தது — நன்றி"}};
 
 function getBreakData(){
   let raw=null;
@@ -2956,6 +3232,7 @@ function getBreakData(){
   const out=Object.assign(base,(raw&&typeof raw==='object')?raw:{});
   out.acts=acts;
   BK_ACTS.forEach(a=>{out.acts[a.key]=Object.assign({on:true,dur:''},out.acts[a.key]||{});});
+  out.voice=Object.assign({},BK_VOICE_DEFAULT,(base.voice||{}),((raw&&raw.voice)||{}));
   return out;
 }
 function setBreakData(d){
@@ -3085,6 +3362,141 @@ function bkBeep(){
       o.start(t);o.stop(t+0.19);
     });
   }catch(e){}
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  🔊 SPOKEN ANNOUNCEMENT  ("Hope you enjoyed the break. Thank you.")
+//  Two delivery paths:
+//    1. an uploaded voice clip in the repo's  audio/  folder  — works everywhere,
+//       including Fire TV / Silk, where browser speech engines have no voices
+//    2. the browser's own text-to-speech                      — PCs, most Chrome
+//  A clip, when set, always wins because it is the dependable one.
+// ══════════════════════════════════════════════════════════════════════════════
+function bkVoiceCfg(){return getBreakData().voice||BK_VOICE_DEFAULT;}
+
+function bkClipUrl(file){
+  const c=getGhCfg();
+  const user=c.user||'hydraspecma-india';
+  const repo=c.repo||'hsin-birthdays';
+  const branch=c.branch||'main';
+  return `https://raw.githubusercontent.com/${user}/${repo}/${branch}/audio/${encodeURIComponent(file)}`;
+}
+
+// Every voice the device actually has
+function bkVoiceList(){
+  try{
+    if(!window.speechSynthesis||!speechSynthesis.getVoices)return [];
+    return speechSynthesis.getVoices()||[];
+  }catch(e){return [];}
+}
+// Prefer a female English voice; fall back through anything usable
+function bkPickVoice(){
+  const cfg=bkVoiceCfg();
+  const vs=bkVoiceList();
+  if(!vs.length)return null;
+  if(cfg.voiceName){const m=vs.find(v=>v.name===cfg.voiceName);if(m)return m;}
+  const fem=/zira|female|samantha|susan|karen|moira|tessa|fiona|serena|victoria|heera|swara|kalpana|aria|jenny|michelle|eva|hazel|catherine|linda/i;
+  return vs.find(v=>/^en/i.test(v.lang)&&fem.test(v.name))
+      || vs.find(v=>fem.test(v.name))
+      || vs.find(v=>/^en[-_]?(IN|GB|US)/i.test(v.lang))
+      || vs.find(v=>/^en/i.test(v.lang))
+      || vs[0];
+}
+
+// ── The on-screen card shown WHILE the announcement is speaking ────────────
+let _bkVcTimer=null;
+function bkShowVoiceCard(msg,sub,ms){
+  const cfg=bkVoiceCfg();
+  if(cfg.card===false)return;
+  const el=document.getElementById('voice-card');
+  if(!el)return;
+  const t=document.getElementById('vc-text'); if(t)t.textContent=msg||cfg.text||'';
+  const ta=document.getElementById('vc-ta');
+  if(ta){ta.textContent=cfg.ta||'';ta.style.display=(cfg.ta||'').trim()?'':'none';}
+  const sb=document.getElementById('vc-sub'); if(sb)sb.textContent=sub||'Announcement';
+  el.classList.add('show');
+  if(_bkVcTimer)clearTimeout(_bkVcTimer);
+  // safety net — the card never gets stuck if an event never fires
+  _bkVcTimer=setTimeout(bkHideVoiceCard,Math.max(2600,ms||8000));
+}
+function bkHideVoiceCard(){
+  const el=document.getElementById('voice-card');
+  if(el)el.classList.remove('show');
+  if(_bkVcTimer){clearTimeout(_bkVcTimer);_bkVcTimer=null;}
+}
+
+let _bkAudioEl=null;
+function bkPlayClip(msg,sub){
+  const cfg=bkVoiceCfg();
+  if(!cfg.clip)return false;
+  try{
+    if(!_bkAudioEl){
+      _bkAudioEl=new Audio();
+      _bkAudioEl.preload='auto';
+      _bkAudioEl.addEventListener('ended',bkHideVoiceCard);
+      _bkAudioEl.addEventListener('error',bkHideVoiceCard);
+      _bkAudioEl.addEventListener('loadedmetadata',function(){
+        // resize the card to the real clip length once it is known
+        if(_bkVcTimer&&isFinite(_bkAudioEl.duration)&&_bkAudioEl.duration>0){
+          clearTimeout(_bkVcTimer);
+          _bkVcTimer=setTimeout(bkHideVoiceCard,Math.max(2600,_bkAudioEl.duration*1000+900));
+        }
+      });
+    }
+    if(_bkAudioEl.src!==bkClipUrl(cfg.clip))_bkAudioEl.src=bkClipUrl(cfg.clip);
+    _bkAudioEl.currentTime=0;
+    bkShowVoiceCard(msg,sub,isFinite(_bkAudioEl.duration)&&_bkAudioEl.duration>0?_bkAudioEl.duration*1000+900:8000);
+    const p=_bkAudioEl.play();
+    if(p&&p.catch)p.catch(e=>{console.warn('voice clip could not play',e);});
+    return true;
+  }catch(e){console.warn('voice clip error',e);bkHideVoiceCard();return false;}
+}
+
+function bkSpeakTTS(text){
+  try{
+    if(!window.speechSynthesis||typeof SpeechSynthesisUtterance==='undefined')return false;
+    const v=bkPickVoice();
+    if(!v)return false;                       // no voices installed (typical on Fire TV)
+    const cfg=bkVoiceCfg();
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.voice=v;
+    u.lang=v.lang||'en-IN';
+    u.rate=Math.max(.5,Math.min(1.6,parseFloat(cfg.rate)||.95));
+    u.pitch=Math.max(0,Math.min(2,parseFloat(cfg.pitch)||1.2));
+    u.volume=1;
+    // estimate how long it will speak so the card matches
+    const words=String(text).trim().split(/\s+/).length;
+    const est=Math.max(2600,(words/ (2.6*u.rate))*1000+1200);
+    u.onstart=function(){bkShowVoiceCard(text,_bkTtsSub,est);};
+    u.onend=bkHideVoiceCard;
+    u.onerror=bkHideVoiceCard;
+    speechSynthesis.speak(u);
+    // some engines never fire onstart — show it straight away as well
+    bkShowVoiceCard(text,_bkTtsSub,est);
+    return true;
+  }catch(e){console.warn('tts failed',e);bkHideVoiceCard();return false;}
+}
+let _bkTtsSub='';
+
+// Returns which path actually fired: 'clip' | 'tts' | 'none'
+function bkSay(text,sub){
+  const cfg=bkVoiceCfg();
+  const msg=(text!=null?text:cfg.text)||'';
+  if(!msg.trim())return 'none';
+  _bkTtsSub=sub||'Announcement';
+  if(cfg.clip&&bkPlayClip(msg,sub))return 'clip';
+  if(bkSpeakTTS(msg))return 'tts';
+  return 'none';
+}
+
+// What this particular device will do — shown in the admin panel
+function bkVoiceCapability(){
+  const cfg=bkVoiceCfg();
+  const vs=bkVoiceList();
+  if(cfg.clip)return {mode:'clip',ok:true,detail:'Voice clip: '+cfg.clip};
+  if(vs.length)return {mode:'tts',ok:true,detail:vs.length+' voice(s) available · using “'+((bkPickVoice()||{}).name||'?')+'”'};
+  return {mode:'none',ok:false,detail:'This device has no built-in speech voices'};
 }
 
 // ── The "BREAK IS OVER" overlay ────────────────────────────────────────────
@@ -3244,8 +3656,9 @@ function bkAdminStatus(st){
     return;
   }
   if(st.phase==='over'){
-    el.innerHTML='⏰ <span class="bk-ovr">ALERT FLASHING — '+(st.w.label||'Break')+' is over</span> '+
-      '(every '+(getBreakData().repeat||5)+'s, over the running slides)<br>'+
+    const _a=getBreakData().alertOn===true;
+    el.innerHTML=(_a?'⏰ <span class="bk-ovr">ALERT FLASHING — ':'🔊 <span class="bk-run">ANNOUNCING — ')+(st.w.label||'Break')+' is over</span> '+
+      (_a?'(every '+(getBreakData().repeat||5)+'s, over the running slides)':'(spoken announcement only — flashing alert is off)')+'<br>'+
       'Overdue by <b>'+bkFmtMMSS(st.since)+'</b> · alert window ends in <b>'+bkFmtMMSS(st.left)+'</b>'+
       (st.next?'<br>Next: '+st.next.icon+' <b>'+st.next.label+'</b> at <b>'+bkFmtClock(st.next.startMin)+'</b>':'');
     return;
@@ -3268,7 +3681,7 @@ function bkAdminStatus(st){
 }
 
 // ── Master tick ────────────────────────────────────────────────────────────
-let _bkPhase='',_bkKey='';
+let _bkPhase='',_bkKey='',_bkVoiceKey='',_bkVoiceLast=0;
 function bkTick(){
   let st;
   try{st=bkState();}catch(e){console.error('break timer',e);return;}
@@ -3278,7 +3691,8 @@ function bkTick(){
   if(st.phase==='over'||st.phase==='ended')bkRenderEndSlide(st);
 
   // ── alert: a short flash every `repeat` seconds, for the whole alert window ──
-  if(st.phase==='over'&&bkDismissKey!==bkAlertKey(st)){
+  const _alertOn=(getBreakData().alertOn===true)||st.test;   // off by default now
+  if(_alertOn&&st.phase==='over'&&bkDismissKey!==bkAlertKey(st)){
     const cfg=getBreakData();
     const every=Math.max(1,parseFloat(cfg.repeat)||5)*1000;
     const showFor=Math.max(900,Math.min(2600,every*0.55));
@@ -3289,6 +3703,24 @@ function bkTick(){
   }else{
     bkHideAlert();
     _bkLastPulse=0;
+  }
+
+  // ── spoken announcement: its own window measured from the end of the break ──
+  if(!st.test&&(st.phase==='over'||st.phase==='ended')){
+    const v=bkVoiceCfg();
+    const key=annToday()+':'+((st.w&&st.w.shift)||'')+':'+((st.w&&st.w.key)||'');
+    if(_bkVoiceKey!==key){_bkVoiceKey=key;_bkVoiceLast=0;}
+    const windowSec=Math.max(0,parseFloat(v.minutes)||0)*60;
+    if(v.on!==false&&st.since<windowSec){
+      const gap=Math.max(5,parseFloat(v.every)||30)*1000;
+      const t=Date.now();
+      if(!_bkVoiceLast||t-_bkVoiceLast>=gap){
+        _bkVoiceLast=t;
+        bkSay(null,st.w?((st.w.label||'Break')+' · ended '+bkFmtClock(st.w.endMin)):'Announcement');
+      }
+    }
+  }else if(st.phase!=='over'&&st.phase!=='ended'){
+    _bkVoiceKey='';_bkVoiceLast=0;
   }
 
   // the countdown / just-ended slide gets its own turn between every normal slide,
@@ -3310,16 +3742,173 @@ setInterval(bkTick,1000);
 // ══════════════════════════════════════════════════════════════════════════════
 //  ⏰ BREAK TIMER — ADMIN
 // ══════════════════════════════════════════════════════════════════════════════
+// ── Voice settings in the admin panel ──────────────────────────────────────
+let bkVoiceFile=null;
+function bkVStatus(cls,msg){
+  const el=document.getElementById('bk-v-status');
+  if(!el)return;
+  el.className='ann-status '+(cls||'');el.innerHTML=msg||'';
+}
+
+function bkFillVoiceSelect(){
+  const sel=document.getElementById('bk-v-name');
+  if(!sel)return;
+  const cur=(bkVoiceCfg().voiceName)||'';
+  const vs=bkVoiceList();
+  sel.innerHTML='<option value="">Auto — pick a female English voice</option>'+
+    vs.map(v=>`<option value="${String(v.name).replace(/"/g,'&quot;')}">${v.name} (${v.lang})</option>`).join('');
+  sel.value=cur;
+}
+
+function bkRenderVoiceCap(){
+  const el=document.getElementById('bk-voice-cap');
+  if(!el)return;
+  const cap=bkVoiceCapability();
+  if(cap.mode==='clip'){
+    el.className='bk-voice-cap ok';
+    el.innerHTML='📺 <strong>Using the uploaded voice clip</strong> — works on Fire TV and every other device.<br>'+cap.detail;
+  }else if(cap.mode==='tts'){
+    el.className='bk-voice-cap ok';
+    el.innerHTML='🔊 <strong>Using this device\'s built-in voice.</strong> '+cap.detail+
+      '<br><span style="color:var(--muted);">Note: your Fire TV almost certainly has no voices — upload a clip below so the display screen can speak.</span>';
+  }else{
+    el.className='bk-voice-cap warn';
+    el.innerHTML='⚠ <strong>This device cannot speak.</strong> '+cap.detail+
+      '.<br>Upload an MP3 voice clip below — that is the only way to get audio on a Fire TV / Smart TV browser.';
+  }
+}
+
+function loadVoiceAdminFields(){
+  const v=bkVoiceCfg();
+  const el=id=>document.getElementById(id);
+  if(el('bk-v-on'))el('bk-v-on').checked=v.on!==false;
+  if(el('bk-v-text'))el('bk-v-text').value=v.text||'';
+  if(el('bk-v-minutes'))el('bk-v-minutes').value=v.minutes!=null?v.minutes:2;
+  if(el('bk-v-every'))el('bk-v-every').value=v.every!=null?v.every:30;
+  if(el('bk-v-rate'))el('bk-v-rate').value=v.rate!=null?v.rate:0.95;
+  if(el('bk-v-pitch'))el('bk-v-pitch').value=v.pitch!=null?v.pitch:1.2;
+  if(el('bk-v-ta'))el('bk-v-ta').value=v.ta||'';
+  if(el('bk-v-card'))el('bk-v-card').checked=v.card!==false;
+  if(el('bk-v-fname'))el('bk-v-fname').textContent=v.clip?('current clip: '+v.clip):'';
+  bkFillVoiceSelect();
+  bkRenderVoiceCap();
+}
+
+function bkCollectVoice(d){
+  const el=id=>document.getElementById(id);
+  const numv=(id,def,lo,hi)=>{const e=el(id);if(!e)return def;const n=parseFloat(e.value);
+    return isNaN(n)?def:Math.max(lo,Math.min(hi,n));};
+  const v=Object.assign({},BK_VOICE_DEFAULT,d.voice||{});
+  if(el('bk-v-on'))v.on=el('bk-v-on').checked;
+  if(el('bk-v-text'))v.text=el('bk-v-text').value.trim()||BK_VOICE_DEFAULT.text;
+  v.minutes=numv('bk-v-minutes',2,0,60);
+  v.every=numv('bk-v-every',30,5,600);
+  v.rate=numv('bk-v-rate',0.95,0.5,1.6);
+  v.pitch=numv('bk-v-pitch',1.2,0,2);
+  if(el('bk-v-name'))v.voiceName=el('bk-v-name').value||'';
+  if(el('bk-v-ta'))v.ta=el('bk-v-ta').value.trim();
+  if(el('bk-v-card'))v.card=el('bk-v-card').checked;
+  d.voice=v;
+  if(el('bk-v-minutes'))el('bk-v-minutes').value=v.minutes;
+  if(el('bk-v-every'))el('bk-v-every').value=v.every;
+  if(el('bk-v-rate'))el('bk-v-rate').value=v.rate;
+  if(el('bk-v-pitch'))el('bk-v-pitch').value=v.pitch;
+  return d;
+}
+
+function bkTestVoice(){
+  const box=document.getElementById('bk-v-text');
+  // an empty box should test the saved message, not report a fake device fault
+  const msg=(box&&box.value.trim())?box.value.trim():(bkVoiceCfg().text||BK_VOICE_DEFAULT.text);
+  const how=bkSay(msg);
+  if(how==='clip')bkVStatus('ok','▶ Playing the uploaded voice clip…');
+  else if(how==='tts')bkVStatus('ok','▶ Speaking with “'+((bkPickVoice()||{}).name||'?')+'”: “'+msg+'”');
+  else if(!msg)bkVStatus('err','⚠ The message is empty — type something to announce.');
+  else bkVStatus('err','⚠ Nothing played — this device has no speech voices and no clip is set. Upload an MP3 below and it will work on the TV.');
+  bkRenderVoiceCap();
+}
+
+function onBkVoiceFileSelected(ev){
+  const f=ev.target.files[0];
+  if(!f)return;
+  if(!/^audio\//i.test(f.type)&&!/\.(mp3|m4a|wav|ogg|aac)$/i.test(f.name)){
+    bkVStatus('err','❌ Please choose an audio file (MP3, M4A, WAV, OGG or AAC).');
+    ev.target.value='';return;
+  }
+  if(f.size>5*1024*1024){
+    bkVStatus('err','❌ Clip is larger than 5 MB — please use a short recording.');
+    ev.target.value='';return;
+  }
+  bkVoiceFile=f;
+  document.getElementById('bk-v-fname').textContent=f.name+'  ('+Math.round(f.size/1024)+' KB)';
+  document.getElementById('bk-v-icon').textContent='🎵';
+  document.getElementById('bk-v-upload').disabled=false;
+  bkVStatus('','');
+}
+
+async function bkUploadVoiceClip(){
+  if(!bkVoiceFile){bkVStatus('err','❌ Select an audio file first.');return;}
+  const cfg=getGhCfg();
+  if(!cfg.user||!cfg.repo||!cfg.token){
+    bkVStatus('err','❌ GitHub config missing. Open the ⬆ GitHub tab, save your details, then try again.');return;
+  }
+  const ext=(bkVoiceFile.name.match(/\.(mp3|m4a|wav|ogg|aac)$/i)||['.mp3'])[0].toLowerCase();
+  const filename='break-voice-'+Date.now().toString(36)+ext;
+  const btn=document.getElementById('bk-v-upload');
+  btn.disabled=true;
+  document.getElementById('bk-v-prog').style.display='block';
+  bkVStatus('load','⏳ Uploading the voice clip to GitHub…');
+  let ok=false;
+  try{
+    const b64=await fileToBase64(bkVoiceFile);
+    const apiUrl=`https://api.github.com/repos/${cfg.user}/${cfg.repo}/contents/audio/${filename}`;
+    const headers={'Authorization':'token '+cfg.token,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'};
+    let sha=null;
+    try{const r=await fetch(`${apiUrl}?ref=${cfg.branch||'main'}`,{headers});if(r.ok)sha=(await r.json()).sha;}catch(e){}
+    const body={message:'Add break voice clip: '+filename,content:b64,branch:cfg.branch||'main'};
+    if(sha)body.sha=sha;
+    const res=await fetch(apiUrl,{method:'PUT',headers,body:JSON.stringify(body)});
+    ok=res.ok;
+    if(!ok){let m='';try{m=(await res.json()).message||'';}catch(e){}bkVStatus('err','❌ Upload failed: '+(m||res.status));}
+  }catch(e){bkVStatus('err','❌ '+e.message);}
+  document.getElementById('bk-v-prog').style.display='none';
+  if(!ok){btn.disabled=false;return;}
+
+  const d=getBreakData();
+  d.voice=Object.assign({},BK_VOICE_DEFAULT,d.voice||{},{clip:filename});
+  setBreakData(d);
+  bkVoiceFile=null;
+  document.getElementById('bk-v-file').value='';
+  document.getElementById('bk-v-icon').textContent='🎙️';
+  loadVoiceAdminFields();
+  btn.textContent='⬆ Upload Clip & Use It';
+  bkVStatus('ok','✅ Clip uploaded and switched on. Now open the <strong>⬆ GitHub</strong> tab and press <strong>Push HTML to GitHub</strong> so the TV picks it up.');
+}
+
+function bkClearVoiceClip(){
+  const d=getBreakData();
+  if(!(d.voice&&d.voice.clip)){bkVStatus('','No clip is set — the built-in voice is already in use.');return;}
+  d.voice=Object.assign({},BK_VOICE_DEFAULT,d.voice,{clip:''});
+  setBreakData(d);
+  loadVoiceAdminFields();
+  bkVStatus('ok','✅ Clip removed — falling back to the device voice. Push HTML to GitHub to apply.');
+}
+
+// voices arrive asynchronously in Chrome
+try{if(window.speechSynthesis)speechSynthesis.onvoiceschanged=function(){bkFillVoiceSelect();bkRenderVoiceCap();};}catch(e){}
+
 function loadBreakAdminFields(){
   const d=getBreakData();
   const el=id=>document.getElementById(id);
   if(el('bk-enabled'))el('bk-enabled').checked=d.enabled!==false;
+  if(el('bk-alert-on'))el('bk-alert-on').checked=d.alertOn===true;
   if(el('bk-shift'))el('bk-shift').value=d.shift||'s1';
   if(el('bk-grace'))el('bk-grace').value=d.grace!=null?d.grace:5;
   if(el('bk-repeat'))el('bk-repeat').value=d.repeat!=null?d.repeat:5;
   if(el('bk-sound'))el('bk-sound').checked=d.sound!==false;
   if(el('bk-slide-on'))el('bk-slide-on').checked=d.slideEnabled!==false;
   if(el('bk-slide-dur'))el('bk-slide-dur').value=d.slideDur!=null?d.slideDur:10;
+  loadVoiceAdminFields();
   renderBreakActs();
   bkAdminStatus(bkState());
 }
@@ -3365,6 +3954,7 @@ function saveBreakData(){
   const el=id=>document.getElementById(id);
   const d=getBreakData();
   if(el('bk-enabled'))d.enabled=el('bk-enabled').checked;
+  if(el('bk-alert-on'))d.alertOn=el('bk-alert-on').checked;
   if(el('bk-shift'))d.shift=el('bk-shift').value;
   const num=(id,def,lo,hi)=>{const e=el(id);if(!e)return def;const n=parseInt(e.value,10);
     return isNaN(n)?def:Math.max(lo,Math.min(hi,n));};
@@ -3383,7 +3973,9 @@ function saveBreakData(){
       d.acts[a.key].dur=(v===''||isNaN(n)||n<=0)?'':Math.min(240,n);
     }
   });
+  bkCollectVoice(d);
   setBreakData(d);
+  bkRenderVoiceCap();
   if(el('bk-grace'))el('bk-grace').value=d.grace;
   if(el('bk-repeat'))el('bk-repeat').value=d.repeat;
   if(el('bk-slide-dur'))el('bk-slide-dur').value=d.slideDur;
@@ -4020,7 +4612,7 @@ function buildSlides(){
     card.className='month-card'+(isToday?' today-card':'');
     card.style.animationDelay=`${i*80}ms`;
     card.innerHTML=`
-      ${makeAvatarHTML(p,'mc')}
+      <div class="mc-avatar-wrap">${makeAvatarHTML(p,'mc')}${isToday?'<span class="mc-crown">👑</span>':''}</div>
       <div class="mc-date">
         <div class="mc-day">${p.day}</div>
         <div class="mc-mon">${MS[cm-1]}</div>
@@ -4032,6 +4624,23 @@ function buildSlides(){
       </div>`;
     grid.appendChild(card);
   });
+
+  // ── Lay the cards out so they always fill the page ──
+  // 1-4 people go in a single row; after that we add rows and shrink.
+  const _n=monthBdays.length;
+  const _cols=(_n<=1)?1:(_n<=4)?_n:(_n<=9)?3:(_n<=16)?4:(_n<=25)?5:6;
+  const _rows=Math.ceil(_n/_cols);
+  grid.style.setProperty('--mc-cols',String(_cols));
+  grid.setAttribute('data-cols',String(Math.min(_cols,6)));
+  grid.setAttribute('data-layout',_rows<=2?'v':'h');
+  // a half-empty last row would leave a hole — stretch the final card across it
+  const _rem=_n%_cols;
+  [...grid.children].forEach(c=>{c.classList.remove('mc-fill');c.style.removeProperty('--mc-span');});
+  if(_rem!==0&&grid.lastElementChild){
+    grid.lastElementChild.classList.add('mc-fill');
+    grid.lastElementChild.style.setProperty('--mc-span','span '+(_cols-_rem+1));
+  }
+
   const msEl2=document.getElementById('month-slide');
   if(msEl2)slides.push({el:msEl2,type:'month'});
 
