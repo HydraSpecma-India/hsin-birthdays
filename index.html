@@ -3,10 +3,10 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="version" content="20260909115335">
+<meta name="version" content="20260910094804">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Buddies – HydraSpecma India</title>
-<!-- v20260909115335 -->
+<!-- v20260910094804 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700;800;900&amp;family=Poppins:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
@@ -636,6 +636,16 @@ body{font-family:'Poppins',sans-serif;background:var(--dark);color:var(--text);m
 .bk-status b{color:var(--gold);}
 .bk-status .bk-run{color:#3fb950;font-weight:700;}
 .bk-status .bk-ovr{color:var(--red);font-weight:700;}
+.bk-master-warn{display:none;background:rgba(231,76,60,.14);border:1px solid var(--red);border-radius:10px;
+  padding:11px 13px;font-size:11.5px;color:#ff9c8f;line-height:1.6;margin-bottom:12px;}
+.bk-master-warn.show{display:block;}
+.bk-fix-btn{margin-left:8px;background:var(--gold);color:#1a1a1a;border:none;border-radius:7px;padding:5px 13px;
+  font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;}
+.bk-fix-btn:hover{background:#fff;}
+.bk-status{position:sticky;top:0;z-index:6;}
+.bk-optional{opacity:.72;}
+.bk-optional-tag{display:inline-block;background:#2a2a2a;color:var(--muted);font-size:9px;letter-spacing:1.5px;
+  text-transform:uppercase;padding:2px 8px;border-radius:20px;margin-left:7px;vertical-align:middle;}
 .bk-voice-cap{font-size:11.5px;border-radius:9px;padding:9px 12px;line-height:1.55;border:1px solid #2a2a2a;background:var(--dark4);color:#ccc;}
 .bk-voice-cap.ok{border-color:rgba(63,185,80,.5);color:#8fe0a0;}
 .bk-voice-cap.warn{border-color:rgba(231,76,60,.5);color:#ff9c8f;}
@@ -2260,11 +2270,11 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
           <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px;">⏰ Automatic Break Timer</div>
           <div style="font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.55;">
             Break times are read straight from the <strong>⏱ Shifts</strong> tab — change them there and the timer follows.
-            <br>• <strong>During the break</strong> a live countdown is woven into the slide rotation.
-            <br>• <strong>When it ends</strong> the spoken announcement plays and a calm full-screen card appears while it speaks.
-            The red flashing <strong>BREAK IS OVER</strong> alert is switched off by default — turn it back on below whenever you want it.
-            <br>• <strong>After the alert window</strong> a “break has ended — next break” slide stays in the rotation
-            until the next break begins.
+            <br>• <strong>During the break</strong> the board carries on with its normal slides — nothing is added.
+            <br>• <strong>When the break ends</strong> the spoken announcement plays and a full-screen card appears
+            on screen while it speaks. That is the whole thing.
+            <br><span style="color:var(--muted);">The countdown slide, the “next break” slide and the red flashing alert are all
+            switched off. Their switches are still here if you ever want them back.</span>
           </div>
 
           <div class="form-row">
@@ -2286,14 +2296,14 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
           </div>
 
           <div class="form-row">
-            <div class="form-group">
-              <label>Flashing “Break Is Over” Alert</label>
+            <div class="form-group bk-optional">
+              <label>Flashing “Break Is Over” Alert <span class="bk-optional-tag">off</span></label>
               <label class="switch" style="margin-top:6px;">
                 <input type="checkbox" id="bk-alert-on" onchange="saveBreakData()">
                 <span class="slider round"></span>
               </label>
               <div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.5;">
-                Off — the spoken announcement below is used instead. Turn on any time to bring back the red flashing overlay.
+                Not used — the spoken announcement replaces it. Turn on any time to bring back the red flashing overlay.
               </div>
             </div>
             <div class="form-group"><label>Alert Window After Break (minutes)</label><input type="number" id="bk-grace" min="1" max="60" value="5" onchange="saveBreakData()"></div>
@@ -2311,12 +2321,16 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
                 <span class="slider round"></span>
               </label>
             </div>
-            <div class="form-group">
-              <label>Show Break Slides</label>
+            <div class="form-group bk-optional">
+              <label>Countdown &amp; Next-Break Slides <span class="bk-optional-tag">off</span></label>
               <label class="switch" style="margin-top:6px;">
                 <input type="checkbox" id="bk-slide-on" onchange="saveBreakData()">
                 <span class="slider round"></span>
               </label>
+              <div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.5;">
+                Not used — breaks add nothing to the slide loop. Turn on to bring back the live countdown
+                and the “break has ended — next break” slide.
+              </div>
             </div>
           </div>
 
@@ -2332,6 +2346,10 @@ Break Duration: Ensure you return to your workstation promptly at the end of you
         <div style="font-size:12px;font-weight:700;color:var(--gold);margin:18px 0 10px 2px;letter-spacing:1px;">🔊 SPOKEN ANNOUNCEMENT</div>
         <div style="background:var(--dark3);border:1px solid #2a2a2a;border-radius:12px;padding:16px;margin-bottom:16px;">
 
+          <div class="bk-master-warn" id="bk-v-master-warn">
+            ⚠ <strong>“Break Timer Enabled” is switched OFF</strong> at the top of this tab, so the announcement will not play.
+            <button class="bk-fix-btn" onclick="bkEnableMaster()">Turn Break Timer on</button>
+          </div>
           <div class="bk-voice-cap" id="bk-voice-cap">Checking this device…</div>
 
           <div class="form-row" style="margin-top:12px;">
@@ -3222,7 +3240,7 @@ const BK_VOICE_DEFAULT = {"on":true,"text":"Hope you enjoyed the break. Thank yo
   "minutes":2,"every":30,"rate":0.95,"pitch":1.2,"voiceName":"","clip":"","card":true,
   "ta":"இடைவேளை முடிந்தது — நன்றி"};
 
-const DEFAULT_BREAKS = {"enabled":false,"shift":"both","grace":30,"repeat":5,"sound":false,"slideEnabled":false,"slideDur":15,"acts":{"breakfast":{"on":true,"dur":""},"tea1":{"on":true,"dur":""},"lunch":{"on":true,"dur":""},"tea2":{"on":true,"dur":""}},"alertOn":false,"voice":{"on":true,"text":"Hope you enjoyed the break. Thank you.","minutes":10,"every":30,"rate":1.5,"pitch":1,"voiceName":"","clip":"break-voice-mtu0lvq3.mp3","card":true,"ta":"இடைவேளை முடிந்தது — நன்றி"}};
+const DEFAULT_BREAKS = {"cfgV":2,"enabled":true,"shift":"both","grace":20,"repeat":10,"sound":false,"slideEnabled":false,"slideDur":10,"acts":{"breakfast":{"on":true,"dur":""},"tea1":{"on":true,"dur":""},"lunch":{"on":true,"dur":""},"tea2":{"on":true,"dur":""}},"alertOn":false,"voice":{"on":true,"text":"Hope you enjoyed the break. Thank you.","minutes":10,"every":30,"rate":1.5,"pitch":1,"voiceName":"","clip":"break-voice-mtu0lvq3.mp3","card":true,"ta":"இடைவேளை முடிந்தது — நன்றி"}};
 
 function getBreakData(){
   let raw=null;
@@ -3235,6 +3253,23 @@ function getBreakData(){
   out.voice=Object.assign({},BK_VOICE_DEFAULT,(base.voice||{}),((raw&&raw.voice)||{}));
   return out;
 }
+// ── One-time switch to voice-only mode ────────────────────────────────────
+// Devices that already had settings saved keep their own choices for
+// everything else; only these three are forced, once, then never again.
+function bkMigrateVoiceOnly(){
+  try{
+    const raw=JSON.parse(localStorage.getItem('hsin_breaks')||'null');
+    if(!raw||typeof raw!=='object')return;   // nothing saved — baked defaults are already right
+    if(raw.cfgV>=2)return;                   // already migrated; respect later manual changes
+    raw.cfgV=2;
+    raw.enabled=true;         // the timer has to run for the announcement to fire
+    raw.slideEnabled=false;   // no countdown slide, no "next break" slide
+    raw.alertOn=false;        // no red flashing overlay
+    localStorage.setItem('hsin_breaks',JSON.stringify(raw));
+  }catch(e){}
+}
+bkMigrateVoiceOnly();
+
 function setBreakData(d){
   try{localStorage.setItem('hsin_breaks',JSON.stringify(d));}
   catch(e){console.error('break settings not saved',e);}
@@ -3644,7 +3679,11 @@ function bkAdminStatus(st){
   const el=document.getElementById('bk-admin-status');
   if(!el)return;
   const cfg=getBreakData();
-  if(!cfg.enabled){el.innerHTML='⏸ <b>Break timer is switched off.</b> Turn it on below to start using shift break times.';return;}
+  if(!cfg.enabled){
+    el.innerHTML='⏸ <span class="bk-ovr">BREAK TIMER IS OFF</span> — the spoken announcement will not play. '+
+      'Turn on <b>“Break Timer Enabled”</b> below.';
+    return;
+  }
   const wins=bkWindows();
   if(!wins.length){
     el.innerHTML='⚠ <span class="bk-ovr">No usable break times found.</span> Check the <b>⏱ Shifts</b> tab — times must look like <code>09.00 AM TO 09.30 AM</code>.';
@@ -3655,19 +3694,22 @@ function bkAdminStatus(st){
       'Ends at <b>'+bkFmtClock(st.w.endMin)+'</b> · <b>'+bkFmtMMSS(st.remaining)+'</b> remaining';
     return;
   }
-  if(st.phase==='over'){
-    const _a=getBreakData().alertOn===true;
-    el.innerHTML=(_a?'⏰ <span class="bk-ovr">ALERT FLASHING — ':'🔊 <span class="bk-run">ANNOUNCING — ')+(st.w.label||'Break')+' is over</span> '+
-      (_a?'(every '+(getBreakData().repeat||5)+'s, over the running slides)':'(spoken announcement only — flashing alert is off)')+'<br>'+
-      'Overdue by <b>'+bkFmtMMSS(st.since)+'</b> · alert window ends in <b>'+bkFmtMMSS(st.left)+'</b>'+
-      (st.next?'<br>Next: '+st.next.icon+' <b>'+st.next.label+'</b> at <b>'+bkFmtClock(st.next.startMin)+'</b>':'');
+  if(st.phase==='over'||st.phase==='ended'){
+    const cfgN=getBreakData();
+    const v=cfgN.voice||{};
+    const speakSec=Math.max(0,parseFloat(v.minutes)||0)*60;
+    const speaking=(v.on!==false)&&(st.since<speakSec);
+    const head=speaking
+      ? '🔊 <span class="bk-run">ANNOUNCING — '+(st.w.label||'Break')+' is over</span> (every '+(v.every||30)+'s)'
+      : '✅ <b>'+(st.w.label||'Break')+' finished</b> at '+bkFmtClock(st.w.endMin)+' — announcement done';
+    const line2=speaking
+      ? 'Ended <b>'+bkFmtMMSS(st.since)+'</b> ago · speaking stops in <b>'+bkFmtMMSS(Math.max(0,speakSec-st.since))+'</b>'
+      : 'Ended <b>'+bkFmtMMSS(st.since)+'</b> ago';
+    el.innerHTML=head+'<br>'+line2+
+      (st.next?'<br>Next: '+st.next.icon+' <b>'+st.next.label+'</b> at <b>'+bkFmtClock(st.next.startMin)+'</b>':'<br>No more breaks today.');
     return;
   }
-  if(st.phase==='ended'){
-    el.innerHTML='✅ <b>Alert finished.</b> The “'+(st.w.label||'Break')+' has ended” slide is in the rotation.<br>'+
-      'It stays until the next break: '+st.next.icon+' <b>'+st.next.label+'</b> at <b>'+bkFmtClock(st.next.startMin)+'</b>';
-    return;
-  }
+
   const now=bkNowMin();
   const next=st.next;
   if(next){
@@ -3760,6 +3802,16 @@ function bkFillVoiceSelect(){
   sel.value=cur;
 }
 
+function bkSyncWarnings(){
+  const el=document.getElementById('bk-v-master-warn');
+  if(el)el.classList.toggle('show',getBreakData().enabled===false);
+}
+function bkEnableMaster(){
+  const el=document.getElementById('bk-enabled');
+  if(el)el.checked=true;
+  saveBreakData();
+}
+
 function bkRenderVoiceCap(){
   const el=document.getElementById('bk-voice-cap');
   if(!el)return;
@@ -3792,6 +3844,7 @@ function loadVoiceAdminFields(){
   if(el('bk-v-fname'))el('bk-v-fname').textContent=v.clip?('current clip: '+v.clip):'';
   bkFillVoiceSelect();
   bkRenderVoiceCap();
+  bkSyncWarnings();
 }
 
 function bkCollectVoice(d){
@@ -3953,6 +4006,7 @@ function renderBreakActs(){
 function saveBreakData(){
   const el=id=>document.getElementById(id);
   const d=getBreakData();
+  d.cfgV=2;
   if(el('bk-enabled'))d.enabled=el('bk-enabled').checked;
   if(el('bk-alert-on'))d.alertOn=el('bk-alert-on').checked;
   if(el('bk-shift'))d.shift=el('bk-shift').value;
@@ -3976,6 +4030,7 @@ function saveBreakData(){
   bkCollectVoice(d);
   setBreakData(d);
   bkRenderVoiceCap();
+  bkSyncWarnings();
   if(el('bk-grace'))el('bk-grace').value=d.grace;
   if(el('bk-repeat'))el('bk-repeat').value=d.repeat;
   if(el('bk-slide-dur'))el('bk-slide-dur').value=d.slideDur;
@@ -3987,7 +4042,7 @@ function saveBreakData(){
 // ══════════════════════════════════════════════════════════════════════════════
 //  📢 ANNOUNCEMENT POSTERS  —  data, GitHub upload, slide rendering
 // ══════════════════════════════════════════════════════════════════════════════
-const DEFAULT_ANNOUNCEMENTS = [{"active":true,"duration":30,"order":1,"start":"2026-08-17","end":"2026-09-20","type":"image","id":1,"title":"Health Month","file":"health-month-mswzny27.png","added":"2026-08-17T07:04:01.270Z","previousFile":"health-month-msww17h5.png","replaced":"2026-08-17T08:45:41.410Z"},{"active":true,"duration":20,"order":2,"start":"","end":"","type":"image","id":2,"title":"Coffebreak","file":"coffebreak-mtqszct7.png","added":"2026-09-09T11:53:10.469Z"},{"active":true,"duration":20,"order":3,"start":"","end":"","type":"pdf","id":3,"title":"Health month activities","file":"health-month-activities-mtqt42x1.pdf","added":"2026-09-09T11:53:14.141Z"},{"active":true,"duration":20,"order":4,"start":"","end":"","type":"image","id":4,"title":"Health month","file":"health-month-mswvk1j3.png","added":"2026-09-09T11:53:18.521Z"},{"active":true,"duration":20,"order":5,"start":"","end":"","type":"image","id":5,"title":"Health month","file":"health-month-msww17h5.png","added":"2026-09-09T11:53:19.457Z"},{"active":true,"duration":20,"order":6,"start":"","end":"","type":"image","id":6,"title":"Movement breakeng 1","file":"movement-breakeng-1-mtqt085n.png","added":"2026-09-09T11:53:20.990Z"},{"active":true,"duration":20,"order":7,"start":"","end":"","type":"pdf","id":7,"title":"Poster health month","file":"poster-health-month-mswtivqo.pdf","added":"2026-09-09T11:53:21.840Z"},{"active":true,"duration":20,"order":8,"start":"","end":"","type":"image","id":8,"title":"Team challengee","file":"team-challengee-mtqsvk84.png","added":"2026-09-09T11:53:22.984Z"}];
+const DEFAULT_ANNOUNCEMENTS = [{"active":true,"duration":30,"order":1,"start":"2026-08-16","end":"2026-09-20","type":"image","id":1,"title":"Health Month","file":"health-month-mswvk1j3.png","added":"2026-08-17T06:50:39.751Z"},{"active":true,"duration":20,"order":2,"start":"","end":"","type":"image","id":2,"title":"Team challengee","file":"team-challengee-mtqsvk84.png","added":"2026-09-09T11:52:22.321Z"},{"active":true,"duration":20,"order":3,"start":"","end":"","type":"image","id":3,"title":"Coffebreak","file":"coffebreak-mtqszct7.png","added":"2026-09-10T09:47:27.699Z"},{"active":true,"duration":20,"order":4,"start":"","end":"","type":"pdf","id":4,"title":"Health month activities","file":"health-month-activities-mtqt42x1.pdf","added":"2026-09-10T09:47:29.242Z"},{"active":true,"duration":20,"order":7,"start":"","end":"","type":"image","id":7,"title":"Movement breakeng 1","file":"movement-breakeng-1-mtqt085n.png","added":"2026-09-10T09:47:32.976Z"},{"active":true,"duration":20,"order":8,"start":"","end":"","type":"pdf","id":8,"title":"Poster health month","file":"poster-health-month-mswtivqo.pdf","added":"2026-09-10T09:47:34.162Z"}];
 
 function getAnnouncements(){
   let raw=null;
